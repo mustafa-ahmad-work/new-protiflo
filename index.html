@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -39,7 +40,7 @@
 
     <!-- ===== LOADING SCREEN ===== -->
     <div id="loading-screen">
-        <div class="terminal-window">
+        <div class="terminal-window mx-auto" style="max-width: 700px;">
             <div class="terminal-header">
                 <div class="dot bg-red-500"></div>
                 <div class="dot bg-yellow-500"></div>
@@ -52,12 +53,30 @@
 
     <!-- ===== NAVIGATION ===== -->
     <nav class="nav-glass">
-        <a href="#hero" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#projects" class="nav-link">Works</a>
-        <a href="#blog" class="nav-link">Blog</a>
-        <a href="#contact" class="nav-link">Connect</a>
+        <a href="#hero" class="nav-link active">
+            <i data-lucide="home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#about" class="nav-link">
+            <i data-lucide="user"></i>
+            <span>About</span>
+        </a>
+        <a href="#services" class="nav-link">
+            <i data-lucide="cpu"></i>
+            <span>Services</span>
+        </a>
+        <a href="#projects" class="nav-link">
+            <i data-lucide="layout"></i>
+            <span>Works</span>
+        </a>
+        <a href="#blog" class="nav-link">
+            <i data-lucide="book-open"></i>
+            <span>Blog</span>
+        </a>
+        <a href="#contact" class="nav-link">
+            <i data-lucide="message-square"></i>
+            <span>Connect</span>
+        </a>
     </nav>
 
     <!-- ===== HERO ===== -->
@@ -73,46 +92,46 @@
                 Architecture
             </h1>
             <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-                I'm <span class="font-bold" style="color:var(--text-main)">Mostafa Ahmed</span>. A Software Engineer building scalable
+                I'm <span class="font-bold" style="color:var(--text-main)">Mostafa Ahmed</span>. A Software Engineer
+                building scalable
                 systems with <span class="text-primary">Laravel</span> and immersive frontends with <span
                     class="text-primary">React</span>.
             </p>
             <div class="flex flex-wrap justify-center gap-5">
-                <a href="#contact" class="primary-btn">Let's Build Together <i data-lucide="arrow-right"></i></a>
-                <a href="#projects"
-                    class="px-8 py-4 rounded-full font-bold transition-all" style="border:1px solid var(--border-color); color:var(--text-main);">View
+                <a href="#contact" class="primary-btn">Let's Build Together <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#projects" class="px-8 py-4 rounded-full font-bold transition-all"
+                    style="border:1px solid var(--border-color); color:var(--text-main);">View
                     Portfolio</a>
             </div>
 
             <!-- Social Links -->
             <div class="flex justify-center gap-4 mt-10">
-                <a href="https://www.facebook.com/Mostafa7Ahmad" target="_blank" class="w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all duration-300">
-                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                <a href="https://www.facebook.com/Mostafa7Ahmad" target="_blank"
+                    class="social-link facebook w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300">
+                    <i class="fa-brands fa-facebook-f text-lg"></i>
                 </a>
-                <a href="https://wa.me/+201120354592" target="_blank" class="w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all duration-300">
-                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                <a href="https://wa.me/+201120354592" target="_blank"
+                    class="social-link whatsapp w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/mustafa-ahmad-work" target="_blank" class="w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all duration-300">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                <a href="https://www.linkedin.com/in/mustafa-ahmad-work" target="_blank"
+                    class="social-link linkedin w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300">
+                    <i class="fa-brands fa-linkedin-in text-lg"></i>
                 </a>
-                <a href="https://t.me/+nTRukDn0mAc2Zjc8" target="_blank" class="w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all duration-300">
-                    <i data-lucide="send" class="w-5 h-5"></i>
+                <a href="https://t.me/+nTRukDn0mAc2Zjc8" target="_blank"
+                    class="social-link telegram w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all duration-300">
+                    <i class="fa-brands fa-telegram text-lg"></i>
                 </a>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mt-24 pt-10 border-t border-white/5">
-                <div class="stat-box"><span class="stat-number">15+</span><span class="stat-label">Projects</span></div>
-                <div class="stat-box"><span class="stat-number">10+</span><span class="stat-label">Clients</span></div>
-                <div class="stat-box"><span class="stat-number">2+</span><span class="stat-label">Years Exp</span></div>
-                <div class="stat-box"><span class="stat-number">99%</span><span class="stat-label">Uptime</span></div>
-            </div>
+
         </div>
     </section>
 
     <!-- ===== ABOUT ME ===== -->
     <section id="about" class="py-32 section-alt">
         <div class="container">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                 <div class="reveal relative">
                     <div
                         class="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 aspect-square shadow-2xl">
@@ -120,11 +139,11 @@
                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000"
                             alt="Mostafa Ahmed" />
                     </div>
-                    <!-- Decorative background elements -->
+                    <!-- Decorative background elements (hidden on mobile to prevent overflow) -->
                     <div
-                        class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full -z-10 animate-pulse">
+                        class="hidden md:block absolute -top-10 -left-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full -z-10 animate-pulse">
                     </div>
-                    <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-primary/10 blur-3xl rounded-full -z-10 animate-pulse"
+                    <div class="hidden md:block absolute -bottom-10 -right-10 w-60 h-60 bg-primary/10 blur-3xl rounded-full -z-10 animate-pulse"
                         style="animation-delay: 2s;"></div>
                 </div>
                 <div class="reveal">
@@ -133,7 +152,8 @@
                     <h2 class="text-6xl font-black mb-8 leading-tight">Crafting Digital<br /><span
                             class="gradient-text">Excellence</span></h2>
                     <p class="text-gray-400 text-lg mb-10 leading-relaxed max-w-xl">
-                        I am a specialized <span class="font-bold" style="color:var(--text-main)">Software Engineer</span> focusing on
+                        I am a specialized <span class="font-bold" style="color:var(--text-main)">Software
+                            Engineer</span> focusing on
                         building high-performance web ecosystems. My approach combines technical rigor with creative
                         problem-solving to deliver scalable, secure, and intuitive applications.
                     </p>
@@ -151,8 +171,8 @@
                         </div>
                         <div class="group">
                             <h4 class="text-primary font-bold text-xs uppercase tracking-widest mb-2 font-mono">
-                                Experience</h4>
-                            <p class="text-main font-semibold">2+ Years Professional</p>
+                                Philosophy</h4>
+                            <p class="text-main font-semibold">Clean & Scalable Code</p>
                         </div>
                         <div class="group">
                             <h4 class="text-primary font-bold text-xs uppercase tracking-widest mb-2 font-mono">Workflow
@@ -162,10 +182,10 @@
                     </div>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="primary-btn">Let's Talk <i data-lucide="message-circle"></i></a>
-                        <a href="#"
-                            class="px-8 py-4 rounded-2xl transition-all font-bold text-sm" style="border:1px solid var(--border-color); color:var(--text-main);">Download
-                            Resume</a>
+                        <a href="#contact" class="primary-btn">Let's Talk <i class="fa-solid fa-comments"></i></a>
+                        <a href="#" class="px-8 py-4 rounded-2xl transition-all font-bold text-sm"
+                            style="border:1px solid var(--border-color); color:var(--text-main);">Download
+                            Resume <i class="fa-solid fa-download ml-2 text-xs opacity-70"></i></a>
                     </div>
                 </div>
             </div>
@@ -300,67 +320,114 @@
         </div>
     </section>
 
-    <!-- ===== SKILLS ===== -->
-    <section id="skills" class="py-32">
+    <!-- ===== SKILLS (Triple Terminal Version) ===== -->
+    <section id="skills" class="py-32 section-alt">
         <div class="container">
-            <div class="text-center mb-24 reveal">
+            <div class="text-center mb-20 reveal">
                 <span class="text-primary font-mono text-sm uppercase tracking-[0.3em] block mb-4">// EXPERTISE</span>
                 <h2 class="text-6xl font-black">Technical Arsenal</h2>
-                <p class="text-gray-500 mt-4">The languages, frameworks, and tools I use to bring ideas to life.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Frontend Category -->
-                <div class="glass-card reveal p-8 border-white/5 group">
-                    <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><i
-                                data-lucide="monitor" class="text-primary w-5 h-5"></i></div>
-                        Frontend
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge">React.js</span>
-                        <span class="skill-badge">Next.js</span>
-                        <span class="skill-badge">TypeScript</span>
-                        <span class="skill-badge">Tailwind CSS</span>
-                        <span class="skill-badge">Redux ToolKit</span>
-                        <span class="skill-badge">GSAP / Framer</span>
-                        <span class="skill-badge">HTML5 / CSS3</span>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Terminal 1: Frontend -->
+                <div class="reveal h-full transform hover:scale-[1.02] transition-transform duration-500">
+                    <div class="terminal-window shadow-xl border-white/5 h-full flex flex-col">
+                        <div class="terminal-header !py-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+                            </div>
+                            <div class="mx-auto text-[9px] font-mono text-gray-500">frontend.sh</div>
+                        </div>
+                        <div class="terminal-body bg-[#0d0d12] p-6 font-mono text-[12px] flex-grow">
+                            <div class="mb-4">
+                                <span class="text-green-400">➜</span> <span class="text-white">ls frontend/</span>
+                            </div>
+                            <ul id="frontend-skills" class="space-y-3 pl-2">
+                                <li class="typing-line flex items-center gap-2 text-white"><i
+                                        class="fa-brands fa-react text-blue-400 w-4"></i> React.js</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300"><i
+                                        class="fa-solid fa-bolt text-yellow-400 w-4"></i> Next.js</li>
+                                <li class="typing-line flex items-center gap-2 text-blue-300">TypeScript</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300"><i
+                                        class="fa-brands fa-tailwind text-cyan-400 w-4"></i> TailwindCSS</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300">Redux ToolKit</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300">Framer Motion</li>
+                            </ul>
+                            <div class="mt-4 flex items-center gap-2">
+                                <span class="text-green-400">➜</span> <input type="text" class="terminal-input bg-transparent border-none outline-none text-white flex-grow font-mono focus:ring-0" autocomplete="off" spellcheck="false" placeholder="...">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Backend Category -->
-                <div class="glass-card reveal p-8 border-white/5 group" style="transition-delay: 0.1s;">
-                    <h3 class="text-xl font-bold mb-8 flex items-center gap-3 text-white">
-                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><i
-                                data-lucide="server" class="text-primary w-5 h-5"></i></div>
-                        Backend
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge">Laravel 10x</span>
-                        <span class="skill-badge">PHP / OOP</span>
-                        <span class="skill-badge">MySQL / SQL</span>
-                        <span class="skill-badge">RESTful APIs</span>
-                        <span class="skill-badge">Node.js</span>
-                        <span class="skill-badge">PostgreSQL</span>
-                        <span class="skill-badge">Redis</span>
+                <!-- Terminal 2: Backend -->
+                <div class="reveal h-full transform hover:scale-[1.02] transition-transform duration-500"
+                    style="transition-delay: 0.1s;">
+                    <div class="terminal-window shadow-xl border-white/5 h-full flex flex-col">
+                        <div class="terminal-header !py-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+                            </div>
+                            <div class="mx-auto text-[9px] font-mono text-gray-500">backend.sh</div>
+                        </div>
+                        <div class="terminal-body bg-[#0d0d12] p-6 font-mono text-[12px] flex-grow">
+                            <div class="mb-4">
+                                <span class="text-green-400">➜</span> <span class="text-white">ls backend/</span>
+                            </div>
+                            <ul id="backend-skills" class="space-y-3 pl-2">
+                                <li class="typing-line flex items-center gap-2 text-red-500 font-bold"><i
+                                        class="fa-brands fa-laravel w-4"></i> Laravel 10x</li>
+                                <li class="typing-line flex items-center gap-2 text-blue-500"><i
+                                        class="fa-brands fa-php w-4"></i> PHP / OOP</li>
+                                <li class="typing-line flex items-center gap-2 text-orange-400"><i
+                                        class="fa-solid fa-database w-4"></i> MySQL / SQL</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300">RESTful APIs</li>
+                                <li class="typing-line flex items-center gap-2 text-green-500"><i
+                                        class="fa-brands fa-node-js w-4"></i> Node.js</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300">Redis / Caching</li>
+                            </ul>
+                            <div class="mt-4 flex items-center gap-2">
+                                <span class="text-green-400">➜</span> <input type="text" class="terminal-input bg-transparent border-none outline-none text-white flex-grow font-mono focus:ring-0" autocomplete="off" spellcheck="false" placeholder="...">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- DevOps & Tools -->
-                <div class="glass-card reveal p-8 border-white/5 group" style="transition-delay: 0.2s;">
-                    <h3 class="text-xl font-bold mb-8 flex items-center gap-3 text-white">
-                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><i
-                                data-lucide="wrench" class="text-primary w-5 h-5"></i></div>
-                        DevOps & Tools
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-badge">Git / GitHub</span>
-                        <span class="skill-badge">Docker</span>
-                        <span class="skill-badge">Linux / Bash</span>
-                        <span class="skill-badge">AWS / Forge</span>
-                        <span class="skill-badge">CI/CD</span>
-                        <span class="skill-badge">Postman</span>
-                        <span class="skill-badge">Vercel</span>
+                <!-- Terminal 3: DevOps -->
+                <div class="reveal h-full transform hover:scale-[1.02] transition-transform duration-500"
+                    style="transition-delay: 0.2s;">
+                    <div class="terminal-window shadow-xl border-white/5 h-full flex flex-col">
+                        <div class="terminal-header !py-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+                            </div>
+                            <div class="mx-auto text-[9px] font-mono text-gray-500">devops.sh</div>
+                        </div>
+                        <div class="terminal-body bg-[#0d0d12] p-6 font-mono text-[12px] flex-grow">
+                            <div class="mb-4">
+                                <span class="text-green-400">➜</span> <span class="text-white">ls tools/</span>
+                            </div>
+                            <ul id="devops-skills" class="space-y-3 pl-2">
+                                <li class="typing-line flex items-center gap-2 text-white"><i
+                                        class="fa-brands fa-github w-4"></i> Git / GitHub</li>
+                                <li class="typing-line flex items-center gap-2 text-blue-400"><i
+                                        class="fa-brands fa-docker w-4"></i> Docker</li>
+                                <li class="typing-line flex items-center gap-2 text-orange-400"><i
+                                        class="fa-brands fa-aws w-4"></i> AWS / Forge</li>
+                                <li class="typing-line flex items-center gap-2 text-yellow-500">CI/CD</li>
+                                <li class="typing-line flex items-center gap-2 text-pink-400">Postman</li>
+                                <li class="typing-line flex items-center gap-2 text-gray-300">Linux / Bash</li>
+                            </ul>
+                            <div class="mt-4 flex items-center gap-2">
+                                <span class="text-green-400">➜</span> <input type="text" class="terminal-input bg-transparent border-none outline-none text-white flex-grow font-mono focus:ring-0" autocomplete="off" spellcheck="false" placeholder="...">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -382,7 +449,8 @@
                         <img src="https://picsum.photos/seed/p1/1200/800"
                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                             alt="Work 1" />
-                        <div class="absolute inset-0 transition-all duration-500" style="background:rgba(0,0,0,0.4);"></div>
+                        <div class="absolute inset-0 transition-all duration-500" style="background:rgba(0,0,0,0.4);">
+                        </div>
                     </div>
 
                     <div class="p-8">
@@ -410,12 +478,13 @@
                         <!-- Action Buttons -->
                         <div class="flex items-center gap-4">
                             <a href="#"
-                                class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition" style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);">
-                                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                                class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition"
+                                style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);">
+                                <i class="fa-brands fa-github"></i> GitHub
                             </a>
                             <a href="#"
                                 class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-sm font-bold hover:bg-primary-dark transition shadow-lg shadow-primary/20">
-                                <i data-lucide="external-link" class="w-4 h-4"></i> Visit
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Visit
                             </a>
                         </div>
                     </div>
@@ -427,7 +496,8 @@
                         <img src="https://picsum.photos/seed/p2/1200/800"
                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                             alt="Work 2" />
-                        <div class="absolute inset-0 transition-all duration-500" style="background:rgba(0,0,0,0.4);"></div>
+                        <div class="absolute inset-0 transition-all duration-500" style="background:rgba(0,0,0,0.4);">
+                        </div>
                     </div>
 
                     <div class="p-8">
@@ -455,12 +525,13 @@
                         <!-- Action Buttons -->
                         <div class="flex items-center gap-4">
                             <a href="#"
-                                class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition" style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);">
-                                <i data-lucide="github" class="w-4 h-4"></i> GitHub
+                                class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition"
+                                style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);">
+                                <i class="fa-brands fa-github"></i> GitHub
                             </a>
                             <a href="#"
                                 class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-sm font-bold hover:bg-primary-dark transition shadow-lg shadow-primary/20">
-                                <i data-lucide="external-link" class="w-4 h-4"></i> Visit
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Visit
                             </a>
                         </div>
                     </div>
@@ -486,8 +557,8 @@
                         <img src="moustafa.jpg" class="w-10 h-10 rounded-full border border-white/10"
                             alt="Mostafa Ahmed" />
                         <div>
-                            <div class="text-sm font-bold leading-tight" style="color:var(--text-main)">Mostafa Ahmed <span
-                                    class="text-[10px] font-normal" style="color:var(--text-muted)">• 1st</span></div>
+                            <div class="text-sm font-bold leading-tight" style="color:var(--text-main)">Mostafa Ahmed
+                                <span class="text-[10px] font-normal" style="color:var(--text-muted)">• 1st</span></div>
                             <div class="text-[10px] text-neutral-500">Software Engineer | Laravel & React</div>
                             <div class="text-[9px] text-neutral-500">1w • <i data-lucide="globe"
                                     class="w-2.5 h-2.5 inline"></i></div>
@@ -521,8 +592,8 @@
                         <img src="moustafa.jpg" class="w-10 h-10 rounded-full border border-white/10"
                             alt="Mostafa Ahmed" />
                         <div>
-                            <div class="text-sm font-bold leading-tight" style="color:var(--text-main)">Mostafa Ahmed <span
-                                    class="text-[10px] font-normal" style="color:var(--text-muted)">• 1st</span></div>
+                            <div class="text-sm font-bold leading-tight" style="color:var(--text-main)">Mostafa Ahmed
+                                <span class="text-[10px] font-normal" style="color:var(--text-muted)">• 1st</span></div>
                             <div class="text-[10px] text-neutral-500">Software Engineer | Laravel & React</div>
                             <div class="text-[9px] text-neutral-500">3d • <i data-lucide="globe"
                                     class="w-2.5 h-2.5 inline"></i></div>
@@ -553,8 +624,8 @@
                         <img src="moustafa.jpg" class="w-10 h-10 rounded-full border border-white/10"
                             alt="Mostafa Ahmed" />
                         <div>
-                            <div class="text-sm font-bold leading-tight" style="color:var(--text-main)">Mostafa Ahmed <span
-                                    class="text-[10px] font-normal" style="color:var(--text-muted)">• 1st</span></div>
+                            <div class="text-sm font-bold leading-tight" style="color:var(--text-main)">Mostafa Ahmed
+                                <span class="text-[10px] font-normal" style="color:var(--text-muted)">• 1st</span></div>
                             <div class="text-[10px] text-neutral-500">Software Engineer | Laravel & React</div>
                             <div class="text-[9px] text-neutral-500">2w • <i data-lucide="globe"
                                     class="w-2.5 h-2.5 inline"></i></div>
@@ -584,16 +655,19 @@
     <section id="testimonials" class="py-32">
         <div class="container">
             <div class="text-center mb-24 reveal">
-                <span class="text-primary font-mono text-sm uppercase tracking-[0.3em] block mb-4">// TESTIMONIALS</span>
+                <span class="text-primary font-mono text-sm uppercase tracking-[0.3em] block mb-4">//
+                    TESTIMONIALS</span>
                 <h2 class="text-6xl font-black">Client Voices</h2>
                 <p class="text-gray-500 mt-4">Trusted by industry leaders and entrepreneurs worldwide.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
-                <div class="glass-card reveal p-10 flex flex-col group hover:border-primary/50 transition-all duration-500">
+                <div
+                    class="glass-card reveal p-10 flex flex-col group hover:border-primary/50 transition-all duration-500">
                     <div class="mb-6">
-                        <i data-lucide="quote" class="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors"></i>
+                        <i data-lucide="quote"
+                            class="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors"></i>
                     </div>
                     <div class="flex gap-1 mb-6">
                         <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
@@ -603,7 +677,8 @@
                         <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-10 italic">
-                        "Mostafa is an exceptionally talented developer. He delivered the project ahead of schedule with remarkable quality. Highly recommended for any complex technical needs."
+                        "Mostafa is an exceptionally talented developer. He delivered the project ahead of schedule with
+                        remarkable quality. Highly recommended for any complex technical needs."
                     </p>
                     <div class="mt-auto pt-6 border-t border-white/5">
                         <div dir="rtl" class="text-right">
@@ -614,9 +689,11 @@
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="glass-card reveal p-10 flex flex-col group hover:border-primary/50 transition-all duration-500" style="transition-delay: 0.1s;">
+                <div class="glass-card reveal p-10 flex flex-col group hover:border-primary/50 transition-all duration-500"
+                    style="transition-delay: 0.1s;">
                     <div class="mb-6">
-                        <i data-lucide="quote" class="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors"></i>
+                        <i data-lucide="quote"
+                            class="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors"></i>
                     </div>
                     <div class="flex gap-1 mb-6">
                         <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
@@ -626,7 +703,8 @@
                         <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-10 italic">
-                        "Incredible experience working with Mostafa on our e-commerce platform. His deep understanding of market needs and technical problem-solving is outstanding."
+                        "Incredible experience working with Mostafa on our e-commerce platform. His deep understanding
+                        of market needs and technical problem-solving is outstanding."
                     </p>
                     <div class="mt-auto pt-6 border-t border-white/5">
                         <div dir="rtl" class="text-right">
@@ -637,9 +715,11 @@
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="glass-card reveal p-10 flex flex-col group hover:border-primary/50 transition-all duration-500" style="transition-delay: 0.2s;">
+                <div class="glass-card reveal p-10 flex flex-col group hover:border-primary/50 transition-all duration-500"
+                    style="transition-delay: 0.2s;">
                     <div class="mb-6">
-                        <i data-lucide="quote" class="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors"></i>
+                        <i data-lucide="quote"
+                            class="w-10 h-10 text-primary/20 group-hover:text-primary/40 transition-colors"></i>
                     </div>
                     <div class="flex gap-1 mb-6">
                         <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
@@ -649,7 +729,8 @@
                         <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></i>
                     </div>
                     <p class="text-gray-400 text-sm leading-relaxed mb-10 italic">
-                        "The best Laravel developer I've worked with. The code is clean, organized, and the communication was top-notch. I will definitely continue to collaborate with him."
+                        "The best Laravel developer I've worked with. The code is clean, organized, and the
+                        communication was top-notch. I will definitely continue to collaborate with him."
                     </p>
                     <div class="mt-auto pt-6 border-t border-white/5">
                         <div dir="rtl" class="text-right">
@@ -666,47 +747,95 @@
     <section id="contact" class="pb-24">
         <div class="container">
             <div class="glass-card p-12 md:p-20 overflow-hidden relative reveal">
-                <div class="grid md:grid-cols-2 gap-20 relative z-10">
-                    <div>
-                        <h2 class="text-5xl font-black mb-6">Let's start a<br /><span
-                                class="text-primary">Conversation</span></h2>
-                        <div class="space-y-6 mt-10">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><i data-lucide="mail" class="text-primary w-5 h-5"></i></div>
-                                <span class="text-gray-400">mostafa@developer.com</span>
+                <div class="grid lg:grid-cols-5 gap-8 lg:gap-16 relative z-10">
+                    <div class="lg:col-span-2 reveal">
+                        <div class="mb-12">
+                            <span class="text-primary font-mono text-sm uppercase tracking-[0.3em] block mb-4">// GET IN
+                                TOUCH</span>
+                            <h2 class="text-5xl font-black mb-6 leading-tight">Send Us a Note and<br /><span
+                                    class="text-primary">Initiate the Dialogue!</span></h2>
+                            <p class="text-gray-400 text-lg leading-relaxed max-w-md mb-10">
+                                We’d love to hear from you! Whether you have questions, feedback, or just want to
+                                connect, reach out and let’s make it happen.
+                            </p>
+
+                            <div class="space-y-8">
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 text-xl">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Location</p>
+                                        <p class="text-white font-bold text-base">Egypt, Quna</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 text-xl">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Phone</p>
+                                        <p class="text-white font-bold text-base">(+20) 01092434027</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 text-xl">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Email</p>
+                                        <p class="text-white font-bold text-base">mustafa.ahmad.work@gmail.com</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex gap-4 mt-8">
-                                <a href="https://www.facebook.com/Mostafa7Ahmad" target="_blank" class="w-11 h-11 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all">
-                                    <i data-lucide="facebook" class="w-5 h-5"></i>
+
+                            <div class="flex gap-4 mt-12">
+                                <a href="https://www.facebook.com/Mostafa7Ahmad" target="_blank"
+                                    class="social-link facebook w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all">
+                                    <i class="fa-brands fa-facebook-f text-lg"></i>
                                 </a>
-                                <a href="https://wa.me/+201120354592" target="_blank" class="w-11 h-11 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                <a href="https://wa.me/+201120354592" target="_blank"
+                                    class="social-link whatsapp w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all">
+                                    <i class="fa-brands fa-whatsapp text-xl"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/in/mustafa-ahmad-work" target="_blank" class="w-11 h-11 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all">
-                                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                <a href="https://www.linkedin.com/in/mustafa-ahmad-work" target="_blank"
+                                    class="social-link linkedin w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all">
+                                    <i class="fa-brands fa-linkedin-in text-lg"></i>
                                 </a>
-                                <a href="https://t.me/+nTRukDn0mAc2Zjc8" target="_blank" class="w-11 h-11 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/50 transition-all">
-                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                <a href="https://t.me/+nTRukDn0mAc2Zjc8" target="_blank"
+                                    class="social-link telegram w-12 h-12 rounded-xl border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all">
+                                    <i class="fa-brands fa-telegram text-lg"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <form id="contact-form" class="space-y-6">
-                        <input type="text"
-                            class="w-full rounded-2xl p-4 outline-none transition"
-                            style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);"
-                            placeholder="Full Name" required />
-                        <input type="email"
-                            class="w-full rounded-2xl p-4 outline-none transition"
-                            style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);"
-                            placeholder="Email" required />
-                        <textarea
-                            class="w-full rounded-2xl p-4 outline-none transition h-40"
-                            style="background:var(--input-bg); border:1px solid var(--border-color); color:var(--text-main);"
-                            placeholder="Project Details" required></textarea>
-                        <button type="submit" class="primary-btn w-full justify-center">Send Message <i
-                                data-lucide="send"></i></button>
-                    </form>
+
+                    <div class="lg:col-span-3 reveal">
+                        <form id="contact-form" class="space-y-6 h-full flex flex-col">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <input type="text"
+                                    class="w-full rounded-2xl p-5 outline-none transition-all bg-white/5 border border-white/10 focus:border-primary/50 text-white"
+                                    placeholder="Full Name" required />
+                                <input type="email"
+                                    class="w-full rounded-2xl p-5 outline-none transition-all bg-white/5 border border-white/10 focus:border-primary/50 text-white"
+                                    placeholder="Email" required />
+                            </div>
+                            <input type="text"
+                                class="w-full rounded-2xl p-5 outline-none transition-all bg-white/5 border border-white/10 focus:border-primary/50 text-white"
+                                placeholder="Subject" required />
+                            <textarea
+                                class="w-full rounded-2xl p-5 outline-none transition-all bg-white/5 border border-white/10 focus:border-primary/50 text-white flex-grow min-h-[250px] resize-none"
+                                placeholder="Tell me about your project..." required></textarea>
+                            <button type="submit" class="primary-btn w-full justify-center py-5 text-lg">
+                                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

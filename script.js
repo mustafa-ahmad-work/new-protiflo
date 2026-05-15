@@ -137,3 +137,62 @@ function updateIcon(isLight) {
   themeToggle.innerHTML = isLight ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
   lucide.createIcons();
 }
+
+// ==================== SKILLS TYPING ANIMATION ====================
+function animateSkills() {
+  const skillsLists = ['frontend-skills', 'backend-skills', 'devops-skills'];
+  
+  skillsLists.forEach((listId, listIndex) => {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    
+    const items = list.querySelectorAll('.typing-line');
+    
+    // Function to reset and start animation
+    const runAnimation = () => {
+      // Add a base delay based on which terminal window it is (listIndex)
+      const baseDelay = listIndex * 1.5; // 1.5s gap between terminals starting
+      
+      items.forEach((item, index) => {
+        item.style.animation = 'none';
+        item.offsetHeight; // trigger reflow
+        item.style.animation = `typingLineFadeIn 0.5s forwards ${(index * 0.2) + baseDelay}s`;
+      });
+    };
+
+    runAnimation();
+    // Repeat every 10 seconds to allow for sequential typing
+    setInterval(runAnimation, 10000);
+  });
+}
+
+// Start skills animation
+document.addEventListener('DOMContentLoaded', () => {
+    animateSkills();
+    
+    // Terminal Input Logic
+    const terminalInputs = document.querySelectorAll('.terminal-input');
+    const terminals = document.querySelectorAll('.terminal-body');
+
+    terminals.forEach(term => {
+        term.addEventListener('click', () => {
+            const input = term.querySelector('.terminal-input');
+            if (input) input.focus();
+        });
+    });
+
+    terminalInputs.forEach(input => {
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = input.value.trim().toLowerCase();
+                if (command === 'admin') {
+                    // Redirect to login page
+                    window.location.href = 'login.html'; 
+                } else if (command !== '') {
+                    // Reset input
+                    input.value = '';
+                }
+            }
+        });
+    });
+});

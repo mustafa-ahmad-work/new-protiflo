@@ -221,6 +221,14 @@ body {
   opacity: var(--orb-opacity);
   transition: opacity 0.6s ease;
 }
+
+@media (max-width: 768px) {
+  .glow-orb {
+    width: 300px;
+    height: 300px;
+    filter: blur(80px);
+  }
+}
 @keyframes orbMove {
   0% {
     transform: translate(0, 0) scale(1);
@@ -265,7 +273,7 @@ body {
     visibility 0.8s;
 }
 .terminal-window {
-  width: min(700px, 92vw);
+  width: 100%;
   background: #0f0f12;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
@@ -351,6 +359,12 @@ h4 {
   padding: 9px 18px;
   border-radius: 100px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-link i {
+  display: none;
 }
 .nav-link:hover,
 .nav-link.active {
@@ -373,6 +387,12 @@ h4 {
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-card);
+}
+
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 24px !important;
+  }
 }
 .glass-card:hover {
   transform: translateY(-8px);
@@ -522,4 +542,153 @@ section {
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 10px;
+}
+
+/* ===== SOCIAL BRAND HOVERS ===== */
+.social-link:hover.facebook { color: #1877F2 !important; border-color: #1877F2 !important; }
+.social-link:hover.whatsapp { color: #25D366 !important; border-color: #25D366 !important; }
+.social-link:hover.linkedin { color: #0077B5 !important; border-color: #0077B5 !important; }
+.social-link:hover.telegram { color: #26A5E4 !important; border-color: #26A5E4 !important; }
+
+/* Force white text on primary backgrounds in Light Mode */
+body.light-mode .bg-primary,
+body.light-mode .primary-btn,
+body.light-mode .bg-primary *,
+body.light-mode .primary-btn * {
+  color: #ffffff !important;
+}
+/* Preserve colors and force white for default text in terminal */
+.terminal-window {
+  color: #ffffff; /* Default text white */
+}
+
+/* Ensure Light Mode doesn't turn terminal text black - Aggressive Override */
+body.light-mode .terminal-window,
+body.light-mode .terminal-window div,
+body.light-mode .terminal-window span,
+body.light-mode .terminal-window li,
+body.light-mode .terminal-window i {
+  color: inherit; /* Fallback to parent white */
+}
+
+/* Explicitly protect utility classes inside terminal from Light Mode */
+body.light-mode .terminal-window .text-white { color: #ffffff !important; }
+body.light-mode .terminal-window .text-green-400 { color: #4ade80 !important; }
+body.light-mode .terminal-window .text-green-500 { color: #22c55e !important; }
+body.light-mode .terminal-window .text-cyan-400 { color: #22d3ee !important; }
+body.light-mode .terminal-window .text-blue-300 { color: #93c5fd !important; }
+body.light-mode .terminal-window .text-blue-400 { color: #60a5fa !important; }
+body.light-mode .terminal-window .text-blue-500 { color: #3b82f6 !important; }
+body.light-mode .terminal-window .text-red-500 { color: #ef4444 !important; }
+body.light-mode .terminal-window .text-yellow-400 { color: #fbbf24 !important; }
+body.light-mode .terminal-window .text-yellow-500 { color: #eab308 !important; }
+body.light-mode .terminal-window .text-orange-400 { color: #fb923c !important; }
+body.light-mode .terminal-window .text-pink-400 { color: #f472b6 !important; }
+body.light-mode .terminal-window .text-gray-300 { color: #d1d5db !important; }
+body.light-mode .terminal-window .text-gray-400 { color: #9ca3af !important; }
+body.light-mode .terminal-window .text-gray-500 { color: #6b7280 !important; }
+
+/* Typing Animation Styles */
+.typing-line {
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: typingLineFadeIn 0.5s forwards;
+}
+
+@keyframes typingLineFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===========================
+   RESPONSIVENESS (MEDIA QUERIES)
+   =========================== */
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+  .nav-link {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .nav-glass {
+    top: auto;
+    bottom: 25px; /* Bottom navigation for mobile */
+    padding: 6px;
+    gap: 2px;
+    width: 92%;
+    justify-content: center;
+    border-radius: 20px;
+  }
+  
+  .theme-toggle {
+    bottom: auto;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .nav-link {
+    padding: 10px 8px;
+    font-size: 11px;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+  }
+
+  .nav-link.active {
+    background: var(--primary);
+  }
+
+  .nav-link i {
+    display: block !important;
+    width: 18px;
+    height: 18px;
+    margin-bottom: 2px;
+  }
+
+  section {
+    padding: 80px 15px;
+  }
+
+  h1 {
+    font-size: 4rem !important;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 430px) {
+  .nav-glass {
+    width: 95%;
+    bottom: 15px;
+  }
+  
+  .nav-link {
+    padding: 8px 4px;
+    font-size: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: 3.5rem !important;
+  }
 }
