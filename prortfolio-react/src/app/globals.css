@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-bg-main: var(--bg-main);
+  --color-bg-card: var(--bg-card);
+  --color-bg-alt: var(--bg-alt);
+  --color-border-main: var(--border-main);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  
+  /* Admin Custom Colors */
+  --color-admin-bg: var(--admin-bg);
+  --color-admin-card: var(--admin-card);
+  --color-admin-border: var(--admin-border);
+  --color-admin-text: var(--admin-text);
+  --color-admin-muted: var(--admin-muted);
+}
+
+:root {
+  /* Website Default (Light) */
+  --primary: #a855f7;
+  --primary-glow: rgba(168, 85, 247, 0.4);
+  --bg-main: #ffffff;
+  --bg-card: rgba(243, 244, 246, 0.6);
+  --bg-alt: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #4b5563;
+  --grid-color: rgba(0, 0, 0, 0.05);
+  --border-main: rgba(0, 0, 0, 0.1);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+
+  /* Admin Default (Dark) */
+  --admin-bg: #050508;
+  --admin-card: rgba(255, 255, 255, 0.03);
+  --admin-border: rgba(255, 255, 255, 0.05);
+  --admin-text: #ffffff;
+  --admin-muted: #9ca3af;
+}
+
+/* Admin Light Theme Overrides */
+.light-theme {
+  --admin-bg: #f8f9fa;
+  --admin-card: #ffffff;
+  --admin-border: rgba(0, 0, 0, 0.08);
+  --admin-text: #1a1a1a;
+  --admin-muted: #64748b;
+}
+
+/* Website Dark Mode Overrides */
+.dark {
+  --bg-main: #050508;
+  --bg-card: rgba(14, 14, 20, 0.6);
+  --bg-alt: #0b0b11;
+  --text-main: #f0f0f5;
+  --text-muted: #9ca3af;
+  --grid-color: rgba(255, 255, 255, 0.08);
+  --border-main: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(0, 0, 0, 0.8);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Core Components */
+.glass-card {
+  background: var(--admin-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--admin-border);
+  border-radius: 24px;
+}
+
+/* Re-fixing the Website Glass Cards */
+section .glass-card {
+  background: var(--bg-card);
+  border-color: var(--border-main);
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.glow-orb {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(130px);
+  z-index: 0;
+  pointer-events: none;
+  animation: orbMove 28s infinite alternate ease-in-out;
+}
+
+@keyframes orbMove {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, 40px) scale(1.1); }
+  100% { transform: translate(130px, 70px) scale(0.9); }
+}

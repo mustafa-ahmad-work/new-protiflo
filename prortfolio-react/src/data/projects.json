@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Professional E-Commerce Ecosystem",
+    "description": "A robust online shopping platform featuring a specialized user dashboard, real-time support chat integration, and automated inventory management system.",
+    "image": "/projects/6/card.jpg",
+    "tags": ["Next.js", "Laravel", "MySQL", "Stripe"],
+    "github": "https://github.com/mustafa-ahmad-work",
+    "live": "#"
+  },
+  {
+    "id": 2,
+    "title": "Sermon Digital Platform",
+    "description": "A comprehensive digital library for Islamic content featuring over 15 dynamic sections. Built with a focus on high-performance and seamless content updates.",
+    "image": "/projects/1/card.jpg",
+    "tags": ["React.js", "TailwindCSS", "Firebase", "Zustand"],
+    "github": "https://github.com/mustafa-ahmad-work",
+    "live": "http://www.sermonsite.com"
+  },
+  {
+    "id": 3,
+    "title": "Dar Al Fursan Real Estate System",
+    "description": "An advanced management system for real estate operations, providing a centralized control panel for managing properties, clients, and transaction tracking.",
+    "image": "/projects/2/card.jpg",
+    "tags": ["Laravel", "PHP", "MySQL", "Bootstrap"],
+    "github": "https://github.com/mustafa-ahmad-work",
+    "live": "http://www.daralfursan.com"
+  },
+  {
+    "id": 4,
+    "title": "High-Fidelity Developer Portfolio",
+    "description": "A modern, animated personal showcase built with Next.js 15 and Framer Motion, featuring terminal-inspired interactions and a premium design system.",
+    "image": "/projects/7/card.jpg",
+    "tags": ["Next.js 15", "Framer Motion", "TailwindCSS", "TypeScript"],
+    "github": "https://github.com/mustafa-ahmad-work",
+    "live": "https://github.com/mustafa-ahmad-work"
+  }
+]

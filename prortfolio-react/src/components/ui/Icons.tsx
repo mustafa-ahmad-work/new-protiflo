@@ -1,0 +1,9 @@
+export const ReactIcon = () => null;
+export const NextIcon = () => null;
+export const LaravelIcon = () => null;
+export const PhpIcon = () => null;
+export const MySQLIcon = () => null;
+export const NodeIcon = () => null;
+export const GithubIcon = () => null;
+export const DockerIcon = () => null;
+export const AwsIcon = () => null;
