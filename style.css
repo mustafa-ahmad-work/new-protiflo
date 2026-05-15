@@ -1,0 +1,525 @@
+/* ===== IMPORTS ===== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&display=swap");
+
+/* ===========================
+   CSS VARIABLES — DARK MODE
+   =========================== */
+:root {
+  --primary: #a855f7;
+  --primary-dark: #7e22ce;
+  --primary-glow: rgba(168, 85, 247, 0.4);
+  --bg-main: #050508;
+  --bg-gradient: radial-gradient(circle at 50% 50%, #120a2e 0%, #050508 100%);
+  --bg-card: #0e0e14;
+  --bg-alt: #0b0b11;
+  --border-color: rgba(255, 255, 255, 0.07);
+  --text-main: #f0f0f5;
+  --text-muted: #9ca3af;
+  --nav-bg: rgba(12, 12, 18, 0.85);
+  --grid-color: rgba(255, 255, 255, 0.08); /* More visible in dark mode */
+  --orb-opacity: 0.8;
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --shadow-card: none; /* Removed heavy shadows */
+  --icon-filter: none;
+}
+
+/* ===========================
+   LIGHT MODE VARIABLES
+   =========================== */
+body.light-mode {
+  --primary-glow: rgba(168, 85, 247, 0.2);
+  --bg-main: #f5f5fa;
+  --bg-gradient: #f5f5fa;
+  --bg-card: #ffffff;
+  --bg-alt: #ededf5;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --text-main: #111118;
+  --text-muted: #6b7280;
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --grid-color: rgba(0, 0, 0, 0.05);
+  --orb-opacity: 0;
+  --input-bg: rgba(0, 0, 0, 0.02);
+  --shadow-card: none; /* Removed light shadows */
+  --icon-filter: invert(0);
+}
+
+/* ===========================
+   LIGHT MODE FORCE OVERRIDES
+   Targets all hardcoded Tailwind
+   color utilities to prevent
+   white-on-white issues.
+   =========================== */
+
+/* Headings */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6 {
+  color: var(--text-main) !important;
+  -webkit-text-fill-color: initial;
+}
+
+/* Any white/light text class → dark */
+body.light-mode .text-white,
+body.light-mode .text-neutral-100,
+body.light-mode .text-neutral-200,
+body.light-mode .text-neutral-300 {
+  color: var(--text-main) !important;
+}
+
+/* Gray text stays readable muted gray */
+body.light-mode .text-neutral-400,
+body.light-mode .text-neutral-500,
+body.light-mode .text-neutral-600,
+body.light-mode .text-gray-300,
+body.light-mode .text-gray-400,
+body.light-mode .text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+/* Remove dark backgrounds from sections/divs */
+body.light-mode [class*="bg-dark"],
+body.light-mode [class*="bg-black"],
+body.light-mode [class*="bg-card"],
+body.light-mode [class*="bg-zinc"],
+body.light-mode [class*="bg-neutral-9"],
+body.light-mode [class*="bg-neutral-8"] {
+  background: var(--bg-card) !important;
+}
+
+/* Subtle white backgrounds → light alt */
+body.light-mode [class*="bg-white/5"],
+body.light-mode [class*="bg-white/10"],
+body.light-mode [class*="bg-white/\["] {
+  background: var(--bg-alt) !important;
+}
+
+/* Borders */
+body.light-mode [class*="border-white"] {
+  border-color: var(--border-color) !important;
+}
+
+/* Inputs and textareas */
+body.light-mode input,
+body.light-mode textarea {
+  background: var(--input-bg) !important;
+  color: var(--text-main) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Article / post cards */
+body.light-mode article,
+body.light-mode article * {
+  border-color: var(--border-color) !important;
+}
+body.light-mode article {
+  background: var(--bg-card) !important;
+}
+
+/* Glass cards */
+body.light-mode .glass-card {
+  background: var(--bg-card) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+/* Code blocks */
+body.light-mode [class*="bg-black/"] {
+  background: var(--bg-alt) !important;
+}
+
+/* Gradient text — use purple in light mode */
+body.light-mode .gradient-text {
+  background: linear-gradient(
+    to right,
+    #6d28d9,
+    var(--primary),
+    #6d28d9
+  ) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Footer text */
+body.light-mode footer p {
+  color: var(--text-muted) !important;
+}
+
+/* Post header small text */
+body.light-mode .text-\[10px\],
+body.light-mode .text-\[9px\],
+body.light-mode .text-xs {
+  color: var(--text-muted) !important;
+}
+
+/* ===========================
+   RESET & BASE
+   =========================== */
+::selection {
+  background: var(--primary);
+  color: #fff;
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* {
+  cursor: default;
+}
+a,
+button,
+input,
+textarea,
+select,
+label {
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  transition:
+    background 0.5s ease,
+    color 0.5s ease;
+  overflow-x: hidden;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===========================
+   BACKGROUND DECORATION
+   =========================== */
+.glow-orb {
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.28) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(130px);
+  z-index: 0;
+  pointer-events: none;
+  animation: orbMove 28s infinite alternate ease-in-out;
+  opacity: var(--orb-opacity);
+  transition: opacity 0.6s ease;
+}
+@keyframes orbMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(80px, 40px) scale(1.1);
+  }
+  100% {
+    transform: translate(130px, 70px) scale(0.9);
+  }
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  pointer-events: none;
+}
+
+/* ===========================
+   LOADING SCREEN
+   =========================== */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s;
+}
+.terminal-window {
+  width: min(700px, 92vw);
+  background: #0f0f12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+.terminal-header {
+  background: #1c1c20;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.terminal-body {
+  padding: 24px;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  color: #c8c8d0;
+  min-height: 280px;
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.04em;
+  color: var(--text-main);
+  transition: color 0.4s;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #fff 0%, var(--primary) 50%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradient 5s linear infinite;
+}
+@keyframes textGradient {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+.nav-glass {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 95vw;
+  padding: 8px 10px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  z-index: 1000;
+  display: flex;
+  gap: 4px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 9px 18px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: #fff !important;
+  background: var(--primary);
+}
+
+/* ===========================
+   CARDS
+   =========================== */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 32px;
+  transition:
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.glass-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+  background: var(--bg-alt); /* More solid background on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.primary-btn {
+  background: var(--primary);
+  color: #fff !important;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 8px 20px var(--primary-glow);
+  transition: all 0.35s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  -webkit-text-fill-color: #fff;
+}
+.primary-btn:hover {
+  transform: translateY(-3px);
+  background: var(--primary-dark);
+  box-shadow: 0 12px 28px var(--primary-glow);
+}
+
+/* ===========================
+   SKILL BADGES
+   =========================== */
+.skill-badge {
+  display: inline-block;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.skill-badge:hover {
+  background: var(--primary);
+  color: #fff !important;
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px var(--primary-glow);
+}
+
+/* ===========================
+   THEME TOGGLE BUTTON
+   =========================== */
+.theme-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  box-shadow: 0 6px 20px var(--primary-glow);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.theme-toggle:hover {
+  transform: rotate(25deg) scale(1.1);
+}
+.theme-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===========================
+   LAYOUT
+   =========================== */
+section {
+  padding: 120px 20px;
+  position: relative;
+  z-index: 1;
+}
+.section-alt {
+  background: var(--bg-alt);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   STATS
+   =========================== */
+.stat-box {
+  text-align: center;
+}
+.stat-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--text-main);
+  display: block;
+  transition: color 0.4s;
+}
+.stat-label {
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ===========================
+   SCROLL REVEAL
+   =========================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   SCROLLBAR
+   =========================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
