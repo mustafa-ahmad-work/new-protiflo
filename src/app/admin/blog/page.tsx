@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { 
-  Trash2, Edit3, Calendar, Clock
+  Trash2, Edit3, Calendar, Clock, Heart
 } from "lucide-react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { AdminModal } from "@/components/admin/AdminModal";

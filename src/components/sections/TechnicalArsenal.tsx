@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import Section from "../layout/Section";
 import SectionHeader from "../layout/SectionHeader";
 import { supabase } from "@/lib/supabase";
+import { StaggerContainer, StaggerItem } from "../layout/Reveal";
 
-function TerminalWindow({ title, items, delay }: { title: string, items: any[], delay: number }) {
+function MacTerminal({ title, items, delay }: { title: string, items: any[], delay: number }) {
   const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -20,46 +22,65 @@ function TerminalWindow({ title, items, delay }: { title: string, items: any[], 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
-      className="h-full transform hover:scale-[1.02] transition-transform duration-500"
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      className="h-full"
     >
-      <div className="bg-[var(--bg-card)] border border-[var(--border-main)] rounded-2xl flex flex-col h-full shadow-2xl overflow-hidden group hover:border-purple-500/30">
-        <div className="bg-[var(--bg-alt)] py-3 px-4 flex items-center justify-between border-b border-[var(--border-main)]">
-          <div className="flex gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+      {/* Mac Terminal Window */}
+      <div className={`bg-[#0c0c0e]/90 backdrop-blur-2xl border border-white/10 rounded-xl flex flex-col h-full overflow-hidden transition-all duration-500 shadow-xl ${isFocused ? 'border-purple-500/40 ring-1 ring-purple-500/20' : ''}`}>
+        
+        {/* Terminal Header */}
+        <div className="bg-[#1e1e21] py-3 px-5 flex items-center relative border-b border-white/5">
+          <div className="flex gap-2">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56] shadow-[inset_0_0_2px_rgba(0,0,0,0.2)]"></div>
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] shadow-[inset_0_0_2px_rgba(0,0,0,0.2)]"></div>
+            <div className="w-3 h-3 rounded-full bg-[#27c93f] shadow-[inset_0_0_2px_rgba(0,0,0,0.2)]"></div>
           </div>
-          <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-widest">{title}</div>
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{title} — zsh</span>
+          </div>
         </div>
-        <div className="p-6 font-mono text-[13px] flex-grow bg-[var(--bg-card)]">
-          <div className="mb-6 flex items-center gap-2">
-            <span className="text-green-500">➜</span>
-            <span className="text-[var(--text-main)]">ls skills/</span>
+
+        {/* Terminal Body */}
+        <div className="p-8 font-mono text-[13px] flex-grow text-gray-300">
+          <div className="mb-6 flex items-center gap-3">
+            <span className="text-emerald-400 font-black">➜</span>
+            <span className="text-purple-400 font-bold">~</span>
+            <span className="text-white">ls {title.toLowerCase()}/</span>
           </div>
-          <ul className="grid grid-cols-2 gap-4">
-            {items.map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-[var(--text-muted)] group-hover:text-[var(--text-main)] transition-colors">
-                <span className="text-purple-500/50">#</span>
-                {typeof item === 'string' ? item : item.name}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8 flex items-center gap-2 border-t border-[var(--border-main)] pt-4">
-            <span className="text-green-500 font-bold">➜</span>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="..."
-              className="bg-transparent border-none outline-none text-[var(--text-main)] w-full placeholder:text-[var(--text-muted)] opacity-50 focus:opacity-100 focus:ring-0"
-              spellCheck={false}
-              autoComplete="off"
-            />
+
+          <StaggerContainer staggerDelay={0.04}>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3">
+                {items.map((item, i) => (
+                <StaggerItem key={i}>
+                    <div className="flex items-center gap-3 hover:text-white transition-colors cursor-default">
+                        <span className="text-gray-600 font-black">#</span>
+                        <span className="font-medium">{typeof item === 'string' ? item : item.name}</span>
+                    </div>
+                </StaggerItem>
+                ))}
+            </ul>
+          </StaggerContainer>
+
+          <div className="mt-10 flex items-center gap-3 pt-6 border-t border-white/5">
+            <span className="text-emerald-400 font-black">➜</span>
+            <span className="text-purple-400 font-bold">~</span>
+            <div className="flex-grow flex items-center">
+                <input
+                    type="text"
+                    value={inputValue}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="await run..."
+                    className="bg-transparent border-none outline-none text-white w-full placeholder:text-gray-600 transition-all font-mono"
+                    spellCheck={false}
+                    autoComplete="off"
+                />
+            </div>
           </div>
         </div>
       </div>
@@ -78,7 +99,6 @@ export default function TechnicalArsenal() {
     fetchSkills();
   }, []);
 
-  // تقسيم المهارات لثلاث مجموعات للعرض
   const partSize = Math.ceil(skills.length / 3);
   const groups = [
     skills.slice(0, partSize),
@@ -88,12 +108,16 @@ export default function TechnicalArsenal() {
 
   return (
     <Section id="skills" className="bg-[var(--bg-main)]">
-      <SectionHeader subtitle="EXPERTISE" title="Technical Arsenal" />
+      <SectionHeader 
+        subtitle="EXPERTISE" 
+        title="Technical Arsenal" 
+        description="A specialized stack engineered for modern performance and architectural integrity."
+      />
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <TerminalWindow title="Frontend" items={groups[0]} delay={0.1} />
-        <TerminalWindow title="Backend" items={groups[1]} delay={0.2} />
-        <TerminalWindow title="DevOps" items={groups[2]} delay={0.3} />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 px-4 max-w-7xl mx-auto">
+        <MacTerminal title="Frontend" items={groups[0]} delay={0.1} />
+        <MacTerminal title="Backend" items={groups[1]} delay={0.2} />
+        <MacTerminal title="DevOps" items={groups[2]} delay={0.3} />
       </div>
     </Section>
   );

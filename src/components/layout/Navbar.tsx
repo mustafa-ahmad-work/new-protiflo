@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:top-6 md:bottom-auto z-[1000] w-[95%] md:w-max max-w-[98vw]">
-      <div className="bg-[var(--nav-bg)] backdrop-blur-xl border border-[var(--border-main)] p-1 md:p-2 rounded-2xl md:rounded-full flex items-center justify-between md:justify-center gap-0.5 md:gap-2 shadow-2xl">
+      <div className="bg-[var(--nav-bg)] backdrop-blur-xl border border-[var(--border-main)] p-1 md:p-2 rounded-2xl md:rounded-full flex items-center justify-between md:justify-center gap-0.5 md:gap-2 shadow-md">
         {navItems.map((item) => {
           const Icon = item.icon;
           const sectionId = item.href.split('#')[1];
@@ -53,7 +53,7 @@ export default function Navbar() {
               className={cn(
                 "flex flex-col md:flex-row items-center gap-0.5 md:gap-2 flex-1 md:flex-initial py-1.5 px-1 md:py-2.5 md:px-5 rounded-xl md:rounded-full transition-all duration-300 min-w-0",
                 isActive 
-                  ? "bg-purple-600 text-white shadow-lg shadow-purple-600/20" 
+                  ? "bg-purple-600 text-white shadow-md shadow-purple-600/10" 
                   : "text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-white/5"
               )}
             >

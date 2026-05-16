@@ -10,6 +10,9 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import LoadingScreen from "@/components/layout/LoadingScreen";
+import NavigationProgress from "@/components/layout/NavigationProgress";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -20,6 +23,10 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider>
+          <LoadingScreen />
+          <Suspense fallback={null}>
+            <NavigationProgress />
+          </Suspense>
           {children}
         </ThemeProvider>
       </body>

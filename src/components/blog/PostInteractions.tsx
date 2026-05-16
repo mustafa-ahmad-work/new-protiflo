@@ -51,7 +51,7 @@ export function PostInteractions({ postId, initialLikes }: { postId: string, ini
       <div className="flex items-center justify-between w-full px-2 py-1">
         <button 
           onClick={handleLike}
-          className={`flex flex-1 items-center justify-center gap-2 py-3 rounded-lg transition-all hover:bg-white/5 font-bold text-xs ${hasLiked ? 'text-blue-500' : 'text-gray-400 hover:text-white'}`}
+          className={`flex flex-1 items-center justify-center gap-2 py-3 rounded-lg transition-all hover:bg-[var(--bg-alt)] font-bold text-xs ${hasLiked ? 'text-blue-500' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
         >
           <ThumbsUp size={18} fill={hasLiked ? "currentColor" : "none"} />
           <span>Like</span>
@@ -59,7 +59,7 @@ export function PostInteractions({ postId, initialLikes }: { postId: string, ini
 
         <button 
           onClick={() => setShowShareModal(true)}
-          className="flex flex-1 items-center justify-center gap-2 py-3 rounded-lg transition-all hover:bg-white/5 text-gray-400 hover:text-white font-bold text-xs"
+          className="flex flex-1 items-center justify-center gap-2 py-3 rounded-lg transition-all hover:bg-[var(--bg-alt)] text-[var(--text-muted)] hover:text-[var(--text-main)] font-bold text-xs"
         >
           <Send size={18} />
           <span>Share</span>
@@ -80,10 +80,10 @@ export function PostInteractions({ postId, initialLikes }: { postId: string, ini
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-md bg-[#111114] border border-white/5 rounded-[2rem] p-10 overflow-hidden"
+              className="relative w-full max-w-md bg-[var(--bg-card)] border border-[var(--border-main)] rounded-[2rem] p-10 overflow-hidden"
             >
-              <h3 className="text-2xl font-black mb-2 text-white">Share Insight</h3>
-              <p className="text-gray-400 text-sm mb-8">Spread the knowledge across your networks.</p>
+              <h3 className="text-2xl font-black mb-2 text-[var(--text-main)]">Share Insight</h3>
+              <p className="text-[var(--text-muted)] text-sm mb-8">Spread the knowledge across your networks.</p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <button className="flex items-center justify-center gap-3 p-4 rounded-xl bg-[#0077b5]/10 text-[#0077b5] border border-[#0077b5]/20 font-bold hover:bg-[#0077b5]/20 transition-all">
@@ -94,12 +94,12 @@ export function PostInteractions({ postId, initialLikes }: { postId: string, ini
                 </button>
               </div>
 
-              <div className="flex items-center gap-2 p-2 bg-white/5 rounded-xl border border-white/5">
+              <div className="flex items-center gap-2 p-2 bg-[var(--bg-alt)] rounded-xl border border-[var(--border-main)]">
                 <input 
                   type="text" 
                   readOnly 
                   value={typeof window !== 'undefined' ? window.location.href : ''} 
-                  className="flex-grow bg-transparent border-none outline-none text-[10px] px-4 text-gray-400"
+                  className="flex-grow bg-transparent border-none outline-none text-[10px] px-4 text-[var(--text-muted)]"
                 />
                 <button 
                   onClick={copyLink}
