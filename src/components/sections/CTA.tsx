@@ -18,7 +18,7 @@ export default function CTA() {
           className="glass-card p-12 md:p-32 rounded-[4rem] text-center border-[var(--border-main)] shadow-sm overflow-hidden relative bg-[var(--bg-card)]/40"
         >
           {/* Subtle Grid Pattern */}
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.01] pointer-events-none" />
+          <div className="absolute inset-0 opacity-[0.01] pointer-events-none" style={{ backgroundImage: "url('/grid.svg')" }} />
           
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}

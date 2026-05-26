@@ -18,6 +18,7 @@
 }
 
 :root {
+  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
   /* Website Default (Light) */
   --primary: #a855f7;
   --primary-glow: rgba(168, 85, 247, 0.4);
