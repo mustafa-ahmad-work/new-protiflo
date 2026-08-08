@@ -1,62 +1,60 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaGithub,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import Link from "next/link";
+import { Sparkles } from "lucide-react";
 
 export default function Footer() {
-  const [settings, setSettings] = useState<any>(null);
-
-  useEffect(() => {
-    async function fetchSettings() {
-      const { data } = await supabase.from('settings').select('*').single();
-      if (data) setSettings(data);
-    }
-    fetchSettings();
-  }, []);
-
   const socials = [
-    { icon: FaFacebookF, href: settings?.facebook_url || "#" },
-    { icon: FaLinkedinIn, href: settings?.linkedin_url || "#" },
-    { icon: FaGithub, href: settings?.github_url || "#" },
-    { icon: FaWhatsapp, href: settings?.whatsapp_url || "#" },
+    { icon: FaGithub, href: "https://github.com/mustafa-ahmad-work", label: "GitHub" },
+    { icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: FaWhatsapp, href: "https://wa.me/201092434027", label: "WhatsApp" },
+    { icon: FaTwitter, href: "https://twitter.com", label: "Twitter" },
   ];
 
   return (
-    <footer className="py-20 border-t border-[var(--border-main)] bg-[var(--bg-main)] relative z-10">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-          <div className="text-left">
-            <h3 className="text-2xl font-black mb-2 text-[var(--text-main)]">
-              MOSTAFA <span className="text-purple-500">AHMED</span>
-            </h3>
-            <p className="text-[var(--text-muted)] text-sm font-mono tracking-widest uppercase">
-              Software Engineer
-            </p>
+    <footer className="py-16 border-t border-white/10 bg-bg-main relative z-10 text-text-muted">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-white/10">
+          {/* Brand */}
+          <div className="flex items-center gap-3">
+            <div>
+              <h3 className="text-lg font-black text-white">مصطفى أحمد</h3>
+              <p className="text-xs text-text-muted">مهندس برمجيات وتطوير الأنظمة الرقمية</p>
+            </div>
           </div>
 
-          <div className="flex gap-4">
+          {/* Nav Map */}
+          <div className="flex flex-wrap gap-6 text-xs font-bold text-gray-200">
+            <Link href="/#hero" className="hover:text-primary transition-colors">الرئيسية</Link>
+            <Link href="/#about" className="hover:text-primary transition-colors">من أنا</Link>
+            <Link href="/#services" className="hover:text-primary transition-colors">الخدمات</Link>
+            <Link href="/#tech" className="hover:text-primary transition-colors">التقنيات</Link>
+            <Link href="/#projects" className="hover:text-primary transition-colors">أعمالنا</Link>
+            <Link href="/#contact" className="hover:text-primary transition-colors">تواصل معنا</Link>
+          </div>
+
+          {/* Socials */}
+          <div className="flex items-center gap-3">
             {socials.map((social, i) => (
               <a
                 key={i}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-[var(--bg-card)] border border-[var(--border-main)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all"
+                aria-label={social.label}
+                className="w-10 h-10 rounded-full bg-bg-surface border border-white/10 flex items-center justify-center text-gray-200 hover:text-white hover:border-primary hover:bg-primary transition-all shadow-sm"
               >
                 <social.icon size={18} />
               </a>
             ))}
           </div>
+        </div>
 
-          <div className="text-[var(--text-muted)] text-[10px] font-mono tracking-[0.2em] uppercase">
-            © {new Date().getFullYear()} All Rights Reserved.
-          </div>
+        {/* Copyright Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-text-muted gap-4">
+          <p>© {new Date().getFullYear()} مصطفى أحمد. جميع الحقوق محفوظة.</p>
+          <p className="text-[10px]">مُصمَم ومُهندس وفق أعلى المعايير القياسية العالمية.</p>
         </div>
       </div>
     </footer>

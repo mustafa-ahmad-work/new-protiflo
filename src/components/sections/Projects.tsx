@@ -1,14 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, ChevronRight, Sparkles } from "lucide-react";
+import { ExternalLink, ArrowLeft, Sparkles, FolderGit2 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
-import Section from "../layout/Section";
-import SectionHeader from "../layout/SectionHeader";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import projectsData from "../../data/projects.json";
-import { Reveal } from "../layout/Reveal";
 import Link from "next/link";
 
 export default function Projects() {
@@ -23,12 +20,13 @@ export default function Projects() {
           .select('*')
           .order('id', { ascending: true });
 
-        if (error) throw error;
-        if (data && data.length > 0) {
+        if (error) {
+          console.warn('Supabase projects fetch note:', error.message || error);
+        } else if (data && data.length > 0) {
           setProjects(data);
         }
-      } catch (error) {
-        console.error('Error fetching projects:', error);
+      } catch (err: any) {
+        console.warn('Error fetching projects:', err?.message || err);
       } finally {
         setLoading(false);
       }
@@ -38,90 +36,114 @@ export default function Projects() {
   }, []);
 
   return (
-    <Section id="projects" className="bg-[var(--bg-main)] py-24 md:py-32">
-      <SectionHeader 
-        subtitle="PORTFOLIO" 
-        title="Featured Projects" 
-        description="A selection of engineered artifacts showcasing technical complexity and design precision."
-      />
+    <section id="projects" className="py-24 bg-bg-main relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-5">
+            <FolderGit2 size={14} />
+            <span>معرض الأعمال الفاخرة</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-white leading-snug mb-4">
+            أبرز المشروعات والأنظمة الرقمية
+          </h2>
+          <p className="text-text-muted text-base sm:text-lg leading-relaxed">
+            مجموعة من الأنظمة والتطبيقات المصممة بأعلى درجات الدقة الهندسية والجمالية.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-        {projects.map((project: any, i: number) => (
-          <Reveal key={project.id} delay={i * 0.1}>
-            <div className="glass-card group overflow-hidden flex flex-col h-full border-[var(--border-main)] hover:border-purple-500/20 transition-all duration-500 hover:shadow-[0_10px_40px_rgba(0,0,0,0.05)] dark:hover:shadow-none">
-              {/* Image Showcase */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {projects.map((project: any, i: number) => (
+            <motion.div
+              key={project.id || i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="glass-card group overflow-hidden flex flex-col h-full border border-white/10 hover:border-primary/60 transition-all duration-500 rounded-[24px] bg-bg-surface"
+            >
+              {/* Image Banner */}
+              <div className="relative aspect-[16/9] overflow-hidden bg-bg-main">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent opacity-40" />
-                
-                {/* Category Badge */}
-                <div className="absolute top-6 left-6 px-4 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/5 text-[8px] font-black uppercase tracking-[0.3em] text-white">
-                    {project.category || "Architecture"}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#252A3B] via-transparent to-transparent opacity-60" />
+                <div className="absolute top-4 right-4 px-3 py-1 bg-bg-main/90 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold text-white">
+                  {project.category || "نظام متكامل"}
                 </div>
               </div>
 
-              {/* Content Section */}
-              <div className="p-10 flex flex-col flex-grow bg-[var(--bg-card)]/10 backdrop-blur-xl relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                    <h3 className="text-3xl font-black group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors text-[var(--text-main)] leading-tight tracking-tighter">
-                        {project.title}
+              {/* Content Details */}
+              <div className="p-8 flex flex-col flex-grow justify-between space-y-6">
+                <div>
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors leading-snug">
+                      {project.title}
                     </h3>
-                    <div className="w-10 h-10 rounded-full bg-black/[0.02] dark:bg-white/5 flex items-center justify-center text-[var(--text-muted)] group-hover:text-purple-500 transition-all">
-                        <Sparkles size={18} />
+                    <div className="p-2 rounded-xl bg-bg-main border border-white/10 text-primary">
+                      <Sparkles size={18} />
                     </div>
+                  </div>
+
+                  <p className="text-sm text-text-muted leading-relaxed mb-6 font-normal">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags?.map((tag: string) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 rounded-full bg-bg-main border border-white/10 text-[10px] font-bold text-gray-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-8 flex-grow font-medium opacity-80">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-10">
-                  {project.tags.map((tag: string) => (
-                    <span key={tag} className="px-3 py-1 rounded-lg bg-black/[0.01] dark:bg-white/5 border border-[var(--border-main)] text-[9px] font-black text-[var(--text-muted)] uppercase tracking-wider group-hover:border-purple-500/10 transition-all">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-col gap-4">
-                  <Link 
+                {/* Card Footer Actions */}
+                <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+                  <Link
                     href={`/projects/${project.id}`}
-                    className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-purple-600 text-white text-[10px] font-black hover:bg-purple-700 transition-all uppercase tracking-[0.3em]"
+                    className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold transition-all shadow-md shadow-[#5337FF]/30"
                   >
-                    Examine Artifact <ChevronRight size={18} />
+                    <span>تفاصيل المشروع</span>
+                    <ArrowLeft size={16} />
                   </Link>
-                  <div className="flex items-center gap-4">
-                    <motion.a 
-                      whileHover={{ y: -2 }}
-                      href={project.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl bg-[var(--bg-alt)] border border-[var(--border-main)] text-[10px] font-black text-[var(--text-main)] hover:bg-purple-600/10 hover:text-purple-600 dark:hover:text-purple-400 transition-all uppercase tracking-widest"
-                    >
-                      <FaGithub size={18} /> Source
-                    </motion.a>
-                    <motion.a 
-                      whileHover={{ y: -2 }}
-                      href={project.live} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl bg-[var(--bg-alt)] border border-[var(--border-main)] text-[10px] font-black text-[var(--text-main)] hover:bg-[var(--bg-card)] transition-all uppercase tracking-widest"
-                    >
-                      <ExternalLink size={18} /> Deploy
-                    </motion.a>
+
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 sm:flex-initial p-3.5 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center"
+                        title="كود المصدر"
+                      >
+                        <FaGithub size={18} />
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 sm:flex-initial p-3.5 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center gap-2 text-xs font-bold"
+                      >
+                        <ExternalLink size={16} />
+                        <span>معاينة</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }

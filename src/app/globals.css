@@ -1,113 +1,177 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------
+   Expo Arabic Font Definitions (Local + High-Performance CDN)
+------------------------------------------------------------- */
+@font-face {
+  font-family: 'Expo Arabic';
+  src: url('/fonts/ExpoArabic-Book.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/9004b72f96afb1e5f13389f489791113.woff2') format('woff2');
+  font-weight: 300 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Expo Arabic';
+  src: url('/fonts/ExpoArabic-Bold.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/08581e855fa08d98d28731ad2b3e51f8.woff2') format('woff2');
+  font-weight: 600 700 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --color-primary: var(--primary);
-  --color-bg-main: var(--bg-main);
-  --color-bg-card: var(--bg-card);
-  --color-bg-alt: var(--bg-alt);
-  --color-border-main: var(--border-main);
-  --color-text-main: var(--text-main);
-  --color-text-muted: var(--text-muted);
+  --font-sans: "Expo Arabic", "expoArabic", var(--font-tajawal), system-ui, -apple-system, sans-serif;
+  --font-expo: "Expo Arabic", "expoArabic", var(--font-tajawal), system-ui, -apple-system, sans-serif;
   
-  /* Admin Custom Colors */
-  --color-admin-bg: var(--admin-bg);
-  --color-admin-card: var(--admin-card);
-  --color-admin-border: var(--admin-border);
-  --color-admin-text: var(--admin-text);
-  --color-admin-muted: var(--admin-muted);
+  --color-primary: #5337FF;
+  --color-primary-hover: #4226E6;
+  --color-bg-main: #161A26;
+  --color-bg-surface: #252A3B;
+  --color-bg-card: #252A3B;
+  --color-text-main: #FFFFFF;
+  --color-text-muted: #A6A9B8;
+  --color-border-main: rgba(255, 255, 255, 0.2);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 :root {
-  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
-  /* Website Default (Light) */
-  --primary: #a855f7;
-  --primary-glow: rgba(168, 85, 247, 0.4);
-  --bg-main: #ffffff;
-  --bg-card: rgba(243, 244, 246, 0.6);
-  --bg-alt: #f9fafb;
-  --text-main: #111827;
-  --text-muted: #4b5563;
-  --grid-color: rgba(0, 0, 0, 0.05);
-  --border-main: rgba(0, 0, 0, 0.1);
-  --nav-bg: rgba(255, 255, 255, 0.8);
-
-  /* Admin Default (Dark) */
-  --admin-bg: #050508;
-  --admin-card: rgba(255, 255, 255, 0.03);
-  --admin-border: rgba(255, 255, 255, 0.05);
-  --admin-text: #ffffff;
-  --admin-muted: #9ca3af;
-}
-
-/* Admin Light Theme Overrides */
-.light-theme {
-  --admin-bg: #f8f9fa;
-  --admin-card: #ffffff;
-  --admin-border: rgba(0, 0, 0, 0.08);
-  --admin-text: #1a1a1a;
-  --admin-muted: #64748b;
-}
-
-/* Website Dark Mode Overrides */
-.dark {
-  --bg-main: #050508;
-  --bg-card: rgba(14, 14, 20, 0.6);
-  --bg-alt: #0b0b11;
-  --text-main: #f0f0f5;
-  --text-muted: #9ca3af;
-  --grid-color: rgba(255, 255, 255, 0.08);
-  --border-main: rgba(255, 255, 255, 0.08);
-  --nav-bg: rgba(0, 0, 0, 0.8);
+  --font-expo: "Expo Arabic", "expoArabic", var(--font-tajawal), system-ui, -apple-system, sans-serif;
+  --font-tajawal: var(--font-tajawal), "Tajawal", system-ui, -apple-system, sans-serif;
+  
+  /* Central Design Tokens - Modify here to update the entire application */
+  --primary: #5337FF;
+  --primary-hover: #4226E6;
+  --bg-main: #161A26;
+  --bg-surface: #252A3B;
+  --bg-card: #252A3B;
+  --border-main: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --text-main: #FFFFFF;
+  --text-muted: #A6A9B8;
 }
 
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-expo) !important;
   overflow-x: hidden;
 }
 
-/* Core Components */
-.glass-card {
-  background: var(--admin-card);
+/* Explicit CSS Utilities bound to Central Variables */
+.bg-bg-main { background-color: var(--bg-main) !important; }
+.bg-bg-surface { background-color: var(--bg-surface) !important; }
+.bg-bg-card { background-color: var(--bg-card) !important; }
+.bg-primary { background-color: var(--primary) !important; }
+
+.text-text-main { color: var(--text-main) !important; }
+.text-text-muted { color: var(--text-muted) !important; }
+.text-primary { color: var(--primary) !important; }
+
+.border-border-main { border-color: var(--border-main) !important; }
+.border-border-subtle { border-color: var(--border-subtle) !important; }
+
+/* Interactive Hover States bound to Central Tokens */
+.hover\:bg-primary:hover { background-color: var(--primary) !important; }
+.hover\:bg-primary-hover:hover { background-color: var(--primary-hover) !important; }
+.hover\:text-primary:hover { color: var(--primary) !important; }
+.hover\:border-primary:hover { border-color: var(--primary) !important; }
+
+.group:hover .group-hover\:text-primary { color: var(--primary) !important; }
+.group:hover .group-hover\:border-primary { border-color: var(--primary) !important; }
+
+/* Reusable Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(83, 55, 255, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(83, 55, 255, 0.45);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-main);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Glassmorphism Components */
+.glass-capsule {
+  background: rgba(37, 42, 59, 0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--admin-border);
-  border-radius: 24px;
+  border: 1px solid var(--border-main);
 }
 
-/* Re-fixing the Website Glass Cards */
-section .glass-card {
+.glass-card {
   background: var(--bg-card);
-  border-color: var(--border-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.grid-overlay {
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 50px 50px;
-  z-index: 0;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
-  pointer-events: none;
+.glass-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 40px rgba(83, 55, 255, 0.2);
 }
 
-.glow-orb {
-  position: fixed;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+/* Hero Badge Pill */
+.hero-badge-pill {
+  background: linear-gradient(0deg, var(--bg-card) 0%, var(--bg-card) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+  box-shadow: 0px 0px 0px 3px rgba(83, 55, 255, 0.2);
+}
+
+/* Seamless 100% Infinite Marquee Animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Ambient Radial Blur Glows */
+.ambient-glow-purple {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(83, 55, 255, 0.25) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(130px);
-  z-index: 0;
+  filter: blur(140px);
   pointer-events: none;
-  animation: orbMove 28s infinite alternate ease-in-out;
 }
 
-@keyframes orbMove {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(80px, 40px) scale(1.1); }
-  100% { transform: translate(130px, 70px) scale(0.9); }
+.ambient-glow-blue {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(83, 55, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
 }

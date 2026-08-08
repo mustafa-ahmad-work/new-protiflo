@@ -53,7 +53,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <Section id="process" className="bg-[var(--bg-main)]">
+    <Section id="process" className="bg-bg-main">
       <SectionHeader 
         subtitle="HOW I WORK" 
         title="Development Lifecycle" 
@@ -75,8 +75,8 @@ export default function Process() {
                     <step.icon size={30} />
                     </div>
 
-                    <h3 className="text-2xl font-black text-[var(--text-main)] mb-6 tracking-tighter">{step.title}</h3>
-                    <p className="text-sm text-[var(--text-muted)] leading-relaxed relative z-10 font-medium opacity-80">
+                    <h3 className="text-2xl font-black text-text-main mb-6 tracking-tighter">{step.title}</h3>
+                    <p className="text-sm text-text-muted leading-relaxed relative z-10 font-medium opacity-80">
                     {step.desc}
                     </p>
 

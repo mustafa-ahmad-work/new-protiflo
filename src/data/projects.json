@@ -1,8 +1,9 @@
 [
   {
     "id": 1,
-    "title": "Professional E-Commerce Ecosystem",
-    "description": "A robust online shopping platform featuring a specialized user dashboard, real-time support chat integration, and automated inventory management system.",
+    "title": "منظومة التجارة الإلكترونية المتكاملة",
+    "description": "منصة متجر إلكتروني متكاملة تتميز بوجود لوحة تحكم مخصصة للمستخدمين، وتكامل مع المحادثات المباشرة لدعم العملاء، ونظام تلقائي لإدارة المخزون والمنتجات.",
+    "category": "متاجر إلكترونية",
     "image": "/projects/6/card.jpg",
     "tags": ["Next.js", "Laravel", "MySQL", "Stripe"],
     "github": "https://github.com/mustafa-ahmad-work",
@@ -10,8 +11,9 @@
   },
   {
     "id": 2,
-    "title": "Sermon Digital Platform",
-    "description": "A comprehensive digital library for Islamic content featuring over 15 dynamic sections. Built with a focus on high-performance and seamless content updates.",
+    "title": "المنصة الرقمية للخطب والمحاضرات",
+    "description": "مكتبة رقمية شاملة للمحتوى الإسلامي تضم أكثر من 15 قسماً تفاعلياً. تم بناؤها مع التركيز على السرعة الفائقة وسهولة تحديث المحتوى.",
+    "category": "منصات المحتوى",
     "image": "/projects/1/card.jpg",
     "tags": ["React.js", "TailwindCSS", "Firebase", "Zustand"],
     "github": "https://github.com/mustafa-ahmad-work",
@@ -19,8 +21,9 @@
   },
   {
     "id": 3,
-    "title": "Dar Al Fursan Real Estate System",
-    "description": "An advanced management system for real estate operations, providing a centralized control panel for managing properties, clients, and transaction tracking.",
+    "title": "نظام دار الفرسان لإدارة العقارات",
+    "description": "نظام إداري متقدم لإدارة العمليات العقارية، يقدم لوحة تحكم مركزية لإدارة العقارات، متابعة العملاء، وتتبع المعاملات المالية بدقة.",
+    "category": "أنظمة إدارة الشركات",
     "image": "/projects/2/card.jpg",
     "tags": ["Laravel", "PHP", "MySQL", "Bootstrap"],
     "github": "https://github.com/mustafa-ahmad-work",
@@ -28,8 +31,9 @@
   },
   {
     "id": 4,
-    "title": "High-Fidelity Developer Portfolio",
-    "description": "A modern, animated personal showcase built with Next.js 15 and Framer Motion, featuring terminal-inspired interactions and a premium design system.",
+    "title": "الموقع الشخصي الفاخر لمهندس البرمجيات",
+    "description": "موقع استعراضي تفاعلي للمشاريع والمهارات مبني بتقنيات Next.js 15 و Framer Motion، ويتميز بتصميم أنيق ومستوحى من أحدث نظم التصميم العالمية.",
+    "category": "تطوير ويب مخصص",
     "image": "/projects/7/card.jpg",
     "tags": ["Next.js 15", "Framer Motion", "TailwindCSS", "TypeScript"],
     "github": "https://github.com/mustafa-ahmad-work",

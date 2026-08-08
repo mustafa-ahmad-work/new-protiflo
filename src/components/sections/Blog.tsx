@@ -21,10 +21,13 @@ export default function Blog() {
           .select('*')
           .order('created_at', { ascending: false });
 
-        if (error) throw error;
-        setPosts(data || []);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
+        if (error) {
+          console.warn('Supabase posts fetch note:', error.message || error);
+        } else if (data && data.length > 0) {
+          setPosts(data);
+        }
+      } catch (err: any) {
+        console.warn('Error fetching posts:', err?.message || err);
       } finally {
         setLoading(false);
       }
@@ -39,7 +42,7 @@ export default function Blog() {
       
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {loading ? (
-          <div className="col-span-full py-20 text-center animate-pulse text-[var(--text-muted)] font-black uppercase tracking-widest">
+          <div className="col-span-full py-20 text-center animate-pulse text-text-muted font-black uppercase tracking-widest">
             Fetching Archive Data...
           </div>
         ) : posts.map((post, i) => (
@@ -56,21 +59,21 @@ export default function Blog() {
                 <img src="/moustafa.jpg" className="w-full h-full object-cover" alt="" />
               </div>
               <div>
-                <div className="text-sm font-bold text-[var(--text-main)] flex items-center gap-1">
-                  {post.author} <span className="text-[10px] text-[var(--text-muted)] font-normal">• 1st</span>
+                <div className="text-sm font-bold text-text-main flex items-center gap-1">
+                  {post.author} <span className="text-[10px] text-text-muted font-normal">• 1st</span>
                 </div>
-                <div className="text-[10px] text-[var(--text-muted)]">Software Engineer | Laravel & React</div>
-                <div className="text-[9px] text-[var(--text-muted)] opacity-70 flex items-center gap-1">
+                <div className="text-[10px] text-text-muted">Software Engineer | Laravel & React</div>
+                <div className="text-[9px] text-text-muted opacity-70 flex items-center gap-1">
                   {new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • <Globe size={10} />
                 </div>
               </div>
             </div>
 
             <div className="px-5 pb-4 flex-grow">
-              <h3 className="text-lg font-black mb-3 text-[var(--text-main)] group-hover:text-purple-400 transition-colors line-clamp-2">
+              <h3 className="text-lg font-black mb-3 text-text-main group-hover:text-purple-400 transition-colors line-clamp-2">
                 {post.title}
               </h3>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed line-clamp-3">
+              <p className="text-xs text-text-muted leading-relaxed line-clamp-3">
                 {post.excerpt}
               </p>
               <Link 

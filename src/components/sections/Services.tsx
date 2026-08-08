@@ -1,104 +1,133 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Layout, Database, Code2, ShoppingCart, ShieldCheck, RefreshCw, ChevronRight } from "lucide-react";
-import Section from "../layout/Section";
-import SectionHeader from "../layout/SectionHeader";
-import { StaggerContainer, StaggerItem } from "../layout/Reveal";
+import { 
+  Globe, Smartphone, Layout, Palette, Database, 
+  Code2, ShieldAlert, Kanban, CloudLightning, ArrowLeft 
+} from "lucide-react";
 
 const services = [
   {
-    title: "Frontend Engineering",
-    desc: "Building immersive, high-performance user interfaces using React, Next.js, and modern CSS frameworks.",
+    title: "برمجة وتطوير المواقع",
+    desc: "نطوّر مواقع ويب تفاعلية عالية الأداء وسريعة الاستجابة تناسب متطلبات أعمالك، باستخدام أحدث تقنيات Next.js و React.",
+    icon: Globe,
+    badge: "Web Dev"
+  },
+  {
+    title: "برمجة وتطوير التطبيقات",
+    desc: "نصمم ونطوّر تطبيقات هواتف ذكية متخصصة (iOS & Android) تتميز بالسرعة والسهولة وتلبي التوقعات العالية للمستخدمين.",
+    icon: Smartphone,
+    badge: "Mobile Apps"
+  },
+  {
+    title: "تصميم واجهة المستخدم UI & UX",
+    desc: "نبتكر واجهات مستخدم جذابة وسلسة تعزز من تجربة العميل وترفع من نسب التفاعل والتحويل داخل منصتك.",
     icon: Layout,
-    features: ["SPA & SSR Applications", "Interactive Dashboards", "Advanced Animations"],
-    color: "from-blue-600/10 to-purple-600/10"
+    badge: "UI/UX Design"
   },
   {
-    title: "Backend Architecture",
-    desc: "Developing robust server-side systems with Laravel, focusing on security, scalability, and performance.",
+    title: "تصميم الهوية والبراندنج",
+    desc: "نبتكر هوية بصرية متكاملة وفريدة تعكس قيم مشروعك وتميّز علامتك التجارية في السوق الرقمي.",
+    icon: Palette,
+    badge: "Branding"
+  },
+  {
+    title: "هندسة الأنظمة وقواعد البيانات",
+    desc: "نبني بنية تحتية برمجية متينة وقواعد بيانات مهيأة للتوسع والتعامل مع ملايين السجلات بكفاءة وسرعة عالية.",
     icon: Database,
-    features: ["Complex Database Design", "Queue Systems & Redis", "Server Optimization"],
-    color: "from-purple-600/10 to-pink-600/10"
+    badge: "System Architecture"
   },
   {
-    title: "API Development",
-    desc: "Crafting secure and well-documented RESTful and GraphQL APIs for mobile and web integrations.",
+    title: "تطوير وتأمين APIs والميكروسيرفيس",
+    desc: "نبني واجهات برمجة تطبيقات (REST APIs) آمنة للغاية ومشفرة لربط الأنظمة والتطبيقات بسلاسة.",
     icon: Code2,
-    features: ["JWT & OAuth Security", "Swagger Documentation", "Microservices Logic"],
-    color: "from-emerald-600/10 to-teal-600/10"
+    badge: "APIs & Backend"
   },
   {
-    title: "E-Commerce Ecosystems",
-    desc: "Building complete online stores with integrated payment gateways and inventory management.",
-    icon: ShoppingCart,
-    features: ["Multi-Vendor Systems", "Custom Checkout Flows", "Stripe & PayPal Setup"],
-    color: "from-orange-600/10 to-red-600/10"
+    title: "اختبار الأمان وسد الثغرات",
+    desc: "نفحص موقعك وتطبيقك بدقة لكشف الثغرات الأمنية وضمان حماية بيانات عملائك وفق أعلى المعايير.",
+    icon: ShieldAlert,
+    badge: "Security Audit"
   },
   {
-    title: "Security Intelligence",
-    desc: "Ensuring your application is safe from vulnerabilities and meets industry security standards.",
-    icon: ShieldCheck,
-    features: ["Pentesting & Scans", "Data Encryption", "GDPR Compliance"],
-    color: "from-red-600/10 to-purple-600/10"
+    title: "إدارة وتتبع المشاريع البرمجية",
+    desc: "نوفر نظام متابعة مخصص لتحديثات المشروعات، مما يضمن لك الاطلاع على سير العمل فورياً وبمنتهى الشفافية.",
+    icon: Kanban,
+    badge: "Agile Management"
   },
   {
-    title: "Systems Maintenance",
-    desc: "Providing continuous monitoring and updates to keep your platforms running smoothly.",
-    icon: RefreshCw,
-    features: ["24/7 Server Monitoring", "Bug Fixing & Updates", "Performance Reports"],
-    color: "from-blue-600/10 to-cyan-600/10"
+    title: "تحسين الأداء والاستضافة السحابية",
+    desc: "نُحسّن سرعة تحميل الموقع وإدارة السيرفرات السحابية (AWS / Cloudflare) لضمان أداء مستقر على مدار الساعة.",
+    icon: CloudLightning,
+    badge: "Cloud & DevOps"
   },
 ];
 
 export default function Services() {
   return (
-    <Section id="services" className="bg-[var(--bg-main)]">
-      <SectionHeader 
-        subtitle="SOLUTIONS" 
-        title="Specialized Services" 
-        description="Providing end-to-end technical excellence for modern digital products."
-      />
-
-      <StaggerContainer>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
-            {services.map((service, i) => (
-            <StaggerItem key={i}>
-                <div className="glass-card p-10 hover:border-purple-500/30 group transition-all duration-500 relative overflow-hidden h-full border-[var(--border-main)] shadow-sm hover:shadow-md bg-[var(--bg-card)]">
-                    {/* Background Accent - More subtle in Light Mode */}
-                    <div className={`absolute top-[-20%] right-[-20%] w-[60%] h-[60%] bg-gradient-to-br ${service.color} blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
-                    
-                    <div className="relative z-10">
-                        <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-8 group-hover:scale-110 transition duration-500">
-                            <service.icon className="text-purple-600 dark:text-purple-400 w-7 h-7" />
-                        </div>
-                        
-                        <h3 className="text-2xl font-black mb-4 text-[var(--text-main)] group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors tracking-tighter">
-                            {service.title}
-                        </h3>
-                        
-                        <p className="text-[var(--text-muted)] dark:text-gray-400 text-sm leading-relaxed mb-8 font-medium">
-                            {service.desc}
-                        </p>
-                        
-                        <div className="space-y-4 mb-8">
-                            {service.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)] group-hover:text-[var(--text-main)] transition-colors">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-purple-500/40 group-hover:bg-purple-500 transition-colors" />
-                                    {feature}
-                                </div>
-                            ))}
-                        </div>
-                        
-                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-500">
-                            Learn more <ChevronRight size={14} />
-                        </div>
-                    </div>
-                </div>
-            </StaggerItem>
-            ))}
+    <section id="services" className="py-24 bg-bg-main relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-5">
+            <span>خدماتنا المتخصصة</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-white leading-snug mb-4">
+            حلول برمجية متكاملة نتميّز بإتقانها
+          </h2>
+          <p className="text-base sm:text-lg text-text-muted max-w-2xl font-normal leading-relaxed">
+            نقدم مجموعة متكاملة من الخدمات التقنية المصممة لتلبية تطلعاتك وتحقيق قفزة نوعية لمشروعك.
+          </p>
         </div>
-      </StaggerContainer>
-    </Section>
+
+        {/* Services Grid (Rascoda Style) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="glass-card p-8 flex flex-col items-start justify-between group hover:border-primary/60 relative overflow-hidden bg-bg-surface border border-white/10 rounded-[20px]"
+              >
+                {/* Top Badge & Icon */}
+                <div className="w-full flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center text-primary group-hover:scale-110 transition-all shadow-md">
+                    <Icon size={26} />
+                  </div>
+                  <span className="text-[10px] font-bold text-text-muted bg-bg-main px-3 py-1 rounded-full border border-white/10">
+                    {service.badge}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="space-y-3 mb-6">
+                  <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-text-muted leading-relaxed font-normal">
+                    {service.desc}
+                  </p>
+                </div>
+
+                {/* Bottom Action */}
+                <a
+                  href="https://wa.me/201092434027"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-primary group-hover:text-white transition-colors pt-4 border-t border-white/10 w-full justify-between"
+                >
+                  <span>طلب الخدمة الآن</span>
+                  <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

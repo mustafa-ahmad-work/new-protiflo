@@ -23,12 +23,12 @@ export default function SectionHeader({ subtitle, title, description, className 
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="text-5xl md:text-6xl font-black tracking-tight text-[var(--text-main)]"
+        className="text-5xl md:text-6xl font-black tracking-tight text-text-main"
       >
         {title}
       </motion.h2>
       {description && (
-        <p className="text-[var(--text-muted)] mt-6 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-text-muted mt-6 max-w-2xl mx-auto leading-relaxed">
           {description}
         </p>
       )}

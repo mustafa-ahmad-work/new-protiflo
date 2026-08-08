@@ -1,91 +1,143 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import Section from "../layout/Section";
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 export default function Contact() {
-  const [settings, setSettings] = useState<any>(null);
-
-  useEffect(() => {
-    async function fetchSettings() {
-      const { data } = await supabase.from('settings').select('*').single();
-      if (data) setSettings(data);
-    }
-    fetchSettings();
-  }, []);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
 
   const contactInfo = [
-    { icon: MapPin, label: "Location", value: settings?.location || "Egypt, Quna" },
-    { icon: Phone, label: "Phone", value: settings?.phone || "(+20) 01092434027" },
-    { icon: Mail, label: "Email", value: settings?.email || "mustafa.ahmad.work@gmail.com" },
+    { icon: MapPin, label: "الموقع الجغرافي", value: "مصر، القاهرة / قنا" },
+    { icon: Phone, label: "الهاتف والواتساب", value: "(+20) 01092434027" },
+    { icon: Mail, label: "البريد الإلكتروني", value: "mustafa.ahmad.work@gmail.com" },
   ];
 
-  return (
-    <Section id="contact">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="glass-card p-12 md:p-24 relative overflow-hidden"
-      >
-        <div className="relative z-10 grid lg:grid-cols-2 gap-16">
-          <div>
-            <span className="text-purple-500 font-mono text-sm uppercase tracking-[0.3em] block mb-4">
-              // GET IN TOUCH
-            </span>
-            <h2 className="text-5xl font-black mb-8 leading-tight text-[var(--text-main)]">
-              Send Us a Note and<br />
-              <span className="text-purple-500">Initiate the Dialogue!</span>
-            </h2>
-            <p className="text-[var(--text-muted)] text-lg mb-12 leading-relaxed max-w-md">
-              We’d love to hear from you! Whether you have questions, feedback, or just want to connect, reach out and let’s make it happen.
-            </p>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const whatsappMsg = `مرحباً مصطفى، أنا ${formData.name}%0Aالموضوع: ${formData.subject}%0Aالرسالة: ${formData.message}`;
+    window.open(`https://wa.me/201092434027?text=${whatsappMsg}`, '_blank');
+  };
 
-            <div className="space-y-8">
-              {contactInfo.map((item, i) => (
-                <div key={i} className="flex items-center gap-6">
-                  <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-500 border border-purple-500/20">
-                    <item.icon size={24} />
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest mb-1">{item.label}</p>
-                    <p className="text-[var(--text-main)] font-bold text-lg">{item.value}</p>
-                  </div>
+  return (
+    <section id="contact" className="py-24 bg-bg-main relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass-card p-8 sm:p-14 bg-bg-surface border border-white/10 rounded-[24px] relative overflow-hidden"
+        >
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Direct Info */}
+            <div className="flex flex-col items-start">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-white uppercase tracking-widest bg-primary px-5 py-2 rounded-full border border-white/20 shadow-lg shadow-primary/30 mb-6">
+                <span>تواصل معنا</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-black text-white leading-snug mb-4">
+                ابدأ رحلتك معنا وسنحوّل <br />
+                <span className="text-primary">فكرتك إلى واقع رقمي!</span>
+              </h2>
+              <p className="text-text-muted text-base leading-relaxed max-w-md mb-8">
+                يسعدنا مناقشة التفاصيل التقنية لمشروعك، وتقديم الاستشارة والمساعدة اللازمة لبناء نظام برمجي متكامل ومميز.
+              </p>
+
+              <div className="space-y-6 pt-4">
+                {contactInfo.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex items-center gap-4 p-4 rounded-[15px] bg-bg-main border border-white/10">
+                      <div className="w-12 h-12 rounded-xl bg-bg-surface flex items-center justify-center text-primary shrink-0 border border-white/10">
+                        <Icon size={22} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-text-muted font-bold uppercase tracking-wider">{item.label}</p>
+                        <p className="text-white font-bold text-sm sm:text-base">{item.value}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <a
+                href="https://wa.me/201092434027"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold px-8 py-4 rounded-full transition-all shadow-xl shadow-[#25D366]/20"
+              >
+                <MessageCircle size={20} />
+                <span>المحادثة المباشرة على الواتساب</span>
+              </a>
+            </div>
+
+            {/* Form */}
+            <div className="bg-bg-main border border-white/10 rounded-[20px] p-6 sm:p-10">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-200">الاسم بالكامل</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="مصطفى أحمد"
+                    className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all text-white text-sm"
+                  />
                 </div>
-              ))}
+
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-200">البريد الإلكتروني</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="example@domain.com"
+                    className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all text-white text-sm"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-200">موضوع المشروع</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder="تطوير موقع أو تطبيق هاتف"
+                    className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all text-white text-sm"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-200">تفاصيل الرسالة</label>
+                  <textarea
+                    rows={4}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="اكتب تفاصيل مشروعك هنا..."
+                    className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all text-white text-sm resize-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-full transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#5337FF]/30"
+                >
+                  <span>إرسال الرسالة</span>
+                  <Send size={18} />
+                </button>
+              </form>
             </div>
           </div>
-
-          <div className="bg-[var(--bg-card)] border border-[var(--border-main)] rounded-3xl p-8 md:p-12">
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Full Name</label>
-                  <input type="text" placeholder="Mostafa Ahmed" className="w-full bg-[var(--bg-alt)] border border-[var(--border-main)] rounded-xl px-5 py-4 focus:border-purple-500/50 outline-none transition-all text-[var(--text-main)]" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Email Address</label>
-                  <input type="email" placeholder="hello@example.com" className="w-full bg-[var(--bg-alt)] border border-[var(--border-main)] rounded-xl px-5 py-4 focus:border-purple-500/50 outline-none transition-all text-[var(--text-main)]" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Subject</label>
-                <input type="text" placeholder="Project Inquiry" className="w-full bg-[var(--bg-alt)] border border-[var(--border-main)] rounded-xl px-5 py-4 focus:border-purple-500/50 outline-none transition-all text-[var(--text-main)]" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Message</label>
-                <textarea rows={4} placeholder="How can I help you?" className="w-full bg-[var(--bg-alt)] border border-[var(--border-main)] rounded-xl px-5 py-4 focus:border-purple-500/50 outline-none transition-all text-[var(--text-main)] resize-none"></textarea>
-              </div>
-              <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-5 rounded-xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-purple-600/20">
-                Send Message <Send size={18} />
-              </button>
-            </form>
-          </div>
-        </div>
-      </motion.div>
-    </Section>
+        </motion.div>
+      </div>
+    </section>
   );
 }

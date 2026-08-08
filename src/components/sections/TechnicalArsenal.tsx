@@ -89,12 +89,23 @@ function MacTerminal({ title, items, delay }: { title: string, items: any[], del
 }
 
 export default function TechnicalArsenal() {
-  const [skills, setSkills] = useState<string[]>([]);
+  const defaultSkills = [
+    "React.js", "Next.js", "TypeScript", "TailwindCSS", "Framer Motion", "HTML5/CSS3",
+    "Node.js", "Express.js", "Laravel", "PHP", "RESTful APIs", "MySQL",
+    "Git / GitHub", "Docker", "Vercel", "Firebase", "PostgreSQL", "Supabase"
+  ];
+  const [skills, setSkills] = useState<string[]>(defaultSkills);
 
   useEffect(() => {
     async function fetchSkills() {
-      const { data } = await supabase.from('settings').select('skills').single();
-      if (data?.skills) setSkills(data.skills);
+      try {
+        const { data, error } = await supabase.from('settings').select('skills').single();
+        if (data?.skills && data.skills.length > 0 && !error) {
+          setSkills(data.skills);
+        }
+      } catch (err) {
+        // Fallback to defaultSkills already initialized in state
+      }
     }
     fetchSkills();
   }, []);
@@ -107,7 +118,7 @@ export default function TechnicalArsenal() {
   ];
 
   return (
-    <Section id="skills" className="bg-[var(--bg-main)]">
+    <Section id="skills" className="bg-bg-main">
       <SectionHeader 
         subtitle="EXPERTISE" 
         title="Technical Arsenal" 
