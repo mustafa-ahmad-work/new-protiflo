@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
 /* -------------------------------------------------------------
-   Expo Arabic Font Definitions (Local + High-Performance CDN)
+   Expo Arabic Font Definitions
 ------------------------------------------------------------- */
 @font-face {
   font-family: 'Expo Arabic';
-  src: url('/fonts/ExpoArabic-Book.woff2') format('woff2'),
-       url('https://db.onlinewebfonts.com/t/9004b72f96afb1e5f13389f489791113.woff2') format('woff2');
+  src: url('/fonts/ExpoArabic-Book.woff2') format('woff2');
   font-weight: 300 400 500;
   font-style: normal;
   font-display: swap;
@@ -14,17 +13,13 @@
 
 @font-face {
   font-family: 'Expo Arabic';
-  src: url('/fonts/ExpoArabic-Bold.woff2') format('woff2'),
-       url('https://db.onlinewebfonts.com/t/08581e855fa08d98d28731ad2b3e51f8.woff2') format('woff2');
+  src: url('/fonts/ExpoArabic-Bold.woff2') format('woff2');
   font-weight: 600 700 800 900;
   font-style: normal;
   font-display: swap;
 }
 
 @theme {
-  --font-sans: "Expo Arabic", "expoArabic", var(--font-tajawal), system-ui, -apple-system, sans-serif;
-  --font-expo: "Expo Arabic", "expoArabic", var(--font-tajawal), system-ui, -apple-system, sans-serif;
-  
   --color-primary: #5337FF;
   --color-primary-hover: #4226E6;
   --color-bg-main: #161A26;
@@ -37,9 +32,6 @@
 }
 
 :root {
-  --font-expo: "Expo Arabic", "expoArabic", var(--font-tajawal), system-ui, -apple-system, sans-serif;
-  --font-tajawal: var(--font-tajawal), "Tajawal", system-ui, -apple-system, sans-serif;
-  
   /* Central Design Tokens - Modify here to update the entire application */
   --primary: #5337FF;
   --primary-hover: #4226E6;
@@ -52,10 +44,13 @@
   --text-muted: #A6A9B8;
 }
 
+body, html, * {
+  font-family: var(--font-expo), 'Expo Arabic', system-ui, -apple-system, sans-serif !important;
+}
+
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: var(--font-expo) !important;
   overflow-x: hidden;
 }
 

@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
-import { Tajawal } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import LoadingScreen from "@/components/layout/LoadingScreen";
 import NavigationProgress from "@/components/layout/NavigationProgress";
 import { Suspense } from "react";
 
-const tajawal = Tajawal({
-  subsets: ["arabic"],
-  weight: ["300", "400", "500", "700", "800", "900"],
-  variable: "--font-tajawal",
+const expoArabic = localFont({
+  src: [
+    {
+      path: "../../public/fonts/ExpoArabic-Book.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/ExpoArabic-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-expo",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`scroll-smooth ${tajawal.variable}`} data-scroll-behavior="smooth">
-      <body className="antialiased bg-bg-main text-text-main selection:bg-primary/30 selection:text-white" style={{ fontFamily: '"Expo Arabic", "expoArabic", sans-serif' }}>
+    <html lang="ar" dir="rtl" className={`scroll-smooth ${expoArabic.variable}`} data-scroll-behavior="smooth">
+      <body className="antialiased bg-bg-main text-text-main selection:bg-primary/30 selection:text-white">
         <ThemeProvider>
           <LoadingScreen />
           <Suspense fallback={null}>
