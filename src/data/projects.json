@@ -4,8 +4,13 @@
     "title": "منظومة التجارة الإلكترونية المتكاملة",
     "description": "منصة متجر إلكتروني متكاملة تتميز بوجود لوحة تحكم مخصصة للمستخدمين، وتكامل مع المحادثات المباشرة لدعم العملاء، ونظام تلقائي لإدارة المخزون والمنتجات.",
     "category": "متاجر إلكترونية",
-    "image": "/projects/6/card.jpg",
-    "tags": ["Next.js", "Laravel", "MySQL", "Stripe"],
+    "image": "/images/projects/1.png",
+    "tags": [
+      "Next.js",
+      "Laravel",
+      "MySQL",
+      "Stripe"
+    ],
     "github": "https://github.com/mustafa-ahmad-work",
     "live": "#"
   },
@@ -14,8 +19,13 @@
     "title": "المنصة الرقمية للخطب والمحاضرات",
     "description": "مكتبة رقمية شاملة للمحتوى الإسلامي تضم أكثر من 15 قسماً تفاعلياً. تم بناؤها مع التركيز على السرعة الفائقة وسهولة تحديث المحتوى.",
     "category": "منصات المحتوى",
-    "image": "/projects/1/card.jpg",
-    "tags": ["React.js", "TailwindCSS", "Firebase", "Zustand"],
+    "image": "/images/projects/2.png",
+    "tags": [
+      "React.js",
+      "TailwindCSS",
+      "Firebase",
+      "Zustand"
+    ],
     "github": "https://github.com/mustafa-ahmad-work",
     "live": "http://www.sermonsite.com"
   },
@@ -24,8 +34,13 @@
     "title": "نظام دار الفرسان لإدارة العقارات",
     "description": "نظام إداري متقدم لإدارة العمليات العقارية، يقدم لوحة تحكم مركزية لإدارة العقارات، متابعة العملاء، وتتبع المعاملات المالية بدقة.",
     "category": "أنظمة إدارة الشركات",
-    "image": "/projects/2/card.jpg",
-    "tags": ["Laravel", "PHP", "MySQL", "Bootstrap"],
+    "image": "/images/projects/3.png",
+    "tags": [
+      "Laravel",
+      "PHP",
+      "MySQL",
+      "Bootstrap"
+    ],
     "github": "https://github.com/mustafa-ahmad-work",
     "live": "http://www.daralfursan.com"
   },
@@ -34,8 +49,13 @@
     "title": "الموقع الشخصي الفاخر لمهندس البرمجيات",
     "description": "موقع استعراضي تفاعلي للمشاريع والمهارات مبني بتقنيات Next.js 15 و Framer Motion، ويتميز بتصميم أنيق ومستوحى من أحدث نظم التصميم العالمية.",
     "category": "تطوير ويب مخصص",
-    "image": "/projects/7/card.jpg",
-    "tags": ["Next.js 15", "Framer Motion", "TailwindCSS", "TypeScript"],
+    "image": "/images/projects/4.png",
+    "tags": [
+      "Next.js 15",
+      "Framer Motion",
+      "TailwindCSS",
+      "TypeScript"
+    ],
     "github": "https://github.com/mustafa-ahmad-work",
     "live": "https://github.com/mustafa-ahmad-work"
   }

@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   description: "نبني البرمجيات التي تدفع أعمالك للأمام. نحوّل أفكارك إلى منتجات رقمية سريعة، قابلة للتوسع، ومصممة لتحقيق نتائج حقيقية.",
 };
 
+import { LanguageProvider } from "@/components/providers/LanguageProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,13 +38,15 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`scroll-smooth ${expoArabic.variable}`} data-scroll-behavior="smooth">
       <body className="antialiased bg-bg-main text-text-main selection:bg-primary/30 selection:text-white">
-        <ThemeProvider>
-          <LoadingScreen />
-          <Suspense fallback={null}>
-            <NavigationProgress />
-          </Suspense>
-          {children}
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <LoadingScreen />
+            <Suspense fallback={null}>
+              <NavigationProgress />
+            </Suspense>
+            {children}
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,0 +1,285 @@
+{
+  "nav": {
+    "brand": "Mustafa Ahmad",
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "tech": "Tech Stack",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact",
+    "contactUs": "Contact Me",
+    "contactWhatsApp": "Chat on WhatsApp"
+  },
+  "hero": {
+    "greeting": "Hi, I am",
+    "nameFirst": "Mustafa",
+    "nameLast": "Ahmad",
+    "role": "Full-Stack Web Developer & Systems Engineer",
+    "bio": "I build practical web applications and high-performance business systems using Laravel, PHP, React, and modern JavaScript. I turn real-world requirements into clean, maintainable, and scalable software.",
+    "downloadCV": "Download CV",
+    "moreAboutMe": "More about me"
+  },
+  "marquee": {
+    "badge": "Architecture & Technologies",
+    "title": "Real technologies & engineering systems we build your projects with"
+  },
+  "services": {
+    "badge": "Specialized Services",
+    "title": "Comprehensive Software Solutions We Master",
+    "subtitle": "We provide a complete suite of engineering services crafted to fulfill your vision and scale your business.",
+    "requestService": "Request Service Now",
+    "items": [
+      {
+        "title": "Web Development & Engineering",
+        "desc": "We build fast, responsive, and interactive web applications tailored to your business needs using modern Next.js & React.",
+        "badge": "Web Dev"
+      },
+      {
+        "title": "Mobile App Development",
+        "desc": "We design and develop high-performance native & cross-platform apps (iOS & Android) that deliver delightful user experiences.",
+        "badge": "Mobile Apps"
+      },
+      {
+        "title": "UI & UX Design",
+        "desc": "We craft modern, intuitive interfaces and user flows that elevate engagement and conversion rates across your platform.",
+        "badge": "UI/UX Design"
+      },
+      {
+        "title": "Brand Identity & Visual Design",
+        "desc": "We forge distinctive visual identities that embody your core values and make your brand stand out in the digital market.",
+        "badge": "Branding"
+      },
+      {
+        "title": "System Architecture & Databases",
+        "desc": "We architect robust backend systems and database structures designed to handle millions of transactions with extreme speed.",
+        "badge": "System Architecture"
+      },
+      {
+        "title": "API & Microservices Engineering",
+        "desc": "We engineer highly secure, encrypted REST and GraphQL APIs to seamlessly bridge your services and applications.",
+        "badge": "APIs & Backend"
+      },
+      {
+        "title": "Security Audits & Vulnerability Testing",
+        "desc": "We thoroughly examine your web platforms to identify security loopholes and ensure full protection of user data.",
+        "badge": "Security Audit"
+      },
+      {
+        "title": "Agile Project & Delivery Management",
+        "desc": "We provide a dedicated progress tracking framework ensuring real-time visibility and clear milestone delivery.",
+        "badge": "Agile Management"
+      },
+      {
+        "title": "Performance Tuning & Cloud DevOps",
+        "desc": "We optimize page load speeds and manage cloud server infrastructure (AWS / Cloudflare) for non-stop high availability.",
+        "badge": "Cloud & DevOps"
+      }
+    ]
+  },
+  "whyUs": {
+    "badge": "Excellence in Action",
+    "title": "Why Are We the Best Choice for Your Project?",
+    "subtitle": "We combine cutting-edge software engineering with strategic insight to build standout digital products.",
+    "features": [
+      {
+        "title": "Quantum Leap for Your Platform",
+        "desc": "Achieve high growth through our modern software solutions and premium user interfaces."
+      },
+      {
+        "title": "Rigorous Security Auditing",
+        "desc": "We guarantee secure, hardened platforms through thorough vulnerability checks and strong encryption."
+      },
+      {
+        "title": "Clean, Scalable Codebase",
+        "desc": "We adhere to clean architecture and modular standards, making feature expansion seamless and sustainable."
+      },
+      {
+        "title": "Search Engine Optimization (SEO)",
+        "desc": "Engineered 100% compliant with Google standards to secure top rankings in organic search results."
+      },
+      {
+        "title": "Blazing-Fast Speed & Performance",
+        "desc": "Sub-second load times that maximize engagement and drive higher conversion rates."
+      },
+      {
+        "title": "Cloud Hosting & Server Reliability",
+        "desc": "Comprehensive cloud server and database administration ensuring your system runs 24/7 uninterrupted."
+      }
+    ],
+    "bannerBadge": "Global Standards & Quality",
+    "bannerTitle": "Engineered for Peak Performance & Unmatched Reliability",
+    "bannerDesc": "We engineer modern technical foundations combining rapid speed, ironclad security, and meticulous search engine optimization to guarantee your long-term success.",
+    "checklist": [
+      "Clean, modern, and rapid-loading code architecture.",
+      "Optimized meta tags and structured semantic markup.",
+      "Elevated, goal-oriented UI/UX user experiences.",
+      "Comprehensive defense against known web vulnerabilities.",
+      "Tangible improvements in conversion and retention rates.",
+      "In-depth system documentation for effortless maintenance."
+    ],
+    "stats": {
+      "speedLabel": "Code Performance & Speed",
+      "speedValue": "99.8% (Lightning Fast Response)",
+      "securityLabel": "Security & Encryption Standards",
+      "securityValue": "A+ Maximum Security Rating",
+      "seoLabel": "Search Engine Optimization",
+      "seoValue": "100% Fully SEO Optimized"
+    }
+  },
+  "experience": {
+    "badge": "CAREER EVOLUTION",
+    "title": "Professional Experience",
+    "subtitle": "A journey of technical mastery and architectural innovation.",
+    "items": [
+      {
+        "company": "Freelance / Self-Employed",
+        "role": "Senior Full-Stack Developer",
+        "period": "2022 - PRESENT",
+        "location": "Global / Remote",
+        "description": "Architecting high-scale digital ecosystems and leading the technical delivery of premium SaaS platforms with a focus on Fintech and AI integration.",
+        "tech": ["Next.js 15", "Laravel 11", "AWS", "Redis"]
+      },
+      {
+        "company": "TechFlow Solutions",
+        "role": "Full-Stack Engineer",
+        "period": "2020 - 2021",
+        "location": "Cairo, Egypt",
+        "description": "Engineered core infrastructure for high-traffic enterprise solutions. Specialized in real-time systems and database optimization.",
+        "tech": ["React", "PHP", "MySQL", "WebSockets"]
+      },
+      {
+        "company": "Digital Core Agency",
+        "role": "Backend Specialist",
+        "period": "2018 - 2020",
+        "location": "Alexandria, Egypt",
+        "description": "Developed robust API architectures and secured cloud environments for large-scale mobile applications.",
+        "tech": ["Node.js", "Docker", "PostgreSQL", "OAuth2"]
+      }
+    ]
+  },
+  "projects": {
+    "badge": "Featured Portfolio",
+    "title": "Featured Projects & Digital Systems",
+    "subtitle": "A curated collection of systems and applications engineered with high precision and aesthetics.",
+    "details": "Project Details",
+    "preview": "Live Demo",
+    "sourceCode": "Source Code",
+    "defaultCategory": "Integrated System",
+    "items": [
+      {
+        "id": 1,
+        "title": "Comprehensive E-Commerce Ecosystem",
+        "description": "A full-scale e-commerce platform featuring a custom merchant dashboard, real-time live support chat, and automated multi-warehouse inventory management.",
+        "category": "E-Commerce"
+      },
+      {
+        "id": 2,
+        "title": "Digital Audio & Lectures Archive",
+        "description": "A rich digital library featuring 15+ interactive categories. Engineered for lightning-fast playback, minimal bandwidth consumption, and effortless content updates.",
+        "category": "Content Platforms"
+      },
+      {
+        "id": 3,
+        "title": "Dar Al-Fursan Real Estate ERP",
+        "description": "An enterprise management system for real estate operations, providing centralized property portfolios, client tracking, and meticulous financial transaction audits.",
+        "category": "Enterprise ERP"
+      },
+      {
+        "id": 4,
+        "title": "Bespoke Software Engineer Portfolio",
+        "description": "An interactive showcase of projects and systems built with Next.js 15 and Framer Motion, inspired by world-class modern design systems.",
+        "category": "Custom Web App"
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Partner Testimonials",
+    "title": "What Our Clients & Partners Say",
+    "subtitle": "Building trust through robust tech solutions and strict commitment to deadlines and quality.",
+    "items": [
+      {
+        "name": "Eng. Ahmed Khaled",
+        "role": "CEO - Masar Platform",
+        "content": "Collaborating with Mustafa was an exceptional experience. His dedication to engineering excellence, punctuality, and security took our platform to another tier.",
+        "rating": 5
+      },
+      {
+        "name": "Sarah Al-Mansouri",
+        "role": "Operations Director - Dar Al-Fursan",
+        "content": "The property management system he engineered saved our team countless manual hours and elevated our transaction tracking accuracy beyond our expectations.",
+        "rating": 5
+      },
+      {
+        "name": "Dr. Omar El-Saeed",
+        "role": "Founder - Digital Content Network",
+        "content": "Incredible performance and seamless responsiveness across devices. Highly professional, responsive, and always delivers innovative solutions to tough technical challenges.",
+        "rating": 5
+      }
+    ]
+  },
+  "blog": {
+    "badge": "INSIGHTS",
+    "title": "Latest Insights & Engineering",
+    "fetching": "Fetching Archive Data...",
+    "readArticle": "Read Intelligence",
+    "adding": "Adding new articles soon...",
+    "empty": "No recent articles found"
+  },
+  "contact": {
+    "badge": "Contact Us",
+    "title": "Start your journey with us & turn your",
+    "titleHighlight": "idea into digital reality!",
+    "subtitle": "We'd love to discuss the technical requirements of your project and provide the expert guidance needed to build a standout software system.",
+    "locationLabel": "Location",
+    "locationValue": "Egypt, Cairo / Qena",
+    "phoneLabel": "Phone & WhatsApp",
+    "emailLabel": "Email Address",
+    "whatsappDirect": "Direct WhatsApp Chat",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Mustafa Ahmad",
+    "email": "Email Address",
+    "emailPlaceholder": "example@domain.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "Inquiry regarding a new project",
+    "message": "Message Details",
+    "messagePlaceholder": "Describe your project or inquiry here...",
+    "sendWhatsApp": "Send Message via WhatsApp"
+  },
+  "cta": {
+    "badge": "Let's Get Started",
+    "title": "Build Your Digital Presence",
+    "titleHighlight": "With Top-Tier Quality & Engineering",
+    "subtitle": "We turn software visions into fast, dependable, and investment-ready digital platforms.",
+    "startProject": "Get In Touch",
+    "whatsappConsult": "Direct WhatsApp Consultation"
+  },
+  "footer": {
+    "brand": "Mustafa Ahmad",
+    "tagline": "Software Engineer & Digital Systems Developer",
+    "copyright": "Mustafa Ahmad. All rights reserved.",
+    "standards": "Engineered & designed to the highest international standards."
+  },
+  "projectDetails": {
+    "back": "Back to Portfolio",
+    "caseStudy": "Case Study",
+    "launchProject": "Launch Project",
+    "sourceCode": "Source Code",
+    "myRole": "My Role",
+    "roleValue": "Lead Full-Stack Engineer",
+    "timeline": "Timeline",
+    "client": "Client",
+    "privateClient": "Private Enterprise",
+    "architecture": "System Architecture",
+    "coreTech": "Core Technologies",
+    "projectImpact": "Technical Impact & Results",
+    "impact1Title": "High Speed & Instant Response",
+    "impact1Desc": "Achieved lightning-fast loading speeds and reduced latency by 60% with efficient resource optimization.",
+    "impact2Title": "Advanced Security & Protection",
+    "impact2Desc": "Enforced industry-grade encryption and access controls to secure critical workflows and financial transactions.",
+    "impact3Title": "Modular Scalability",
+    "impact3Desc": "Modular architecture ready to accommodate millions of requests and rapid feature deployments with zero downtime.",
+    "readyToBuild": "Ready to build something similar?",
+    "discussProject": "Let's discuss your technical goals and engineer a high-performing digital system."
+  }
+}

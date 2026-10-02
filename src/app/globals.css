@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 /* -------------------------------------------------------------
    Expo Arabic Font Definitions
 ------------------------------------------------------------- */
@@ -44,7 +46,9 @@
   --text-muted: #A6A9B8;
 }
 
-body, html, * {
+body,
+html,
+* {
   font-family: var(--font-expo), 'Expo Arabic', system-ui, -apple-system, sans-serif !important;
 }
 
@@ -54,27 +58,85 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050b14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
 /* Explicit CSS Utilities bound to Central Variables */
-.bg-bg-main { background-color: var(--bg-main) !important; }
-.bg-bg-surface { background-color: var(--bg-surface) !important; }
-.bg-bg-card { background-color: var(--bg-card) !important; }
-.bg-primary { background-color: var(--primary) !important; }
+.bg-bg-main {
+  background-color: var(--bg-main) !important;
+}
 
-.text-text-main { color: var(--text-main) !important; }
-.text-text-muted { color: var(--text-muted) !important; }
-.text-primary { color: var(--primary) !important; }
+.bg-bg-surface {
+  background-color: var(--bg-surface) !important;
+}
 
-.border-border-main { border-color: var(--border-main) !important; }
-.border-border-subtle { border-color: var(--border-subtle) !important; }
+.bg-bg-card {
+  background-color: var(--bg-card) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.text-text-main {
+  color: var(--text-main) !important;
+}
+
+.text-text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.border-border-main {
+  border-color: var(--border-main) !important;
+}
+
+.border-border-subtle {
+  border-color: var(--border-subtle) !important;
+}
 
 /* Interactive Hover States bound to Central Tokens */
-.hover\:bg-primary:hover { background-color: var(--primary) !important; }
-.hover\:bg-primary-hover:hover { background-color: var(--primary-hover) !important; }
-.hover\:text-primary:hover { color: var(--primary) !important; }
-.hover\:border-primary:hover { border-color: var(--primary) !important; }
+.hover\:bg-primary:hover {
+  background-color: var(--primary) !important;
+}
 
-.group:hover .group-hover\:text-primary { color: var(--primary) !important; }
-.group:hover .group-hover\:border-primary { border-color: var(--primary) !important; }
+.hover\:bg-primary-hover:hover {
+  background-color: var(--primary-hover) !important;
+}
+
+.hover\:text-primary:hover {
+  color: var(--primary) !important;
+}
+
+.hover\:border-primary:hover {
+  border-color: var(--primary) !important;
+}
+
+.group:hover .group-hover\:text-primary {
+  color: var(--primary) !important;
+}
+
+.group:hover .group-hover\:border-primary {
+  border-color: var(--primary) !important;
+}
 
 /* Reusable Buttons */
 .btn-primary {
@@ -123,7 +185,7 @@ body {
 
 .glass-card:hover {
   border-color: var(--primary);
-  box-shadow: 0 10px 40px rgba(83, 55, 255, 0.2);
+  /* box-shadow: 0 10px 40px rgba(83, 55, 255, 0.2); */
 }
 
 /* Hero Badge Pill */
@@ -137,6 +199,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-100%);
   }
@@ -169,4 +232,56 @@ body {
   border-radius: 50%;
   filter: blur(140px);
   pointer-events: none;
+}
+
+/* Space Background Radial Gradient */
+/* .bg-space {
+  background-color: var(--bg-main);
+  background-image:
+    radial-gradient(circle at 80% 40%, rgba(0, 98, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(10, 23, 46, 0.8) 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, #0a172e 0%, #050b14 75%);
+  background-attachment: fixed;
+} */
+
+.person-mask {
+  -webkit-mask-image: linear-gradient(to bottom, #000000 70%, rgba(0, 0, 0, 0.75) 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000000 70%, rgba(0, 0, 0, 0.75) 85%, transparent 100%);
+}
+
+.glass-shelf {
+  background: linear-gradient(180deg, rgba(8, 20, 42, 0.55) 0%, rgba(5, 11, 20, 0.85) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.glass-card {
+  background: rgba(9, 19, 34, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.75;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes floatSwirl {
+  0% {
+    transform: translate(-50%, -50%) translateY(0px) rotate(-3deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translateY(-14px) rotate(1deg);
+  }
 }

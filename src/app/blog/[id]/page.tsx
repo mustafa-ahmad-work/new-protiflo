@@ -1,8 +1,7 @@
-import { supabase } from "@/lib/supabase";
-import { Globe, MoreHorizontal, ThumbsUp, ArrowLeft } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { PostInteractions } from "@/components/blog/PostInteractions";
+import { Globe, ArrowLeft } from "lucide-react";
+import Navbar from "@/components/layout/header/Navbar";
+import Footer from "@/components/layout/footer/Footer";
+import { PostInteractions } from "@/features/Blog/PostInteractions";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -13,11 +12,7 @@ export default async function BlogPostPage({
 }) {
   const { id } = await params;
 
-  const { data: post } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const post: any = null;
 
   if (!post) {
     notFound();
@@ -56,75 +51,57 @@ export default async function BlogPostPage({
                   </div>
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="text-sm font-black text-text-main hover:text-purple-600 dark:hover:text-purple-400 hover:underline cursor-pointer transition-all">
-                      {post.author}
-                    </h3>
-                    <span className="text-[10px] text-text-muted font-bold">
-                      • 1st
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-text-muted leading-tight mt-0.5 font-medium">
-                    Software Engineer | Laravel & React & Next.js
+                  <h3 className="font-bold text-base leading-tight text-text-main">
+                    {post.author}
+                  </h3>
+                  <p className="text-xs text-text-muted">
+                    Software Engineer | Laravel & React
                   </p>
-                  <div className="flex items-center gap-1.5 text-[10px] text-text-muted mt-1.5 font-bold">
-                    <span>
-                      {new Date(post.created_at).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                      })}
-                    </span>
-                    <span className="opacity-40">•</span>
-                    <Globe size={11} className="opacity-70" />
-                  </div>
+                  <p className="text-[10px] text-text-muted mt-1 flex items-center gap-1">
+                    {new Date(post.created_at).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}{" "}
+                    • <Globe size={11} />
+                  </p>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button className="text-text-muted hover:text-text-main p-2 transition-colors">
-                  <MoreHorizontal size={20} />
-                </button>
               </div>
             </div>
 
             {/* Post Content */}
-            <div className="px-6 py-4 space-y-5">
-              <h1 className="text-2xl md:text-3xl font-black text-text-main leading-tight tracking-tight">
+            <div className="px-5 py-3 space-y-4">
+              <h1 className="text-xl md:text-2xl font-black text-text-main tracking-tight leading-snug">
                 {post.title}
               </h1>
-              <div className="text-[15px] md:text-[16px] leading-relaxed whitespace-pre-wrap text-text-main dark:text-gray-300 font-medium">
+              <div className="text-sm md:text-base text-text-main dark:text-gray-300 leading-relaxed font-normal whitespace-pre-wrap">
                 {post.content}
               </div>
             </div>
 
-            {/* Post Image */}
+            {/* Post Media (Image) */}
             {post.image && (
-              <div className="mt-4 border-y border-border-main bg-black/[0.02] dark:bg-white/[0.02]">
+              <div className="mt-3 border-y border-border-main overflow-hidden bg-black/5 dark:bg-black/20">
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full object-cover max-h-[700px] block mx-auto transition-transform duration-700"
+                  className="w-full max-h-[500px] object-cover"
                 />
               </div>
             )}
 
-            {/* Interaction Stats */}
-            <div className="px-6 py-4 flex items-center justify-between border-b border-border-main">
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-1">
-                  <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center border-2 border-[var(--bg-card)]">
-                    <ThumbsUp size={10} fill="white" className="text-white" />
-                  </div>
-                </div>
-                <span className="text-[11px] text-text-muted font-bold">
-                  {post.likes || 0} reactions
+            {/* Post Stats */}
+            <div className="px-5 py-2.5 flex items-center justify-between text-xs text-text-muted border-b border-border-main/50">
+              <div className="flex items-center gap-1.5">
+                <span className="p-1 rounded-full bg-blue-500 text-white text-[8px]">
+                  👍
                 </span>
+                <span>{post.likes || 0}</span>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="p-1 flex items-center justify-between bg-bg-card transition-colors duration-300">
+            {/* Post Action Buttons */}
+            <div className="px-2 py-1 flex items-center justify-around border-t border-border-main/50">
               <PostInteractions postId={id} initialLikes={post.likes || 0} />
             </div>
           </div>
