@@ -24,8 +24,8 @@ const expoArabic = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "مصطفى أحمد | مهندس برمجيات وتطوير الأنظمة الرقمية",
-  description: "نبني البرمجيات التي تدفع أعمالك للأمام. نحوّل أفكارك إلى منتجات رقمية سريعة، قابلة للتوسع، ومصممة لتحقيق نتائج حقيقية.",
+  title: "مصطفى أحمد | مطور Full-Stack",
+  description: "مصطفى أحمد - مطور Full-Stack. أبني تطبيقات ويب وأنظمة إدارية وعملية باستخدام Laravel وPHP وReact وJavaScript.",
 };
 
 import { LanguageProvider } from "@/components/providers/LanguageProvider";

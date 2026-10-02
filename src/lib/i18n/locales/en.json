@@ -2,194 +2,118 @@
   "nav": {
     "brand": "Mustafa Ahmad",
     "home": "Home",
-    "about": "About",
-    "services": "Services",
-    "tech": "Tech Stack",
+    "about": "About Me",
+    "services": "What I Offer",
     "projects": "Projects",
+    "process": "How I Work",
+    "tech": "Tech Stack",
     "experience": "Experience",
-    "contact": "Contact",
+    "beyondCode": "Beyond Code",
+    "contact": "Contact Me",
     "contactUs": "Contact Me",
     "contactWhatsApp": "Chat on WhatsApp"
   },
   "hero": {
     "greeting": "Hi, I am",
+    "name": "Mustafa Ahmad",
     "nameFirst": "Mustafa",
     "nameLast": "Ahmad",
-    "role": "Full-Stack Web Developer & Systems Engineer",
-    "bio": "I build practical web applications and high-performance business systems using Laravel, PHP, React, and modern JavaScript. I turn real-world requirements into clean, maintainable, and scalable software.",
+    "role": "Full-Stack Developer",
+    "bio": "I build practical web applications, administrative systems, and business platforms using Laravel, PHP, React, and JavaScript. I enjoy transforming real-world requirements into clean, simple, and maintainable software.",
     "downloadCV": "Download CV",
-    "moreAboutMe": "More about me"
+    "moreAboutMe": "More About Me"
   },
-  "marquee": {
-    "badge": "Architecture & Technologies",
-    "title": "Real technologies & engineering systems we build your projects with"
-  },
-  "services": {
-    "badge": "Specialized Services",
-    "title": "Comprehensive Software Solutions We Master",
-    "subtitle": "We provide a complete suite of engineering services crafted to fulfill your vision and scale your business.",
-    "requestService": "Request Service Now",
-    "items": [
+  "about": {
+    "badge": "About Me",
+    "title": "A developer who loves building real-world projects",
+    "p1": "I am Mustafa Ahmad, a Full-Stack Web Developer from Egypt, working primarily with Laravel, PHP, React, and JavaScript.",
+    "p2": "I focus on developing web applications, admin dashboards, and systems built around real business needs, emphasizing clean code, deep understanding of system mechanics, and continuous refinement of my software craftsmanship.",
+    "p3": "I have worked on projects for real clients, alongside personal projects used to explore new technologies and software engineering fundamentals.",
+    "cta": "Learn More About Me",
+    "details": [
       {
-        "title": "Web Development & Engineering",
-        "desc": "We build fast, responsive, and interactive web applications tailored to your business needs using modern Next.js & React.",
-        "badge": "Web Dev"
+        "label": "Role",
+        "value": "Full-Stack Web Developer"
       },
       {
-        "title": "Mobile App Development",
-        "desc": "We design and develop high-performance native & cross-platform apps (iOS & Android) that deliver delightful user experiences.",
-        "badge": "Mobile Apps"
+        "label": "Location",
+        "value": "Egypt"
       },
       {
-        "title": "UI & UX Design",
-        "desc": "We craft modern, intuitive interfaces and user flows that elevate engagement and conversion rates across your platform.",
-        "badge": "UI/UX Design"
+        "label": "Core Stack",
+        "value": "Laravel & React Ecosystem"
       },
       {
-        "title": "Brand Identity & Visual Design",
-        "desc": "We forge distinctive visual identities that embody your core values and make your brand stand out in the digital market.",
-        "badge": "Branding"
-      },
-      {
-        "title": "System Architecture & Databases",
-        "desc": "We architect robust backend systems and database structures designed to handle millions of transactions with extreme speed.",
-        "badge": "System Architecture"
-      },
-      {
-        "title": "API & Microservices Engineering",
-        "desc": "We engineer highly secure, encrypted REST and GraphQL APIs to seamlessly bridge your services and applications.",
-        "badge": "APIs & Backend"
-      },
-      {
-        "title": "Security Audits & Vulnerability Testing",
-        "desc": "We thoroughly examine your web platforms to identify security loopholes and ensure full protection of user data.",
-        "badge": "Security Audit"
-      },
-      {
-        "title": "Agile Project & Delivery Management",
-        "desc": "We provide a dedicated progress tracking framework ensuring real-time visibility and clear milestone delivery.",
-        "badge": "Agile Management"
-      },
-      {
-        "title": "Performance Tuning & Cloud DevOps",
-        "desc": "We optimize page load speeds and manage cloud server infrastructure (AWS / Cloudflare) for non-stop high availability.",
-        "badge": "Cloud & DevOps"
+        "label": "Focus",
+        "value": "Admin Systems & Clean Code"
       }
     ]
   },
-  "whyUs": {
-    "badge": "Excellence in Action",
-    "title": "Why Are We the Best Choice for Your Project?",
-    "subtitle": "We combine cutting-edge software engineering with strategic insight to build standout digital products.",
-    "features": [
-      {
-        "title": "Quantum Leap for Your Platform",
-        "desc": "Achieve high growth through our modern software solutions and premium user interfaces."
-      },
-      {
-        "title": "Rigorous Security Auditing",
-        "desc": "We guarantee secure, hardened platforms through thorough vulnerability checks and strong encryption."
-      },
-      {
-        "title": "Clean, Scalable Codebase",
-        "desc": "We adhere to clean architecture and modular standards, making feature expansion seamless and sustainable."
-      },
-      {
-        "title": "Search Engine Optimization (SEO)",
-        "desc": "Engineered 100% compliant with Google standards to secure top rankings in organic search results."
-      },
-      {
-        "title": "Blazing-Fast Speed & Performance",
-        "desc": "Sub-second load times that maximize engagement and drive higher conversion rates."
-      },
-      {
-        "title": "Cloud Hosting & Server Reliability",
-        "desc": "Comprehensive cloud server and database administration ensuring your system runs 24/7 uninterrupted."
-      }
-    ],
-    "bannerBadge": "Global Standards & Quality",
-    "bannerTitle": "Engineered for Peak Performance & Unmatched Reliability",
-    "bannerDesc": "We engineer modern technical foundations combining rapid speed, ironclad security, and meticulous search engine optimization to guarantee your long-term success.",
-    "checklist": [
-      "Clean, modern, and rapid-loading code architecture.",
-      "Optimized meta tags and structured semantic markup.",
-      "Elevated, goal-oriented UI/UX user experiences.",
-      "Comprehensive defense against known web vulnerabilities.",
-      "Tangible improvements in conversion and retention rates.",
-      "In-depth system documentation for effortless maintenance."
-    ],
-    "stats": {
-      "speedLabel": "Code Performance & Speed",
-      "speedValue": "99.8% (Lightning Fast Response)",
-      "securityLabel": "Security & Encryption Standards",
-      "securityValue": "A+ Maximum Security Rating",
-      "seoLabel": "Search Engine Optimization",
-      "seoValue": "100% Fully SEO Optimized"
-    }
+  "marquee": {
+    "badge": "Technology Stack",
+    "title": "Technologies and tools I rely on to build real systems"
   },
-  "experience": {
-    "badge": "CAREER EVOLUTION",
-    "title": "Professional Experience",
-    "subtitle": "A journey of technical mastery and architectural innovation.",
+  "services": {
+    "badge": "What I Offer",
+    "title": "Practical Software Solutions Tailored to Your Needs",
+    "subtitle": "Delivering custom solutions based on real project needs with a focus on code clarity and stability.",
+    "requestService": "Discuss Service",
     "items": [
       {
-        "company": "Freelance / Self-Employed",
-        "role": "Senior Full-Stack Developer",
-        "period": "2022 - PRESENT",
-        "location": "Global / Remote",
-        "description": "Architecting high-scale digital ecosystems and leading the technical delivery of premium SaaS platforms with a focus on Fintech and AI integration.",
-        "tech": ["Next.js 15", "Laravel 11", "AWS", "Redis"]
+        "title": "Web Applications",
+        "desc": "Building custom web applications tailored to the specific nature and operational needs of your project.",
+        "badge": "Web Apps"
       },
       {
-        "company": "TechFlow Solutions",
-        "role": "Full-Stack Engineer",
-        "period": "2020 - 2021",
-        "location": "Cairo, Egypt",
-        "description": "Engineered core infrastructure for high-traffic enterprise solutions. Specialized in real-time systems and database optimization.",
-        "tech": ["React", "PHP", "MySQL", "WebSockets"]
+        "title": "Backend Development",
+        "desc": "Developing core systems with Laravel & PHP, including RESTful APIs, business logic, authentication, and database schemas.",
+        "badge": "Backend Dev"
       },
       {
-        "company": "Digital Core Agency",
-        "role": "Backend Specialist",
-        "period": "2018 - 2020",
-        "location": "Alexandria, Egypt",
-        "description": "Developed robust API architectures and secured cloud environments for large-scale mobile applications.",
-        "tech": ["Node.js", "Docker", "PostgreSQL", "OAuth2"]
+        "title": "Admin Dashboards",
+        "desc": "Crafting intuitive, robust admin panels to manage users, data, and workflows effectively.",
+        "badge": "Dashboards"
+      },
+      {
+        "title": "Database Design",
+        "desc": "Designing relational database schemas, relationships, and queries optimized for your application domain.",
+        "badge": "Databases"
+      },
+      {
+        "title": "Frontend Development",
+        "desc": "Building interactive, responsive interfaces using React, JavaScript, HTML, CSS, and Tailwind CSS.",
+        "badge": "Frontend Dev"
       }
     ]
   },
   "projects": {
-    "badge": "Featured Portfolio",
-    "title": "Featured Projects & Digital Systems",
-    "subtitle": "A curated collection of systems and applications engineered with high precision and aesthetics.",
-    "details": "Project Details",
-    "preview": "Live Demo",
+    "badge": "Featured Work",
+    "title": "Selected Projects",
+    "subtitle": "A collection of projects developed while expanding my expertise in building practical web applications and administrative systems.",
+    "details": "View Project Details",
+    "preview": "Preview",
     "sourceCode": "Source Code",
-    "defaultCategory": "Integrated System",
+    "defaultCategory": "Web System",
+    "privateBadge": "Private Client Project",
+    "privateNote": "Some of these projects are proprietary and not publicly available, so source code and links are kept confidential.",
     "items": [
       {
         "id": 1,
-        "title": "Comprehensive E-Commerce Ecosystem",
-        "description": "A full-scale e-commerce platform featuring a custom merchant dashboard, real-time live support chat, and automated multi-warehouse inventory management.",
-        "category": "E-Commerce"
+        "title": "Attendora",
+        "category": "Attendance & Leave Management System",
+        "description": "A centralized system for managing employees, branches, biometric devices, attendance records, and related operations. Contributed across backend development, attendance calculation logic, database design, admin dashboard, testing, and integration with the Kiosk application."
       },
       {
         "id": 2,
-        "title": "Digital Audio & Lectures Archive",
-        "description": "A rich digital library featuring 15+ interactive categories. Engineered for lightning-fast playback, minimal bandwidth consumption, and effortless content updates.",
-        "category": "Content Platforms"
+        "title": "Fursan",
+        "category": "Real Estate Management System",
+        "description": "A web system built with Laravel and Filament for managing real estate data, contracts, and workflows through an organized admin panel. Developed the backend, database schemas, dashboards, permissions, and system modules."
       },
       {
         "id": 3,
-        "title": "Dar Al-Fursan Real Estate ERP",
-        "description": "An enterprise management system for real estate operations, providing centralized property portfolios, client tracking, and meticulous financial transaction audits.",
-        "category": "Enterprise ERP"
-      },
-      {
-        "id": 4,
-        "title": "Bespoke Software Engineer Portfolio",
-        "description": "An interactive showcase of projects and systems built with Next.js 15 and Framer Motion, inspired by world-class modern design systems.",
-        "category": "Custom Web App"
+        "title": "Client Projects",
+        "category": "Web Applications & Admin Systems",
+        "description": "Contributed to building web apps and administrative platforms for real clients, covering backend logic, databases, admin dashboards, and frontend integration. Due to confidentiality, full source code and live links are kept private."
       }
     ]
   },
@@ -218,68 +142,236 @@
       }
     ]
   },
-  "blog": {
-    "badge": "INSIGHTS",
-    "title": "Latest Insights & Engineering",
-    "fetching": "Fetching Archive Data...",
-    "readArticle": "Read Intelligence",
-    "adding": "Adding new articles soon...",
-    "empty": "No recent articles found"
+  "process": {
+    "badge": "How I Work",
+    "title": "My Development Approach",
+    "subtitle": "A structured, progressive workflow that turns real problems into resilient software.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Understand",
+        "desc": "I start by thoroughly grasping the problem and real requirements before writing any code."
+      },
+      {
+        "step": "02",
+        "title": "Plan",
+        "desc": "I divide the system into clear components, define how they function, and map their relationships."
+      },
+      {
+        "step": "03",
+        "title": "Build",
+        "desc": "I develop the application incrementally, focusing on required functionality, code clarity, and ease of future maintenance."
+      },
+      {
+        "step": "04",
+        "title": "Test",
+        "desc": "I verify critical paths and core operations to catch bugs early and preserve system stability."
+      },
+      {
+        "step": "05",
+        "title": "Refactor & Improve",
+        "desc": "I regularly revisit and refine code structure as the application matures and scales."
+      }
+    ]
+  },
+  "techSection": {
+    "badge": "Tech Stack",
+    "title": "Technologies I Use",
+    "subtitle": "The reliable tools and frameworks I use to engineer full-stack systems from frontend to backend and database.",
+    "cards": {
+      "backend": {
+        "title": "Backend",
+        "subtitle": "Server, business logic, & RESTful APIs",
+        "laravelRole": "Full-Stack Framework",
+        "laravelDesc": "MVC architecture, robust routing, authentication, and building reliable RESTful APIs.",
+        "phpRole": "Core Language",
+        "phpDesc": "Modern clean OOP development, business logic processing, and system interaction.",
+        "insight": "Focusing on input validation, clean controller hierarchy, and separation of concerns."
+      },
+      "frontend": {
+        "title": "Frontend",
+        "subtitle": "Interactive interfaces & seamless UX",
+        "reactDesc": "Reusable reactive components and state management.",
+        "jsDesc": "Modern ES6+ logic, event handling, and API integration.",
+        "tailwindDesc": "Modern, cohesive, and rapid responsive UI styling.",
+        "htmlDesc": "Semantic, standards-compliant HTML5 structure.",
+        "cssTitle": "CSS3 Layouts",
+        "cssDesc": "Flexbox, CSS Grid layouts, and smooth multi-device animations.",
+        "insight": "Responsive, high-speed interfaces delivering an intuitive user experience."
+      },
+      "database": {
+        "title": "Database",
+        "subtitle": "Relational data structures & schema architecture",
+        "mysqlRole": "Relational Database Management",
+        "mysqlDesc": "Relational schema design, normalization, relationships, and foreign keys.",
+        "schema": "Schema & Relations",
+        "queries": "Queries & Indexing",
+        "integrity": "Data Integrity",
+        "insight": "Normalized relationships and query optimization to handle high-traffic workloads."
+      },
+      "tools": {
+        "title": "Tools & Workflow",
+        "subtitle": "Developer toolchain & version control",
+        "gitDesc": "Version control, branching, and commit history.",
+        "githubDesc": "Repository management and collaborative workflows.",
+        "laragonDesc": "Fast, isolated local development server environment.",
+        "insight": "Organized versioning and structured workflows ensuring stability and easy updates."
+      }
+    },
+    "categories": [
+      {
+        "title": "Backend",
+        "items": [
+          "PHP",
+          "Laravel"
+        ]
+      },
+      {
+        "title": "Frontend",
+        "items": [
+          "React",
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "title": "Database",
+        "items": [
+          "MySQL"
+        ]
+      },
+      {
+        "title": "Tools",
+        "items": [
+          "Git",
+          "GitHub",
+          "Laragon"
+        ]
+      }
+    ],
+    "learningBadge": "Engineering Growth",
+    "learningTitle": "Currently Deepening",
+    "learningSubtitle": "Actively advancing my software engineering depth beyond just writing code that works.",
+    "learningItems": [
+      {
+        "title": "Clean Code",
+        "desc": "Writing readable, maintainable, and self-documenting code."
+      },
+      {
+        "title": "SOLID Principles",
+        "desc": "Organizing code responsibilities and decoupling components effectively."
+      },
+      {
+        "title": "Software Architecture",
+        "desc": "Understanding how systems should be structured as complexity and scale increase."
+      },
+      {
+        "title": "Automated Testing",
+        "desc": "Writing automated tests that ensure stability during continuous development."
+      },
+      {
+        "title": "Design Patterns",
+        "desc": "Mastering common architectural patterns and applying them where suitable."
+      }
+    ]
+  },
+  "experience": {
+    "badge": "Career Path",
+    "title": "Experience",
+    "subtitle": "Building software for real clients and continuously advancing engineering skills.",
+    "items": [
+      {
+        "company": "Freelance & Client Projects",
+        "role": "Full-Stack Web Development",
+        "period": "2024 — Present",
+        "location": "Egypt / Remote",
+        "description": "Developing web applications and management systems using Laravel, PHP, React, and JavaScript. Work encompasses backend APIs, database architecture, authentication & RBAC, admin dashboards, business logic, and frontend development. Alongside client work, I build personal projects to test new technologies and expand my software engineering depth.",
+        "tech": [
+          "Laravel",
+          "PHP",
+          "React",
+          "JavaScript",
+          "MySQL",
+          "Filament",
+          "Livewire",
+          "Git",
+          "GitHub"
+        ]
+      }
+    ]
+  },
+  "beyondCode": {
+    "badge": "Beyond Code",
+    "title": "Lifelong Learning",
+    "subtitle": "To me, programming is far more than just syntax.",
+    "philosophyBadge": "Development & Engineering Philosophy",
+    "philosophyTitle": "Programming is not just writing lines of code; it's engineering sustainable, integrated solutions.",
+    "p1": "I genuinely love understanding how systems work under the hood, exploring different ways to solve problems, experimenting with new tools, and learning from hurdles encountered during real development.",
+    "p2": "Every project is an opportunity to improve something new—whether in code structure, system architecture, workflow efficiency, or deeper comprehension of the problem itself.",
+    "quoteAuthor": "Mustafa Ahmad — Software Engineer Mindset",
+    "pillars": [
+      {
+        "badge": "System Thinking",
+        "title": "Deep Systems Understanding",
+        "desc": "Focusing on how components interact end-to-end from database to UI, avoiding superficial fixes."
+      },
+      {
+        "badge": "Problem Solving",
+        "title": "Practical Solutions & Research",
+        "desc": "Exploring the right tools and patterns to solve real-world software problems reliably and cleanly."
+      },
+      {
+        "badge": "Architecture",
+        "title": "Continuous Architecture Evolution",
+        "desc": "Refactoring and evolving codebases to ensure high maintainability and scalability over time."
+      }
+    ]
   },
   "contact": {
-    "badge": "Contact Us",
-    "title": "Start your journey with us & turn your",
-    "titleHighlight": "idea into digital reality!",
-    "subtitle": "We'd love to discuss the technical requirements of your project and provide the expert guidance needed to build a standout software system.",
+    "badge": "Contact",
+    "title": "Have a project in mind?",
+    "subtitle": "If you're looking to build a web application, an admin dashboard, or a custom management system for your business, feel free to reach out.",
+    "button": "Contact Me",
     "locationLabel": "Location",
-    "locationValue": "Egypt, Cairo / Qena",
+    "locationValue": "Egypt",
     "phoneLabel": "Phone & WhatsApp",
     "emailLabel": "Email Address",
-    "whatsappDirect": "Direct WhatsApp Chat",
+    "whatsappDirect": "Chat directly on WhatsApp",
     "fullName": "Full Name",
-    "fullNamePlaceholder": "Mustafa Ahmad",
+    "fullNamePlaceholder": "Your name here...",
     "email": "Email Address",
-    "emailPlaceholder": "example@domain.com",
+    "emailPlaceholder": "your@email.com",
     "subject": "Subject",
-    "subjectPlaceholder": "Inquiry regarding a new project",
+    "subjectPlaceholder": "Web app development or admin system...",
     "message": "Message Details",
-    "messagePlaceholder": "Describe your project or inquiry here...",
-    "sendWhatsApp": "Send Message via WhatsApp"
-  },
-  "cta": {
-    "badge": "Let's Get Started",
-    "title": "Build Your Digital Presence",
-    "titleHighlight": "With Top-Tier Quality & Engineering",
-    "subtitle": "We turn software visions into fast, dependable, and investment-ready digital platforms.",
-    "startProject": "Get In Touch",
-    "whatsappConsult": "Direct WhatsApp Consultation"
+    "messagePlaceholder": "Tell me about your project or inquiry...",
+    "sendWhatsApp": "Send Message via WhatsApp",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn"
   },
   "footer": {
     "brand": "Mustafa Ahmad",
-    "tagline": "Software Engineer & Digital Systems Developer",
+    "role": "Full-Stack Web Developer",
+    "tagline": "Building practical web applications and admin systems with clean, maintainable code.",
     "copyright": "Mustafa Ahmad. All rights reserved.",
-    "standards": "Engineered & designed to the highest international standards."
+    "rights": "© 2026 Mustafa Ahmad"
   },
   "projectDetails": {
-    "back": "Back to Portfolio",
-    "caseStudy": "Case Study",
-    "launchProject": "Launch Project",
+    "back": "Back to Projects",
+    "caseStudy": "Practical Web System",
+    "launchProject": "Visit Project",
     "sourceCode": "Source Code",
-    "myRole": "My Role",
-    "roleValue": "Lead Full-Stack Engineer",
-    "timeline": "Timeline",
-    "client": "Client",
-    "privateClient": "Private Enterprise",
+    "myRole": "Contribution",
+    "roleValue": "Backend Development, Database & Admin Dashboards",
+    "timeline": "Status",
+    "statusDelivered": "Completed & Tested",
+    "client": "Type",
+    "privateClient": "Client Project",
     "architecture": "System Architecture",
-    "coreTech": "Core Technologies",
-    "projectImpact": "Technical Impact & Results",
-    "impact1Title": "High Speed & Instant Response",
-    "impact1Desc": "Achieved lightning-fast loading speeds and reduced latency by 60% with efficient resource optimization.",
-    "impact2Title": "Advanced Security & Protection",
-    "impact2Desc": "Enforced industry-grade encryption and access controls to secure critical workflows and financial transactions.",
-    "impact3Title": "Modular Scalability",
-    "impact3Desc": "Modular architecture ready to accommodate millions of requests and rapid feature deployments with zero downtime.",
-    "readyToBuild": "Ready to build something similar?",
-    "discussProject": "Let's discuss your technical goals and engineer a high-performing digital system."
+    "coreTech": "Technologies Used",
+    "readyToBuild": "Looking to build a custom system?",
+    "discussProject": "Let's discuss your requirements and turn them into a simple, reliable software solution."
   }
 }

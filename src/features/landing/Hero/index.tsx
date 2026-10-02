@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Download, ArrowLeft, ArrowRight, Terminal, Code2, Zap, Braces } from "lucide-react";
+import { Download, ArrowLeft, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Hero() {
@@ -40,7 +39,7 @@ export default function Hero() {
                         </a>
 
                         <a
-                            href="#projects"
+                            href="#about"
                             className="group inline-flex items-center gap-2 text-white hover:text-primary text-sm sm:text-base font-medium py-3 px-3 transition-colors duration-200"
                         >
                             <span>{t("hero.moreAboutMe")}</span>

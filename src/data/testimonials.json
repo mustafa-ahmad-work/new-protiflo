@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "project": {
+      "ar": "منصة المتجر الإلكتروني الحديث",
+      "en": "Modern E-Commerce Platform"
+    },
+    "role": {
+      "ar": "عميل مشروع المتجر الإلكتروني",
+      "en": "E-Commerce Platform Client"
+    },
+    "content": {
+      "ar": "المتجر الإلكتروني روعة وممتاز جداً، تعاملت معك في أكثر من مشروع والحمد لله شغلك دائماً يفوق التوقعات ومضمون. تنظيم المحتوى مريح جداً، ونظام الدعم والشات المباشر وتجربة الشراء واضحة وسلسة لأي مستخدم. تسلم إيدك يا هندسة، شغل احترافي فخور به.",
+      "en": "The online store is outstanding. Having collaborated with Mustafa across multiple projects, he consistently delivers beyond expectations. The product layout is intuitive, customer support and live chat run seamlessly, and the checkout experience is effortless for users. Exceptional engineering and truly proud of the results."
+    },
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "project": {
+      "ar": "منصة جوهرة الحفلات",
+      "en": "Jawharat Al-Haflāt Platform"
+    },
+    "role": {
+      "ar": "عميل منصة جوهرة الحفلات",
+      "en": "Jawharat Al-Haflāt Platform Client"
+    },
+    "content": {
+      "ar": "منصة جوهرة الحفلات التصميم جاء بمنتهى الروعة والتنظيم، والمحتوى واضح ومريح لأي زائر يدخل الموقع. تقسيم الخدمات ذكي وعملي للغاية، ولوحة التحكم الإدارية متكاملة وسهلة لإدارة المنصة والطلبات. شغل عالي ومتقن في كل تفصيلة.",
+      "en": "The design of Jawharat Al-Haflāt platform is exceptionally elegant and well-organized. The service structure is intuitive for visitors to explore, and the custom admin control panel makes managing operations and bookings effortless. High-level execution and attention to detail across the board."
+    },
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "project": {
+      "ar": "منصة كورسات اللغة الإنجليزية",
+      "en": "English Learning Platform"
+    },
+    "role": {
+      "ar": "مؤسس منصة تعليم اللغة الإنجليزية",
+      "en": "English Learning Platform Founder"
+    },
+    "content": {
+      "ar": "منصة الكورسات ممتازة وفاقت كل ما كنا نتطلع إليه. إدارة الكورسات والمستويات ونظام الاشتراكات والاختبارات التفاعلية بنظام التصحيح التلقائي وفرت على الطلاب والمدربين تجربة تعليمية سلسة وممتعة، ولوحة التحكم تمنحنا تحكماً كاملاً في الطلاب والمحتوى. أنصح بالتعامل مع مصطفى بشدة.",
+      "en": "An exceptional course platform that exceeded all our expectations. The structured levels, flexible subscription plans, and interactive quizzes with automated grading provide students and instructors with a smooth learning journey. The comprehensive dashboard gives us complete control over courses and learners. Highly recommended!"
+    },
+    "rating": 5
+  }
+]

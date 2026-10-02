@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLinkedinIn, FaGithub, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import ScrollToTop from "./ScrollToTop";
@@ -10,9 +10,8 @@ export default function Footer() {
 
   const socials = [
     { icon: FaGithub, href: "https://github.com/mustafa-ahmad-work", label: "GitHub" },
-    { icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: FaWhatsapp, href: "https://wa.me/201092434027", label: "WhatsApp" },
-    { icon: FaTwitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: FaLinkedinIn, href: "https://linkedin.com/in/mustafa-ahmad-work", label: "LinkedIn" },
+    { icon: FaWhatsapp, href: "https://wa.me/201120354592", label: "WhatsApp" },
   ];
 
   return (
@@ -24,16 +23,19 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <div>
               <h3 className="text-lg font-black text-white">{t("footer.brand")}</h3>
-              <p className="text-xs text-text-muted">{t("footer.tagline")}</p>
+              <p className="text-xs text-primary font-bold">{t("footer.role")}</p>
+              <p className="text-[11px] text-text-muted mt-1 max-w-sm">{t("footer.tagline")}</p>
             </div>
           </div>
 
           {/* Nav Map */}
-          <div className="flex flex-wrap gap-6 text-xs font-bold text-gray-200">
+          <div className="flex flex-wrap gap-5 text-xs font-bold text-gray-200">
             <Link href="/#hero" className="hover:text-primary transition-colors">{t("nav.home")}</Link>
+            <Link href="/#about" className="hover:text-primary transition-colors">{t("nav.about")}</Link>
             <Link href="/#services" className="hover:text-primary transition-colors">{t("nav.services")}</Link>
-            <Link href="/#tech" className="hover:text-primary transition-colors">{t("nav.tech")}</Link>
             <Link href="/#projects" className="hover:text-primary transition-colors">{t("nav.projects")}</Link>
+            <Link href="/#process" className="hover:text-primary transition-colors">{t("nav.process")}</Link>
+            <Link href="/#tech" className="hover:text-primary transition-colors">{t("nav.tech")}</Link>
             <Link href="/#experience" className="hover:text-primary transition-colors">{t("nav.experience")}</Link>
             <Link href="/#contact" className="hover:text-primary transition-colors">{t("nav.contact")}</Link>
           </div>
@@ -57,8 +59,8 @@ export default function Footer() {
 
         {/* Copyright Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-text-muted gap-4">
-          <p>© {new Date().getFullYear()} {t("footer.copyright")}</p>
-          <p className="text-[10px]">{t("footer.standards")}</p>
+          <p>© 2026 {t("footer.copyright")}</p>
+          <p className="text-[11px] text-gray-400">{t("footer.role")}</p>
         </div>
       </div>
     </footer>

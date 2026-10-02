@@ -1,75 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
-  SiLaravel, SiReact, SiNextdotjs, SiTypescript,
-  SiNodedotjs, SiPostgresql, SiDocker,
-  SiCloudflare, SiSupabase, SiTailwindcss, SiRedis
+  SiLaravel, SiPhp, SiReact, SiJavascript,
+  SiMysql, SiTailwindcss, SiGit, SiGithub,
+  SiPython, SiLivewire
 } from "react-icons/si";
-import { FaAws } from "react-icons/fa6";
-import { Cpu } from "lucide-react";
+import { Sparkles, Layers, Server } from "lucide-react";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const techStack = [
-  { name: "Laravel", category: "Backend Framework", color: "#FF2D20", icon: SiLaravel },
-  { name: "React.js", category: "Frontend Library", color: "#61DAFB", icon: SiReact },
-  { name: "Next.js 15", category: "Full-Stack Framework", color: "#FFFFFF", icon: SiNextdotjs },
-  { name: "TypeScript", category: "Typed JavaScript", color: "#3178C6", icon: SiTypescript },
-  { name: "Node.js", category: "Server Environment", color: "#5FA04E", icon: SiNodedotjs },
-  { name: "PostgreSQL", category: "Relational Database", color: "#4169E1", icon: SiPostgresql },
-  { name: "Docker", category: "Containerization", color: "#2496ED", icon: SiDocker },
-  { name: "AWS Cloud", category: "Cloud Infrastructure", color: "#FF9900", icon: FaAws },
-  { name: "Cloudflare", category: "CDN & Edge Security", color: "#F38020", icon: SiCloudflare },
-  { name: "Supabase", category: "BaaS & Realtime DB", color: "#3ECF8E", icon: SiSupabase },
-  { name: "TailwindCSS", category: "Utility-First CSS", color: "#06B6D4", icon: SiTailwindcss },
-  { name: "Redis", category: "Caching & In-Memory Storage", color: "#DC382D", icon: SiRedis },
+  { name: "Laravel", category: "Backend Framework", color: "#FF2D20", glow: "rgba(255, 45, 32, 0.2)", icon: SiLaravel },
+  { name: "PHP", category: "Core Language", color: "#777BB4", glow: "rgba(119, 123, 180, 0.2)", icon: SiPhp },
+  { name: "React.js", category: "UI Library", color: "#61DAFB", glow: "rgba(97, 218, 251, 0.2)", icon: SiReact },
+  { name: "JavaScript", category: "Modern Web", color: "#F7DF1E", glow: "rgba(247, 223, 30, 0.2)", icon: SiJavascript },
+  { name: "MySQL", category: "Relational DB", color: "#4479A1", glow: "rgba(68, 121, 161, 0.2)", icon: SiMysql },
+  { name: "Tailwind CSS", category: "Modern Styling", color: "#06B6D4", glow: "rgba(6, 182, 212, 0.2)", icon: SiTailwindcss },
+  { name: "Filament", category: "Admin Panels", color: "#FFA63D", glow: "rgba(255, 166, 61, 0.2)", icon: Layers },
+  { name: "Livewire", category: "Full-Stack Laravel", color: "#FB70A9", glow: "rgba(251, 112, 169, 0.2)", icon: SiLivewire },
+  { name: "Python", category: "Scripting & Backend", color: "#3776AB", glow: "rgba(55, 118, 171, 0.2)", icon: SiPython },
+  { name: "Git", category: "Version Control", color: "#F05032", glow: "rgba(240, 80, 50, 0.2)", icon: SiGit },
+  { name: "GitHub", category: "Repositories", color: "#FFFFFF", glow: "rgba(255, 255, 255, 0.15)", icon: SiGithub },
+  { name: "Laragon", category: "Development Env", color: "#0E86D4", glow: "rgba(14, 134, 212, 0.2)", icon: Server },
 ];
-
-import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function TechMarquee() {
   const { t } = useLanguage();
-  // Duplicate array for seamless infinite looping
-  const marqueeItems = [...techStack, ...techStack];
 
   return (
-    <section id="tech" className="py-24 border-y border-white/10 bg-transparent backdrop-blur-lg z-20 relative overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4 sm:mb-5">
-          <Cpu size={14} />
+    <section className="py-20 border-y border-white/10 to-bg-main z-20 relative overflow-hidden">
+
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center relative z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary shadow-sm mb-4">
+          <Sparkles size={14} />
           <span>{t("marquee.badge")}</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-snug">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
           {t("marquee.title")}
         </h2>
       </div>
 
-      {/* Infinite Scrolling Marquee Track */}
-      <div className="relative w-full overflow-hidden flex items-center">
-        <div className="absolute left-0 inset-y-0 w-32 bg-linear-to-r from-bg-main to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 inset-y-0 w-32 bg-linear-to-l from-bg-main to-transparent z-10 pointer-events-none" />
+      {/* Infinite Scrolling Marquee Track with synchronized parent hover pause */}
+      <div className="marquee-group relative w-full overflow-hidden flex items-center py-4 select-none" dir="ltr">
+        <div className="absolute left-0 inset-y-0 w-24 sm:w-40 bg-linear-to-r from-bg-main to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 inset-y-0 w-24 sm:w-40 bg-linear-to-l from-bg-main to-transparent z-10 pointer-events-none" />
 
-        <div className="flex shrink-0 animate-marquee items-center gap-6 py-4 pr-6">
+        <div className="flex shrink-0 animate-marquee items-center gap-5 pr-5">
           {techStack.map((item, index) => {
             const IconComponent = item.icon;
             return (
               <div
                 key={index}
-                className="flex items-center gap-4 px-6 py-4 rounded-[20px] bg-bg-surface border border-white/10 hover:border-primary/60 transition-all duration-300 shadow-xl shrink-0 group cursor-default backdrop-blur-md relative overflow-hidden"
+                className="flex items-center gap-3.5 px-5 py-3.5 rounded-2xl bg-bg-surface/80 border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-lg shrink-0 cursor-default backdrop-blur-md relative overflow-hidden group/card hover:-translate-y-1"
+                style={{
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+                }}
               >
                 {/* Tech Icon Container */}
                 <div
-                  className="w-11 h-11 rounded-xl bg-bg-main border border-white/10 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-110 transition-transform duration-300"
+                  className="w-10 h-10 rounded-xl bg-bg-main/80 border border-white/10 flex items-center justify-center shrink-0 shadow-inner group-hover/card:scale-110 transition-transform duration-300"
+                  style={{
+                    backgroundColor: "rgba(22, 26, 38, 0.9)",
+                  }}
                 >
                   <IconComponent
-                    size={24}
+                    size={22}
                     style={{ color: item.color }}
-                    className="transition-all duration-300 group-hover:drop-shadow-[0_0_10px_currentColor]"
+                    className="transition-all duration-300 group-hover/card:drop-shadow-[0_0_8px_currentColor]"
                   />
                 </div>
 
                 {/* Tech Details */}
-                <div className="text-right">
-                  <span className="block text-sm font-extrabold text-white group-hover:text-primary transition-colors">
+                <div className="text-start">
+                  <span className="block text-xs sm:text-sm font-black text-white group-hover/card:text-primary transition-colors">
                     {item.name}
                   </span>
                   <span className="block text-[10px] text-text-muted font-medium mt-0.5">
@@ -81,28 +83,34 @@ export default function TechMarquee() {
           })}
         </div>
 
-        <div aria-hidden="true" className="flex shrink-0 animate-marquee items-center gap-6 py-4 pr-6">
+        <div aria-hidden="true" className="flex shrink-0 animate-marquee items-center gap-5 pr-5">
           {techStack.map((item, index) => {
             const IconComponent = item.icon;
             return (
               <div
                 key={`dup-${index}`}
-                className="flex items-center gap-4 px-6 py-4 rounded-[20px] bg-bg-surface border border-white/10 hover:border-primary/60 transition-all duration-300 shadow-xl shrink-0 group cursor-default backdrop-blur-md relative overflow-hidden"
+                className="flex items-center gap-3.5 px-5 py-3.5 rounded-2xl bg-bg-surface/80 border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-lg shrink-0 cursor-default backdrop-blur-md relative overflow-hidden group/card hover:-translate-y-1"
+                style={{
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+                }}
               >
                 {/* Tech Icon Container */}
                 <div
-                  className="w-11 h-11 rounded-xl bg-bg-main border border-white/10 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-110 transition-transform duration-300"
+                  className="w-10 h-10 rounded-xl bg-bg-main/80 border border-white/10 flex items-center justify-center shrink-0 shadow-inner group-hover/card:scale-110 transition-transform duration-300"
+                  style={{
+                    backgroundColor: "rgba(22, 26, 38, 0.9)",
+                  }}
                 >
                   <IconComponent
-                    size={24}
+                    size={22}
                     style={{ color: item.color }}
-                    className="transition-all duration-300 group-hover:drop-shadow-[0_0_10px_currentColor]"
+                    className="transition-all duration-300 group-hover/card:drop-shadow-[0_0_8px_currentColor]"
                   />
                 </div>
 
                 {/* Tech Details */}
-                <div className="text-right">
-                  <span className="block text-sm font-extrabold text-white group-hover:text-primary transition-colors">
+                <div className="text-start">
+                  <span className="block text-xs sm:text-sm font-black text-white group-hover/card:text-primary transition-colors">
                     {item.name}
                   </span>
                   <span className="block text-[10px] text-text-muted font-medium mt-0.5">

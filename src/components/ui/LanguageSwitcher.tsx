@@ -6,12 +6,14 @@ import { Globe } from "lucide-react";
 
 interface LanguageSwitcherProps {
   className?: string;
-  variant?: "pill" | "button";
+  variant?: "pill" | "button" | "compact";
+  id?: string;
 }
 
 export default function LanguageSwitcher({
   className = "",
   variant = "pill",
+  id = "default",
 }: LanguageSwitcherProps) {
   const { language, setLanguage, toggleLanguage, mounted } = useLanguage();
 
@@ -19,8 +21,25 @@ export default function LanguageSwitcher({
     return (
       <div
         className={`inline-flex items-center p-1 rounded-full bg-bg-surface/60 border border-white/10 opacity-70 ${className}`}
-        style={{ minWidth: "135px", height: "36px" }}
+        style={{ minWidth: variant === "compact" ? "65px" : "135px", height: "36px" }}
       />
+    );
+  }
+
+  if (variant === "compact") {
+    return (
+      <button
+        type="button"
+        onClick={toggleLanguage}
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-bg-surface/80 hover:bg-bg-surface border border-white/20 text-xs font-bold text-white transition-all duration-200 shadow-md cursor-pointer shrink-0 ${className}`}
+        aria-label="Toggle language"
+        title={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}
+      >
+        <Globe size={13} className="text-primary shrink-0" />
+        <span className="uppercase text-[11px] font-extrabold tracking-wider">
+          {language === "ar" ? "EN" : "عربي"}
+        </span>
+      </button>
     );
   }
 
@@ -29,19 +48,21 @@ export default function LanguageSwitcher({
       <button
         type="button"
         onClick={toggleLanguage}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-bold text-gray-200 hover:text-white transition-all duration-300 shadow-sm cursor-pointer ${className}`}
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-bold text-gray-200 hover:text-white transition-all duration-300 shadow-sm cursor-pointer shrink-0 ${className}`}
         aria-label="Toggle language"
         title={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}
       >
-        <Globe size={14} className="text-primary" />
+        <Globe size={14} className="text-primary shrink-0" />
         <span>{language === "ar" ? "English" : "العربية"}</span>
       </button>
     );
   }
 
+  const activeLayoutId = `activeLangTab_${id}`;
+
   return (
     <div
-      className={`inline-flex items-center p-1 rounded-full bg-bg-surface/80 border border-white/15 backdrop-blur-md shadow-lg ${className}`}
+      className={`inline-flex items-center p-1 rounded-full bg-bg-surface/80 border border-white/15 backdrop-blur-md shadow-lg shrink-0 ${className}`}
       dir="ltr"
       role="group"
       aria-label="Language Selector"
@@ -56,7 +77,7 @@ export default function LanguageSwitcher({
       >
         {language === "ar" && (
           <motion.div
-            layoutId="activeLangTab"
+            layoutId={activeLayoutId}
             className="absolute inset-0 rounded-full bg-primary shadow-md shadow-primary/40 -z-10"
             transition={{ type: "spring", stiffness: 450, damping: 30 }}
           />
@@ -74,7 +95,7 @@ export default function LanguageSwitcher({
       >
         {language === "en" && (
           <motion.div
-            layoutId="activeLangTab"
+            layoutId={activeLayoutId}
             className="absolute inset-0 rounded-full bg-primary shadow-md shadow-primary/40 -z-10"
             transition={{ type: "spring", stiffness: 450, damping: 30 }}
           />

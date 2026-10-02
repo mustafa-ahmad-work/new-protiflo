@@ -1,94 +1,79 @@
 "use client";
 
-import { Search, PenTool, Code2, Rocket, ShieldCheck, Zap } from "lucide-react";
+import { Search, Compass, Code2, ShieldCheck, RefreshCw, Quote, Workflow } from "lucide-react";
 import Section from "../../components/Section";
-import SectionHeader from "../../components/SectionHeader";
 import { StaggerContainer, StaggerItem } from "../../../components/layout/Reveal";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
-const steps = [
-  {
-    icon: Search,
-    title: "Discovery",
-    desc: "We dive deep into your requirements, target audience, and business goals to map out the perfect digital strategy.",
-    color: "from-blue-500/20 to-blue-600/20",
-    iconColor: "text-blue-500"
-  },
-  {
-    icon: PenTool,
-    title: "Design",
-    desc: "Crafting intuitive, premium UI/UX designs that align with your brand identity and provide a seamless user experience.",
-    color: "from-primary/20 to-primary/20",
-    iconColor: "text-primary"
-  },
-  {
-    icon: Code2,
-    title: "Development",
-    desc: "Transforming designs into high-performance code using modern frameworks like Laravel, React, and Next.js.",
-    color: "from-emerald-500/20 to-emerald-600/20",
-    iconColor: "text-emerald-500"
-  },
-  {
-    icon: ShieldCheck,
-    title: "QA & Testing",
-    desc: "Rigorous testing across all devices and scenarios to ensure a bug-free, secure, and production-ready product.",
-    color: "from-orange-500/20 to-orange-600/20",
-    iconColor: "text-orange-500"
-  },
-  {
-    icon: Rocket,
-    title: "Launch",
-    desc: "Deploying your application to optimized server environments with automated CI/CD pipelines.",
-    color: "from-red-500/20 to-red-600/20",
-    iconColor: "text-red-500"
-  },
-  {
-    icon: Zap,
-    title: "Optimization",
-    desc: "Continuous monitoring and performance tuning to keep your platform running at peak efficiency.",
-    color: "from-yellow-500/20 to-yellow-600/20",
-    iconColor: "text-yellow-500"
-  }
+interface ProcessStep {
+  step: string;
+  title: string;
+  desc: string;
+}
+
+const stepIcons = [
+  { icon: Search, color: "text-blue-400" },
+  { icon: Compass, color: "text-purple-400" },
+  { icon: Code2, color: "text-emerald-400" },
+  { icon: ShieldCheck, color: "text-amber-400" },
+  { icon: RefreshCw, color: "text-sky-400" },
 ];
 
 export default function Process() {
+  const { t } = useLanguage();
+  const steps = (t("process.steps", { returnObjects: true }) as ProcessStep[]) || [];
+
   return (
-    <Section id="process" className="bg-bg-main">
-      <SectionHeader
-        subtitle="HOW I WORK"
-        title="Development Lifecycle"
-        description="A structured approach to bringing complex ideas to life with precision and speed."
-      />
+    <Section id="process" className="bg-bg-main border-t border-white/10 py-24">
+      {/* Section Header */}
+      <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4 sm:mb-5">
+          <Workflow size={14} />
+          <span>{t("process.badge")}</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-snug mb-3 sm:mb-4">
+          {t("process.title")}
+        </h2>
+        <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl font-normal leading-relaxed">
+          {t("process.subtitle")}
+        </p>
+      </div>
 
-      <StaggerContainer staggerDelay={0.15}>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-          {steps.map((step, i) => (
-            <StaggerItem key={i}>
-              <div className="glass-card p-12 relative overflow-hidden group h-full border-white/5 hover:border-primary/30 transition-all duration-700">
+      {/* Steps Grid */}
+      <StaggerContainer staggerDelay={0.1}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 px-4 mb-16">
+          {steps.map((step, i) => {
+            const meta = stepIcons[i % stepIcons.length];
+            const Icon = meta.icon;
+            return (
+              <StaggerItem key={i}>
+                <div className="glass-card p-6 sm:p-7 relative overflow-hidden group h-full border border-white/10 hover:border-primary/50 transition-all duration-500 rounded-3xl bg-bg-surface flex flex-col justify-between">
+                  {/* Step Number in Watermark */}
+                  <div className="absolute -top-3 -right-2 text-6xl font-black text-white/5 group-hover:text-primary/10 transition-all select-none pointer-events-none">
+                    {step.step || `0${i + 1}`}
+                  </div>
 
-                {/* Background Progress Indicator */}
-                <div className="absolute -top-5 -right-5 text-[120px] font-black text-white/2 italic leading-none group-hover:text-primary/5 transition-all duration-700 select-none">
-                  0{i + 1}
+                  <div>
+                    <div className={`w-12 h-12 rounded-2xl bg-bg-main flex items-center justify-center ${meta.color} border border-white/10 mb-6 group-hover:scale-110 transition duration-300 shadow-md`}>
+                      <Icon size={22} />
+                    </div>
+
+                    <span className="text-[10px] font-bold text-primary tracking-widest uppercase block mb-1.5">
+                      {step.step || `0${i + 1}`}
+                    </span>
+
+                    <h3 className="text-xl font-black text-white mb-3">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-xs text-text-muted leading-relaxed font-normal">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
-
-                <div className={`w-16 h-16 rounded-[1.25rem] bg-white/5 flex items-center justify-center ${step.iconColor} border border-white/10 mb-10 group-hover:scale-110 group-hover:rotate-6 transition duration-500 shadow-2xl`}>
-                  <step.icon size={30} />
-                </div>
-
-                <h3 className="text-2xl font-black text-text-main mb-6 tracking-tighter">{step.title}</h3>
-                <p className="text-sm text-text-muted leading-relaxed relative z-10 font-medium opacity-80">
-                  {step.desc}
-                </p>
-
-                {/* Interactive Connection Line */}
-                {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-px bg-linear-to-r from-primary/20 to-transparent z-10 group-hover:from-primary transition-all duration-700" />
-                )}
-
-                {/* Hover Pulse */}
-                <div className="absolute bottom-0 left-0 h-1 bg-linear-to-r from-transparent via-primary to-transparent w-0 group-hover:w-full transition-all duration-1000" />
-              </div>
-            </StaggerItem>
-          ))}
+              </StaggerItem>
+            );
+          })}
         </div>
       </StaggerContainer>
     </Section>

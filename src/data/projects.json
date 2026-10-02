@@ -1,62 +1,863 @@
 [
   {
     "id": 1,
-    "title": "منظومة التجارة الإلكترونية المتكاملة",
-    "description": "منصة متجر إلكتروني متكاملة تتميز بوجود لوحة تحكم مخصصة للمستخدمين، وتكامل مع المحادثات المباشرة لدعم العملاء، ونظام تلقائي لإدارة المخزون والمنتجات.",
-    "category": "متاجر إلكترونية",
-    "image": "/images/projects/1.png",
-    "tags": [
-      "Next.js",
-      "Laravel",
-      "MySQL",
-      "Stripe"
+    "slug": "mafatih-al-hifz",
+    "title": "مفاتيح الحفظ",
+    "category": "تطبيق متخصص لحفظ ومراجعة القرآن الكريم",
+    "description": "تطبيق رقمي متكامل لمساعدة حفظة القرآن الكريم على بناء خطة حفظ ومراجعة منظمة اعتمادًا على منهجية تراكمية من خمسة أركان، لتحويل الحفظ إلى رحلة مستمرة تعتمد على التلاوة والاستماع والتحضير والحفظ والمراجعة مع دعم كامل للاستخدام دون اتصال بالإنترنت.",
+    "image": "/images/projects/6.png",
+    "images": [
+      "/images/projects/6.png"
     ],
-    "github": "https://github.com/mustafa-ahmad-work",
-    "live": "#"
+    "tags": [
+      "Flutter",
+      "Dart",
+      "SQLite",
+      "Offline-First",
+      "State Management",
+      "Data Analytics"
+    ],
+    "github": "https://github.com/Mostafa7Ahmad",
+    "live": "#",
+    "isPrivate": false,
+    "duration": "2024 — 2025",
+    "ar": {
+      "title": "مفاتيح الحفظ",
+      "category": "تطبيق متخصص لحفظ ومراجعة القرآن الكريم",
+      "shortDescription": "تطبيق متخصص لمساعدة حفظة القرآن الكريم على بناء خطة حفظ ومراجعة منظمة اعتمادًا على منهجية تراكمية من خمسة أركان مترابطة.",
+      "fullDescription": "مفاتيح الحفظ هو تطبيق متخصص لمساعدة حفظة القرآن الكريم على بناء خطة حفظ ومراجعة منظمة، اعتمادًا على منهجية تراكمية تتكون من خمسة أركان مترابطة، تهدف إلى تحويل الحفظ من مجهود يومي متقطع إلى رحلة مستمرة تعتمد على التلاوة والاستماع والتحضير والحفظ والمراجعة. تم تصميم التطبيق ليكون رفيقًا رقميًا للحافظ خلال مراحل رحلته مع كتاب الله، من خلال تنظيم الأوراد اليومية، متابعة مقدار الحفظ، إدارة المراجعات، قياس مستوى الرسوخ، وتتبع الالتزام بالخطة بشكل واضح وتفاعلي.",
+      "problem": "يعاني الكثير من حفظة القرآن الكريم من تفلت المحفوظ وصعوبة الالتزام بجدول مراجعة يومي ثابت، إضافة إلى غياب منهجية تراكمية توازن بين إتقان المحفوظ القديم واستيعاب الحفظ الجديد دون ضغط أو تشتت.",
+      "solution": "بناء نظام تراكمي رقمي يقسم رحلة الحفظ إلى خمسة مفاتيح أساسية (الختمة، التحضير، الحفظ الجديد، مراجعة القريب، ومراجعة البعيد)، مدعومًا بإحصائيات بصرية وسلاسل زمنية معمارية Offline-First لتخزين البيانات محليًا دون انقطاع.",
+      "goals": [
+        "تحويل الحفظ من مجهود متقطع إلى عادة يومية راسخة.",
+        "الحد من تفلت المحفوظ عبر مراجعة تراكمية منتظمة ومحسوبة.",
+        "تقديم تجربة استخدام هادئة ومريحة خالية من أي مشتتات بصرية.",
+        "دعم التشغيل الكامل دون الحاجة إلى اتصال بالإنترنت لضمان الخصوصية والسرعة."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "دراسة المنهجيات القرآنية",
+          "desc": "تحليل أساليب الحفظ المعتمدة لدى كبار الحفاظ والعلماء وتحديد أركان المنهجية التراكمية الخمسة."
+        },
+        {
+          "step": "02",
+          "title": "هندسة البيانات المحلية",
+          "desc": "تصميم قاعدة بيانات محلية مرنة لتخزين تقدم المستخدم والخطط اليومية وسجل المراجعات دون الحاجة لإنترنت."
+        },
+        {
+          "step": "03",
+          "title": "تطوير واجهات المستخدم الهادئة",
+          "desc": "بناء واجهات تراعي قدسية المحتوى وتركيز المستخدم بألوان هادئة وسهولة وصول سلسة لكل ورد."
+        },
+        {
+          "step": "04",
+          "title": "خوارزميات التكرار ومتابعة الرسوخ",
+          "desc": "برمجة خوارزميات ذكية لتحديد مواضع المراجعة الضعيفة وجدولة مراجعة القريب والبعيد آلياً."
+        }
+      ],
+      "features": [
+        {
+          "title": "منظومة المفاتيح الخمسة",
+          "desc": "تكامل أركان الختمة والتحضير والحفظ الجديد ومراجعة القريب والبعيد بتناغم دقيق."
+        },
+        {
+          "title": "إحصائيات الرسوخ والالتزام",
+          "desc": "مخططات بيانية وسلاسل تفاعلية توضح نسبة الثبات والالتزام بالخطة الزمنية."
+        },
+        {
+          "title": "عمل كامل بدون إنترنت (Offline)",
+          "desc": "حفظ ومزامنة محلية للبيانات تضمن أمان المعلومات وسرعة الاستجابة اللحظية."
+        },
+        {
+          "title": "واجهة هادئة خالية من التشتيت",
+          "desc": "تصميم بصري مريح للعين يركز على تلاوة وتدبر الآيات ومتابعة الأوراد بيسر."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "منهجية المفاتيح الخمسة وأثرها",
+          "content": "تعتمد فكرة التطبيق على خمسة أركان أساسية: الختمة (تلاوة مستمرة)، التحضير (استماع وقراءة مسبقة)، الحفظ الجديد (تثبيت الآيات الجديدة)، مراجعة القريب (ربط الصفحات القريبة)، ومراجعة البعيد (صيانة المحفوظ القديم). كل ركن يعزز الآخر لتقليل النسيان لأدنى مستوى ممكن."
+        }
+      ]
+    },
+    "en": {
+      "title": "Mafatih Al-Hifz",
+      "category": "Quran Memorization & Retention Platform",
+      "shortDescription": "A specialized mobile app designed to help Quran memorizers build structured revision and memorization routines based on a proven 5-pillar cumulative methodology.",
+      "fullDescription": "Mafatih Al-Hifz is an innovative digital companion for Quran memorizers. Utilizing a structured 5-pillar cumulative methodology, it transforms memorization from intermittent daily effort into a sustainable, lifelong journey. The application organizes daily assignments, tracks memorization volume, manages tiered revisions, measures retention strength, and monitors consistency using intuitive visual analytics—all while functioning seamlessly offline.",
+      "problem": "Quran memorizers often struggle with retention loss and inconsistent revision schedules. Without a structured cumulative framework, balancing new memorization with past reviews creates cognitive overload and eventual retention decay.",
+      "solution": "A dedicated digital solution structured around 5 interconnected keys: Khatmah (recitation), Preparation, New Memorization, Near Revision, and Far Revision. Backed by offline-first local storage and visual progress timelines.",
+      "goals": [
+        "Transform memorization into a consistent and calm daily habit.",
+        "Mitigate memory lapse through systematically tiered near and far revisions.",
+        "Deliver a distraction-free, contemplative interface optimized for long sessions.",
+        "Ensure complete offline functionality and data privacy."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "Methodology Research",
+          "desc": "Analyzed classical and modern Quranic memorization frameworks to extract the 5 core cumulative pillars."
+        },
+        {
+          "step": "02",
+          "title": "Local Data Architecture",
+          "desc": "Engineered a resilient offline-first local database to manage daily routines, logs, and progress metrics."
+        },
+        {
+          "step": "03",
+          "title": "Serene UI/UX Implementation",
+          "desc": "Crafted minimal, distraction-free visual layouts prioritizing readable typography and intuitive touch targets."
+        },
+        {
+          "step": "04",
+          "title": "Retention & Spaced Algorithms",
+          "desc": "Developed scheduling algorithms to intelligently flag weaker verses and balance near/far revision quotas."
+        }
+      ],
+      "features": [
+        {
+          "title": "5-Pillar Cumulative Engine",
+          "desc": "Seamless coordination between recitation, preparation, new memorization, and dual-layer reviews."
+        },
+        {
+          "title": "Retention Analytics & Streaks",
+          "desc": "Visual tracking of commitment streaks, memory firmness metrics, and progress timelines."
+        },
+        {
+          "title": "100% Offline Capability",
+          "desc": "All data is securely organized and persisted on-device with zero dependency on network connection."
+        },
+        {
+          "title": "Distraction-Free Aesthetics",
+          "desc": "Soothing visual hierarchy designed specifically to enhance focus and spiritual contemplation."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "The 5-Pillar Methodology",
+          "content": "The system thrives on 5 interconnected pillars: Continuous Recitation (Khatmah), Advance Audio Preparation, New Memorization, Near-Range Consolidation, and Far-Range Maintenance. Each pillar reinforces the other, ensuring memory firmly crystallizes over time."
+        }
+      ]
+    }
   },
   {
     "id": 2,
-    "title": "المنصة الرقمية للخطب والمحاضرات",
-    "description": "مكتبة رقمية شاملة للمحتوى الإسلامي تضم أكثر من 15 قسماً تفاعلياً. تم بناؤها مع التركيز على السرعة الفائقة وسهولة تحديث المحتوى.",
-    "category": "منصات المحتوى",
-    "image": "/images/projects/2.png",
-    "tags": [
-      "React.js",
-      "TailwindCSS",
-      "Firebase",
-      "Zustand"
+    "slug": "dar-al-fursan",
+    "title": "دار الفرسان",
+    "category": "منصة ويب لإدارة العمليات العقارية (PMS)",
+    "description": "منصة ويب إدارية متخصصة في إدارة العمليات العقارية طُوّرت لتوفير نظام مركزي يساعد على تنظيم وإدارة العقارات، الوحدات، المستأجرين، العقود، التحصيلات، العدادات، والتقارير المالية عبر واجهة إدارية منظمة باستخدام Laravel.",
+    "image": "/images/projects/3.png",
+    "images": [
+      "/images/projects/3.png"
     ],
-    "github": "https://github.com/mustafa-ahmad-work",
-    "live": "http://www.sermonsite.com"
+    "tags": [
+      "Laravel",
+      "PHP",
+      "Filament",
+      "MySQL",
+      "Livewire",
+      "Tailwind CSS",
+      "PDF Export"
+    ],
+    "github": "https://github.com/Mostafa7Ahmad",
+    "live": "#",
+    "isPrivate": false,
+    "duration": "2024",
+    "ar": {
+      "title": "دار الفرسان",
+      "category": "منصة ويب لإدارة العمليات العقارية (PMS)",
+      "shortDescription": "منصة إدارية مركزية للشركات والمكاتب العقارية لإدارة الوحدات، العقود، التحصيلات، المصروفات، والتقارير المالية.",
+      "fullDescription": "دار الفرسان هي منصة ويب إدارية متخصصة في إدارة العمليات العقارية، تم تطويرها لتوفير نظام مركزي يساعد على تنظيم وإدارة العقارات والوحدات والمستأجرين والعقود والتحصيلات والخدمات المختلفة من خلال واجهة إدارية واحدة ومنظمة. تم تصميم المنصة لمعالجة العديد من العمليات التي تحتاجها شركات ومكاتب إدارة العقارات، بدايةً من تسجيل العقارات والوحدات وربطها بالمستأجرين والعقود، مرورًا بمتابعة التحصيلات والمستحقات والمديونيات، ووصولًا إلى إدارة الخدمات والمصروفات والقراءات والتقارير المالية والتشغيلية.",
+      "problem": "الاعتماد التقليدي على الجداول اليدوية ومستندات Excel المتفرقة يؤدي إلى فقدان متابعة مستحقات الإيجار، وتأخر تحصيل المديونيات، وصعوبة تتبع تكاليف الصيانة وقراءات العدادات، وغياب التقارير المالية الموثوقة.",
+      "solution": "بناء نظام مركزي لإدارة العقارات Property Management System بـ Laravel وFilament، يربط كافة الوحدات والمستأجرين بالعقود والدفعات آلياً، ويوفر لوحة تحكم ذكية، ونظام فوترة وتقارير PDF قابلة للطباعة.",
+      "goals": [
+        "أتمتة دورة حياة العقود والتحصيلات العقارية بالكامل.",
+        "منع تسرب الإيرادات عبر كشف فوري للمتأخرات والمديونيات.",
+        "تسهيل تسجيل قراءات العدادات والخدمات والمصروفات التشغيلية.",
+        "توليد تقارير مالية وتشغيلية تفصيلية بضغطة زر لدعم اتخاذ القرار."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "تحليل العمليات العقارية",
+          "desc": "تحديد متطلبات مكاتب الإدارة العقارية ودورة حياة العقد من الإبرام حتى الإخلاء والتحصيل."
+        },
+        {
+          "step": "02",
+          "title": "هيكلة قاعدة البيانات والعلاقات",
+          "desc": "بناء Schema محكمة تربط العقارات والوحدات والمستأجرين وسجلات الدفعات والعدادات بكفاءة عالية."
+        },
+        {
+          "step": "03",
+          "title": "تطوير لوحة التحكم ومنطق الأعمال",
+          "desc": "استخدام Laravel وFilament لبناء واجهات إدارية سريعة مع صلاحيات وصول دقيقة (RBAC)."
+        },
+        {
+          "step": "04",
+          "title": "نظام الفواتير والتقارير الطباعية",
+          "desc": "تجهيز قوالب فواتير وسندات قبض وتقارير أداء مالي قابلة للتصدير والطباعة بجودة عالية."
+        }
+      ],
+      "features": [
+        {
+          "title": "إدارة العقارات والوحدات",
+          "desc": "تنظيم العقارات، الطوابق، والوحدات السكنية والتجارية مع متابعة حالات الشغور والإشغال."
+        },
+        {
+          "title": "إدارة العقود والمستأجرين",
+          "desc": "أرشفة بيانات المستأجرين وتوثيق العقود مع تنبيهات تلقائية قبل انتهاء مدة العقد."
+        },
+        {
+          "title": "التحصيلات والمديونيات",
+          "desc": "متابعة دقيقة للأقساط المسددة والمتأخرة وسندات القبض وميزان المدفوعات."
+        },
+        {
+          "title": "إدارة الخدمات والعدادات",
+          "desc": "تسجيل قراءات الكهرباء والمياه وربط فواتير الخدمات بالوحدات والمستأجرين آلياً."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "الأثر التشغيلي للنظام",
+          "content": "اختصر نظام دار الفرسان أكثر من 70% من الوقت المستغرق في العمليات الحسابية والورقية لمكاتب إدارة العقارات، وحوّل متابعة مئات الوحدات إلى لوحة مؤشرات فورية توضح نسب الإشغال والتحصيلات والمديونيات بدقة متناهية."
+        }
+      ]
+    },
+    "en": {
+      "title": "Dar Al-Fursan",
+      "category": "Property Management System (PMS)",
+      "shortDescription": "A centralized web platform for real estate companies and property managers to manage units, tenants, contracts, collections, and financial reports.",
+      "fullDescription": "Dar Al-Fursan is an enterprise property management web platform developed with Laravel and Filament. It provides real estate agencies and property owners with a single, unified administrative dashboard to oversee properties, rental units, tenant profiles, lease contracts, utility meters, and operational expenses. The platform automates payment cycles, flags debt balances, and generates professional printable financial reports.",
+      "problem": "Reliance on fragmented Excel spreadsheets and manual paperwork results in missed rent collections, delayed debt recovery, untracked utility meters, and a lack of reliable real-time operational reports.",
+      "solution": "A robust central Property Management System (PMS) built on Laravel and Filament. It links units, leases, tenants, and ledger entries with automated balance tracking and print-ready PDF reporting.",
+      "goals": [
+        "Fully automate the contract lifecycle and collection workflows.",
+        "Prevent revenue leakage through instant delinquency and debt alerts.",
+        "Streamline meter readings, utility allocations, and maintenance costs.",
+        "Generate comprehensive financial and occupancy reports on demand."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "Domain & Process Analysis",
+          "desc": "Mapped property management operational cycles from onboarding to lease renewal and billing."
+        },
+        {
+          "step": "02",
+          "title": "Relational Data Modeling",
+          "desc": "Designed a normalized database schema enforcing strict constraints across properties, leases, and transactions."
+        },
+        {
+          "step": "03",
+          "title": "Dashboard & Business Logic",
+          "desc": "Leveraged Laravel and Filament to build an intuitive admin panel with fine-grained role-based access control."
+        },
+        {
+          "step": "04",
+          "title": "Reporting & Invoicing Engines",
+          "desc": "Engineered automated receipt generators, payment vouchers, and exportable executive financial summaries."
+        }
+      ],
+      "features": [
+        {
+          "title": "Properties & Units Catalog",
+          "desc": "Hierarchical management of buildings, floors, and residential/commercial units with live occupancy statuses."
+        },
+        {
+          "title": "Lease & Tenant Management",
+          "desc": "Comprehensive tenant registries, contract renewals, and automated expiration warnings."
+        },
+        {
+          "title": "Collections & Debt Tracking",
+          "desc": "Granular ledger tracking collected payments, outstanding debts, and automated payment receipts."
+        },
+        {
+          "title": "Utilities & Meter Readings",
+          "desc": "Accurate recording of electricity and water meter logs linked directly to tenant billing."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "Operational Impact",
+          "content": "Dar Al-Fursan reduced manual administrative overhead by over 70%, transforming complex multi-property operations into an intuitive, real-time command center with clear occupancy metrics and fiscal clarity."
+        }
+      ]
+    }
   },
   {
     "id": 3,
-    "title": "نظام دار الفرسان لإدارة العقارات",
-    "description": "نظام إداري متقدم لإدارة العمليات العقارية، يقدم لوحة تحكم مركزية لإدارة العقارات، متابعة العملاء، وتتبع المعاملات المالية بدقة.",
-    "category": "أنظمة إدارة الشركات",
-    "image": "/images/projects/3.png",
+    "slug": "shefaa-medical",
+    "title": "شفاء",
+    "category": "منصة ويب طبية لحجز العيادات والأطباء",
+    "description": "منصة ويب طبية متكاملة تم تطويرها لتسهيل عملية البحث عن الأطباء والعيادات وحجز المواعيد إلكترونيًا، مع توفير تجربة استخدام سلسة للمريض ونظام إداري يساعد مقدمي الخدمات الطبية على إدارة الحجوزات والجداول بكفاءة عالية.",
+    "image": "/images/projects/5.png",
+    "images": [
+      "/images/projects/5.png"
+    ],
     "tags": [
       "Laravel",
       "PHP",
       "MySQL",
-      "Bootstrap"
+      "REST APIs",
+      "Tailwind CSS",
+      "JavaScript",
+      "Medical UI"
     ],
-    "github": "https://github.com/mustafa-ahmad-work",
-    "live": "http://www.daralfursan.com"
+    "github": "https://github.com/Mostafa7Ahmad",
+    "live": "#",
+    "isPrivate": false,
+    "duration": "2024",
+    "ar": {
+      "title": "شفاء",
+      "category": "منصة ويب طبية لحجز العيادات والأطباء",
+      "shortDescription": "منصة حجز طبي إلكتروني تربط المرضى بالعيادات والأطباء مع إدارة كاملة للمواعيد والجداول الزمنية.",
+      "fullDescription": "شفاء هي منصة ويب طبية متكاملة تم تطويرها لتسهيل عملية البحث عن الأطباء والعيادات وحجز المواعيد الطبية إلكترونيًا، مع توفير تجربة استخدام بسيطة ومنظمة للمريض، ونظام إداري يساعد مقدمي الخدمات الطبية على إدارة الحجوزات والمواعيد والبيانات بكفاءة. تم بناء المنصة لتكون حلًا رقميًا متكاملًا للعيادات، بحيث يستطيع المستخدم الوصول إلى الطبيب أو التخصص المناسب، استعراض بيانات العيادة والخدمات المتاحة، اختيار الموعد المناسب وإتمام عملية الحجز بسهولة، مع إمكانية متابعة وإدارة الحجوزات.",
+      "problem": "صعوبة العثور على الأطباء المتاحين في الأوقات المناسبة، والانتظار الطويل داخل العيادات، بالإضافة إلى العبء الإداري الواقع على العيادات بسبب الاعتماد على الحجز الهاتفي والسجلات الورقية.",
+      "solution": "بناء منصة حجز رقمية متطورة توفر دليلاً شاملاً للأطباء مع إمكانية حجز وتأكيد المواعيد فورياً، مدعومة بلوحة تحكم إدارية للعيادات لتنظيم الأطباء والجداول والخدمات الطبية بسلاسة.",
+      "goals": [
+        "تمكين المرضى من العثور على الطبيب المناسب وحجز الموعد في ثوانٍ معدودة.",
+        "تقليص فترات الانتظار وتنظيم تدفق المرضى داخل العيادات والمراكز الطبية.",
+        "أتمتة إدارة المواعيد وإلغائها وإعادة جدولتها بسهولة.",
+        "توفير نظام إداري محكم لإدارة الكوادر الطبية والتخصصات."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "دراسة تجربة المريض والعيادة",
+          "desc": "تصميم رحلة مستخدم مبسطة للمريض وإجراءات مرنة لاستقبال الحجوزات داخل العيادة."
+        },
+        {
+          "step": "02",
+          "title": "هندسة الجداول والمواعيد",
+          "desc": "بناء منطق زمني محكم يمنع تضارب المواعيد ويوزع الفترات الزمنية بدقة حسب جدول كل طبيب."
+        },
+        {
+          "step": "03",
+          "title": "تطوير لوحات التحكم والصلاحيات",
+          "desc": "فصل لوحة إدارة النظام ولوحات العيادات ومساعدي الأطباء لضمان خصوصية البيانات."
+        },
+        {
+          "step": "04",
+          "title": "الاختبارات والتأكيد الآلي",
+          "desc": "اختبار تدفق الحجز تحت أحمال مختلفة وضمان إرسال إشعارات التأكيد والتحديث فورياً."
+        }
+      ],
+      "features": [
+        {
+          "title": "دليل الأطباء والعيادات",
+          "desc": "فلترة ذكية حسب التخصص الطبي، الموقع، التقييم، وتوفر المواعيد القريبة."
+        },
+        {
+          "title": "حجز مواعيد فوري ومرن",
+          "desc": "اختيار اليوم والساعة المتاحة بضغطة زر مع تأكيد فوري وخيارات لإلغاء أو تعديل الحجز."
+        },
+        {
+          "title": "لوحة تحكم إدارية للعيادات",
+          "desc": "إدارة مواعيد العمل، فترات الاستراحة، قوائم الانتظار، وسجلات المرضى بسهولة."
+        },
+        {
+          "title": "أمان وسرية البيانات الطبية",
+          "desc": "تطبيق أعلى معايير الحماية لبيانات الحجز وسجلات المراجعين الطبية."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "البنية الهندسية لمنصة شفاء",
+          "content": "تم تصميم النظام بنمط Clean Architecture لفصل طبقات العرض عن منطق الأعمال، مما يتيح التوسع لإضافة استشارات الفيديو عن بُعد والوصفات الإلكترونية مستقبلاً بكل مرونة."
+        }
+      ]
+    },
+    "en": {
+      "title": "Shefaa",
+      "category": "Medical Clinic & Doctor Booking Platform",
+      "shortDescription": "An integrated medical booking platform connecting patients with specialized clinics and doctors while offering a full-featured clinic management system.",
+      "fullDescription": "Shefaa is an end-to-end online medical booking platform built to simplify finding healthcare providers and scheduling appointments digitally. For patients, it delivers an intuitive and frictionless booking journey; for healthcare providers, it offers an advanced management portal to control schedules, consultations, and patient visits efficiently. Built using modern web standards, it eliminates manual clinic phone logs and appointment bottlenecks.",
+      "problem": "Patients encounter frustrating wait times, clinic phone lines, and fragmented scheduling. Clinics face high administrative burdens and appointment double-bookings due to manual paper ledgers.",
+      "solution": "An automated medical booking solution featuring verified doctor listings, instant slot reservation, and an administrative control panel for doctors and clinic staff to orchestrate daily schedules.",
+      "goals": [
+        "Enable patients to search and book suitable doctors within seconds.",
+        "Eliminate waiting room congestion and streamline patient queues.",
+        "Automate schedule management, appointment cancellations, and reschedules.",
+        "Provide clinics with a robust dashboard to manage doctors and services."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "Patient & Clinic Journey Mapping",
+          "desc": "Drafted streamlined patient booking flows and clinic reception operational procedures."
+        },
+        {
+          "step": "02",
+          "title": "Schedule & Collision Logic",
+          "desc": "Engineered calendar slot algorithms preventing concurrent bookings and managing custom doctor shifts."
+        },
+        {
+          "step": "03",
+          "title": "Multi-Tenant Access Control",
+          "desc": "Segregated administrative privileges between platform admins, clinic owners, and assistants."
+        },
+        {
+          "step": "04",
+          "title": "Stress Testing & Notifications",
+          "desc": "Validated booking concurrency under high simulated loads and configured automated confirmations."
+        }
+      ],
+      "features": [
+        {
+          "title": "Verified Medical Directory",
+          "desc": "Smart filtering by medical specialty, clinic location, fees, and next available dates."
+        },
+        {
+          "title": "Instant Slot Reservation",
+          "desc": "Real-time calendar slot picking with instantaneous confirmation and cancellation options."
+        },
+        {
+          "title": "Clinic Management Console",
+          "desc": "Manage doctors, shift timetables, consultation fees, and patient records with ease."
+        },
+        {
+          "title": "Security & Data Privacy",
+          "desc": "Built following robust data encryption and privacy standards to safeguard patient interactions."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "Scalable Architecture",
+          "content": "Engineered using clean modular patterns that decouple UI layers from core scheduling logic, ready to integrate telemedicine video sessions and electronic prescriptions in future phases."
+        }
+      ]
+    }
   },
   {
     "id": 4,
-    "title": "الموقع الشخصي الفاخر لمهندس البرمجيات",
-    "description": "موقع استعراضي تفاعلي للمشاريع والمهارات مبني بتقنيات Next.js 15 و Framer Motion، ويتميز بتصميم أنيق ومستوحى من أحدث نظم التصميم العالمية.",
-    "category": "تطوير ويب مخصص",
-    "image": "/images/projects/4.png",
-    "tags": [
-      "Next.js 15",
-      "Framer Motion",
-      "TailwindCSS",
-      "TypeScript"
+    "slug": "modern-ecommerce",
+    "title": "متجر إلكتروني حديث ومتكامل",
+    "category": "منصة تجارة إلكترونية متطورة",
+    "description": "متجر إلكتروني حديث ومتكامل يوفر تجربة تسوق سهلة ومريحة، يضم تشكيلة واسعة من المنتجات (ملابس، رجالي، نسائي، أطفال)، مع بوابات دفع آمنة، تتبع مباشر للطلبات، شات دعم فوري، وإشعارات حية للمستخدمين.",
+    "image": "/images/projects/1.png",
+    "images": [
+      "/images/projects/1.png"
     ],
-    "github": "https://github.com/mustafa-ahmad-work",
-    "live": "https://github.com/mustafa-ahmad-work"
+    "tags": [
+      "Laravel",
+      "Livewire",
+      "MySQL",
+      "Tailwind CSS",
+      "Payment Gateway",
+      "WebSockets",
+      "E-Commerce"
+    ],
+    "github": "https://github.com/Mostafa7Ahmad",
+    "live": "#",
+    "isPrivate": false,
+    "duration": "2024 — 2025",
+    "ar": {
+      "title": "متجر إلكتروني حديث ومتكامل",
+      "category": "منصة تجارة إلكترونية متطورة",
+      "shortDescription": "متجر إلكتروني متكامل بتجربة تسوق سريعة، بوابات دفع آمنة، تتبع طلبات، وشات دعم فوري.",
+      "fullDescription": "متجر إلكتروني حديث ومتكامل يهدف إلى توفير تجربة تسوق سهلة ومريحة للعملاء. يضم المتجر مجموعة واسعة من المنتجات المتنوعة (ملابس، رجالي، نسائي، أطفال) ويتميز بواجهة مستخدم جذابة وبسيطة، بالإضافة إلى خيارات دفع آمنة وسريعة، وخدمة توصيل موثوقة. يتيح المتجر للمستخدمين إنشاء حسابات خاصة لتسهيل تتبع الطلبات وحفظ العناصر المفضلة، كما يوفر خصومات حصرية، شات دعم فوري مع خدمة العملاء، وإشعارات لحظية لضمان أعلى مستويات الرضا.",
+      "problem": "صعوبة إتمام عمليات الشراء في المتاجر البطيئة، وتعقيد خطوات الدفع، وغياب الدعم اللحظي أثناء التسوق مما يؤدي إلى ترك سلات الشراء دون إكمال الطلب.",
+      "solution": "بناء متجر متقدم سريع الاستجابة يدعم التحديث اللحظي لسلة الشراء (Livewire)، بوابات دفع متعددة وآمنة، نظام شات دعم مباشر، وتتبع خطوة بخطوة لمسار الشحن والتوصيل.",
+      "goals": [
+        "تقديم تجربة تسوق استثنائية وسلسة ترفع معدلات التحويل وإكمال الطلبات.",
+        "توفير قنوات تواصل لحظية وشات مباشر لخدمة العملاء وحل أي استفسارات.",
+        "دعم خيارات دفع إلكتروني آمنة ومتنوعة تناسب جميع المشترين.",
+        "تمكين العميل من تتبع حالة شحنته لحظة بلحظة مع إشعارات فورية."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "تخطيط الفئات وتجربة التصفح",
+          "desc": "هيكلة تصنيفات المنتجات (رجالي، نسائي، أطفال) وتصميم الفلاتر والبحث الذكي."
+        },
+        {
+          "step": "02",
+          "title": "هندسة سلة الشراء والدفع",
+          "desc": "بناء عربة تسوق تفاعلية بدون إعادة تحميل الصفحة وربط بوابات الدفع الإلكتروني."
+        },
+        {
+          "step": "03",
+          "title": "دمج الشات المباشر والإشعارات",
+          "desc": "تطوير نظام شات دعم فوري للعملاء مع إشعارات WebSockets للتحديثات الفورية للطلبات."
+        },
+        {
+          "step": "04",
+          "title": "لوحة إدارة المتجر والمخزون",
+          "desc": "بناء لوحة تحكم شاملة لإدارة المنتجات، العروض، الطلبات الواردة، ومخزون المستودعات."
+        }
+      ],
+      "features": [
+        {
+          "title": "تنوع واسع وتصنيفات مرنة",
+          "desc": "تصفح مريح لمنتجات الملابس الرجالية، النسائية، والأطفال مع فلاتر للألوان والمقاسات."
+        },
+        {
+          "title": "شات دعم فوري وإشعارات",
+          "desc": "تواصل لحظي مع خدمة العملاء للحصول على المساعدة المباشرة أثناء التسوق."
+        },
+        {
+          "title": "تتبع الطلبات وقائمة المفضلة",
+          "desc": "لوحة مستخدم احترافية لمتابعة حالات الطلبات من التجهيز حتى الاستلام وحفظ المنتجات."
+        },
+        {
+          "title": "دفع آمن وعروض حصرية",
+          "desc": "معاملات مالية مشفرة بالكامل مع نظام قسائم وخصومات حصرية على المنتجات."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "تجربة مستخدم تركز على التحويل (High-Conversion UX)",
+          "content": "تم تصميم مسار الدفع في المتجر ليتم خلال 3 خطوات مبسطة، مع دعم حفظ العناوين وطرق الدفع المفضلة، وتقليل خطوات تأكيد الطلب لتجربة تسوق سريعة وممتعة."
+        }
+      ]
+    },
+    "en": {
+      "title": "Modern E-Commerce Platform",
+      "category": "Full-Featured Online Store",
+      "shortDescription": "A cutting-edge e-commerce platform offering smooth shopping experiences, secure payments, order tracking, and live customer support.",
+      "fullDescription": "A modern and full-featured online store engineered to deliver a seamless shopping experience. Featuring an extensive product catalog (apparel, men's, women's, and children's collections), it pairs attractive UI with fast and secure checkout, reliable multi-region delivery management, personal user dashboards, live chat support, and instant order tracking notifications.",
+      "problem": "Slow page loading speeds, friction during multi-step checkouts, and absence of immediate assistance lead to high cart abandonment rates on conventional stores.",
+      "solution": "An optimized reactive store built with Laravel and Livewire for dynamic cart updates, integrated with reliable payment processors, live support chat, and real-time shipping tracker.",
+      "goals": [
+        "Deliver a high-converting, friction-free shopping experience.",
+        "Provide immediate shopper assistance via integrated live chat support.",
+        "Offer secure and swift payment gateways tailored to modern consumers.",
+        "Empower shoppers with real-time order tracking and instantaneous status alerts."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "Catalog & Taxonomy Design",
+          "desc": "Structured multi-level product hierarchies with attribute filtering (sizes, colors, categories)."
+        },
+        {
+          "step": "02",
+          "title": "Reactive Cart & Checkout",
+          "desc": "Implemented a reactive shopping cart with zero page-reloads and embedded payment processing."
+        },
+        {
+          "step": "03",
+          "title": "Live Support & WebSockets",
+          "desc": "Integrated instant live customer messaging and live push notifications for order progress."
+        },
+        {
+          "step": "04",
+          "title": "Merchant Admin & Inventory",
+          "desc": "Crafted an intuitive control panel for inventory tracking, sales analytics, and discount promotions."
+        }
+      ],
+      "features": [
+        {
+          "title": "Comprehensive Product Catalog",
+          "desc": "Effortless browsing across curated apparel departments with dynamic pricing and stock checks."
+        },
+        {
+          "title": "Live Customer Support Chat",
+          "desc": "Direct, in-app messaging assistance to answer buyer questions and boost purchase confidence."
+        },
+        {
+          "title": "Order Tracking & Wishlists",
+          "desc": "Dedicated customer accounts with saved favorite items and step-by-step shipment tracking."
+        },
+        {
+          "title": "Secure Encrypted Payments",
+          "desc": "Full PCI-compliant checkout integration supporting multiple card networks and discount coupons."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "High-Conversion Checkout Flow",
+          "content": "The checkout funnel was refined into a frictionless 3-step process with stored address pre-filling, drastically lowering cart abandonment and accelerating repeat orders."
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "slug": "english-learning-platform",
+    "title": "منصة كورسات اللغة الإنجليزية",
+    "category": "منصة تعليمية متكاملة لتعلم الإنجليزية",
+    "description": "منصة تعليمية متكاملة لتعلم اللغة الإنجليزية أونلاين باستخدام Laravel، مع تقسيم الدروس لمستويات (مبتدئ – متوسط – متقدم)، ودعم الفيديوهات، تتبع تقدم الطلاب، اختبارات تفاعلية بتصحيح تلقائي، ونظام اشتراكات ومدفوعات.",
+    "image": "/images/projects/7.png",
+    "images": [
+      "/images/projects/7.png"
+    ],
+    "tags": [
+      "Laravel",
+      "PHP",
+      "MySQL",
+      "Interactive Quizzes",
+      "Video Streaming",
+      "Subscriptions",
+      "RBAC"
+    ],
+    "github": "https://github.com/Mostafa7Ahmad",
+    "live": "#",
+    "isPrivate": false,
+    "duration": "2024 — 2025",
+    "ar": {
+      "title": "منصة كورسات اللغة الإنجليزية",
+      "category": "منصة تعليمية متكاملة لتعلم الإنجليزية",
+      "shortDescription": "منصة تعليمية بـ Laravel لإدارة كورسات الإنجليزية بمستويات متعددة، اختبارات تفاعلية بتصحيح آلي، ونظام اشتراكات.",
+      "fullDescription": "منصة تعليمية متكاملة لتعلم اللغة الإنجليزية أونلاين تم تطويرها باستخدام Laravel، مع التركيز على الأداء العالي وتجربة المستخدم السلسة. المنصة تتيح إدارة الكورسات بشكل احترافي، حيث يمكن تقسيم المحتوى إلى مستويات (مبتدئ – متوسط – متقدم)، وتنظيم الدروس في شكل وحدات مترابطة، مع دعم عرض الفيديوهات والملفات التعليمية. تم تنفيذ نظام متكامل للمستخدمين يشمل (طلاب – مدرسين – إدارة)، مع تتبع تقدم الطالب داخل الكورس وتحديد الدروس المكتملة تلقائيًا. كما تحتوي المنصة على نظام اختبارات تفاعلي يدعم التصحيح التلقائي وإظهار النتائج، بالإضافة إلى لوحة تحكم متقدمة لإدارة الكورسات والاشتراكات والمدفوعات الإلكترونية.",
+      "problem": "صعوبة متابعة مستوى تقدم الطلاب في منصات الفيديو التقليدية، والحاجة لنظام تقييم فوري يختبر استيعاب الدروس دون تدخل بشري يدوي مرهق للمعلم.",
+      "solution": "بناء أكاديمية تعليمية متكاملة تشمل تصنيف الكورسات لمستويات ووحدات، بنك أسئلة واختبارات تفاعلية تصحح ذاتياً، تتبع آلي لتقدم كل طالب، ولوحة تحكم شاملة لإدارة الاشتراكات والطلاب.",
+      "goals": [
+        "تقديم تجربة تعليمية تفاعلية تتجاوز مجرد مشاهدة مقاطع الفيديو.",
+        "أتمتة عملية تقييم الطلاب عبر اختبارات ذكية ذات تصحيح تلقائي فوري.",
+        "تمكين الطلاب من قياس تقدمهم ومعرفة الدروس المتبقية لتحفيز الاستمرار.",
+        "توفير نظام اشتراكات مرن ولوحة تحكم مركزية لإدارة الكورسات والمدفوعات."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "تخطيط المناهج والمسارات",
+          "desc": "تقسيم تعلم اللغة الإنجليزية إلى مستويات محددة (A1 حتى C1) وربط الدروس بوحدات تدريبية."
+        },
+        {
+          "step": "02",
+          "title": "بناء محرك الاختبارات الذكي",
+          "desc": "تطوير نظام اختبارات تفاعلي يدعم أسئلة الاختيار من متعدد وتصحيح الإجابات وحساب النتائج آلياً."
+        },
+        {
+          "step": "03",
+          "title": "نظام تتبع التقدم والاشتراكات",
+          "desc": "برمجة خوارزميات رصد إكمال الدروس وتفعيل خطط الاشتراكات وبوابات الدفع الإلكتروني."
+        },
+        {
+          "step": "04",
+          "title": "لوحات التحكم وإدارة الأداء",
+          "desc": "بناء لوحات مخصصة للإدارة والمدرسين لمتابعة أداء الطلاب ومعدلات إكمال الكورسات."
+        }
+      ],
+      "features": [
+        {
+          "title": "تقسيم متدرج للمستويات",
+          "desc": "تنظيم المحتوى التعليمي في مستويات (مبتدئ، متوسط، متقدم) مع مسارات تعلم واضحة."
+        },
+        {
+          "title": "اختبارات تفاعلية بتصحيح آلي",
+          "desc": "أسئلة مرافقة لكل وحدة تقيس الفهم وتظهر النتيجة فور انتهاء الطالب من الاختبار."
+        },
+        {
+          "title": "تتبع الإنجاز وتقدم الطالب",
+          "desc": "حساب تلقائي لنسبة إكمال الكورس وتحديد الدروس المشاهدة والمكتملة بدقة."
+        },
+        {
+          "title": "نظام اشتراكات متعدد الأدوار",
+          "desc": "صلاحيات مخصصة للطلاب والمدرسين والإدارة مع خطط اشتراك شهرية وسنوية مرنة."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "محرك التقييم الذاتي التفاعلي",
+          "content": "يتميز نظام الاختبارات بقدرته على توليد نماذج أسئلة عشوائية من بنك الأسئلة لكل طالب، مما يمنع التكرار ويوفر تقييماً حقيقياً لمستوى الاستيعاب، مع تقديم شروحات فورية للإجابات الخاطئة."
+        }
+      ]
+    },
+    "en": {
+      "title": "English Learning Platform",
+      "category": "Integrated Online Course Academy",
+      "shortDescription": "A robust LMS built with Laravel featuring tiered course levels, automated interactive quizzes, student progress tracking, and subscription plans.",
+      "fullDescription": "An all-in-one English learning web platform built on Laravel, focusing on performance, scalability, and seamless user experiences. The platform categorizes content into tiered proficiencies (Beginner, Intermediate, Advanced) and structures lessons into interconnected units supporting video lectures and educational files. Features a comprehensive multi-role user system (Students, Instructors, Admins), automatic lesson completion tracking, automated quiz grading, and an advanced dashboard to manage courses, subscriptions, and electronic payments.",
+      "problem": "Conventional e-learning portals lack interactive self-assessment and automated progress verification, placing heavy administrative burdens on teachers to grade assignments manually.",
+      "solution": "An intelligent e-learning ecosystem pairing modular course levels with an automated interactive quiz engine, instant grading, student progress trackers, and flexible subscription gateways.",
+      "goals": [
+        "Deliver an engaging learning journey extending beyond passive video streaming.",
+        "Automate student evaluation through instant self-grading interactive quizzes.",
+        "Keep students motivated with visual completion meters and achievement milestones.",
+        "Provide administrators with a central portal to oversee courses, students, and subscriptions."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "Curriculum & Level Blueprint",
+          "desc": "Structured language acquisition tracks into proficiency tiers (A1 to C1) with modular chapters."
+        },
+        {
+          "step": "02",
+          "title": "Interactive Quiz Engine",
+          "desc": "Engineered automated testing mechanisms supporting multiple-choice questions, timers, and instant grading."
+        },
+        {
+          "step": "03",
+          "title": "Progress Metrics & Billing",
+          "desc": "Built real-time student completion trackers coupled with tiered subscription checkout gateways."
+        },
+        {
+          "step": "04",
+          "title": "Multi-Role Dashboards",
+          "desc": "Constructed administrative and instructor portals to monitor enrollments and learner analytics."
+        }
+      ],
+      "features": [
+        {
+          "title": "Tiered Curriculum Levels",
+          "desc": "Organized pathways for Beginner, Intermediate, and Advanced learners with sequential lesson unlocking."
+        },
+        {
+          "title": "Instant-Grading Interactive Quizzes",
+          "desc": "Automated evaluation engine providing immediate feedback, grade reports, and answer explanations."
+        },
+        {
+          "title": "Automated Progress Tracking",
+          "desc": "Real-time tracking of finished videos, completed units, and overall course completion percentages."
+        },
+        {
+          "title": "Flexible Subscription Tiers",
+          "desc": "Tiered pricing plans and role-based permissions (Students, Teachers, Admin) with secure billing."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "Automated Assessment Architecture",
+          "content": "The platform's quiz engine dynamically samples questions from a verified item bank, ensuring randomized exams for each learner while delivering instantaneous feedback and remediation."
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "slug": "maweiza-islamic-platform",
+    "title": "موقع موعظة",
+    "category": "موقع إسلامي شامل للعلوم والمصادر الموثوقة",
+    "description": "موقع إسلامي شامل يقدم تجربة فريدة للمستخدمين الباحثين عن مصادر موثوقة في مختلف مجالات العلوم الإسلامية، يحتوي على مجموعة متنوعة من الأقسام التي تلبي احتياجات المسلمين في جوانب دينية وتعليمية متعددة.",
+    "image": "/images/projects/2.png",
+    "images": [
+      "/images/projects/2.png"
+    ],
+    "tags": [
+      "Web Platform",
+      "SEO Optimization",
+      "Content Management",
+      "Responsive Design",
+      "Performance"
+    ],
+    "github": "https://github.com/Mostafa7Ahmad",
+    "live": "https://www.maweiza.com/",
+    "isPrivate": false,
+    "duration": "2024",
+    "ar": {
+      "title": "موقع موعظة",
+      "category": "موقع إسلامي شامل للعلوم والمصادر الموثوقة",
+      "shortDescription": "بوابة إسلامية شاملة تقدم محتوى موثوقاً في مختلف مجالات العلوم الشرعية والتربوية بتصميم عصري وسريع.",
+      "fullDescription": "هذا الموقع الإسلامي الشامل يقدم تجربة فريدة للمستخدمين الباحثين عن مصادر موثوقة وشاملة في مختلف مجالات العلوم الإسلامية. يحتوي الموقع على مجموعة متنوعة من الأقسام التي تلبي احتياجات المسلمين في جوانب دينية وتعليمية متعددة، مع مراعاة السهولة والسرعة والوضوح في عرض المقالات والمراجع الشرعية والتربوية، وتوفير محرك بحث سريع وتصميم مريح للعين أثناء القراءة الطويلة.",
+      "problem": "انتشار المعلومات غير الموثوقة وصعوبة الوصول إلى مراجع شرعية وتربوية موثقة في مواقع بطيئة وغير مهيأة للقراءة المريحة على الهواتف الذكية.",
+      "solution": "بناء منصة محتوى إسلامي حديثة وعالية السرعة تجمع العلوم الشرعية والتربوية في تصنيفات واضحة، مع محرك بحث سريع، وتوافق تام مع معايير السيو (SEO) لسرعة الوصول للمعلومة.",
+      "goals": [
+        "إتاحة مصادر موثوقة في مختلف العلوم الإسلامية بأسلوب ميسر وموثق.",
+        "تقديم تجربة قراءة وتصفح سريعة ومريحة لجميع المستخدمين.",
+        "تحسين أرشفة المحتوى في محركات البحث العالمية للوصول لأكبر شريحة من القراء.",
+        "توفير بنية برمجية تدعم التوسع وإضافة المزيد من الأقسام والوسائط مستقبلاً."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "هيكلة الأقسام والمصادر",
+          "desc": "تصنيف العلوم الإسلامية (العقيدة، الفقه، السيرة، التربية) وتحديد بنية المقالات والمراجع."
+        },
+        {
+          "step": "02",
+          "title": "تصميم واجهة القراءة الهادئة",
+          "desc": "اختيار خطوط عربية واضحة ومسافات أسطر مريحة للعين مخصصة للمطالعة والبحث العلمي."
+        },
+        {
+          "step": "03",
+          "title": "تحسين الأداء ومعايير السيو",
+          "desc": "تطبيق أعلى معايير الـ Core Web Vitals وهيكلة الميتا داتا والـ Sitemap لأرشفة لحظية."
+        },
+        {
+          "step": "04",
+          "title": "الإطلاق والربط بالسيرفرات",
+          "desc": "نشر الموقع على نطاق maweiza.com مع حماية SSL وتفعيل التخزين المؤقت للسرعة الفائقة."
+        }
+      ],
+      "features": [
+        {
+          "title": "أقسام علمية شاملة ومتنوعة",
+          "desc": "تغطية لمختلف مجالات العلوم الإسلامية، الفقهية، التربوية، والتاريخية بأسلوب علمي رصين."
+        },
+        {
+          "title": "محرك بحث سريع ودقيق",
+          "desc": "إمكانية البحث الفوري في آلاف المقالات والمواضيع الموثوقة بسهولة."
+        },
+        {
+          "title": "تجربة قراءة مريحة للمستخدم",
+          "desc": "تنسيق طباعي مريح مع خطوط عربية أصيلة وتوزيع مريح للنصوص على الجوال والكمبيوتر."
+        },
+        {
+          "title": "أداء سريع وتوافق كامل مع SEO",
+          "desc": "سرعة فائقة في فتح الصفحات وتوافق تام مع أحدث متطلبات محركات البحث العالمية."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "رابط المنصة الرسمي",
+          "content": "المنصة متاحة الآن ويمكن تصفحها عبر الرابط الرسمي: https://www.maweiza.com/ حيث تضم مئات المقالات والمراجع الإسلامية الموثقة."
+        }
+      ]
+    },
+    "en": {
+      "title": "Maweiza Islamic Platform",
+      "category": "Comprehensive Islamic Knowledge Portal",
+      "shortDescription": "A comprehensive Islamic portal delivering verified sources across Islamic and educational sciences with high speed and clean typography.",
+      "fullDescription": "Maweiza is a comprehensive Islamic web platform offering a reliable destination for users seeking authentic, verified sources across various domains of Islamic knowledge. The website features diverse departments catering to spiritual, educational, and scholarly needs, engineered with optimal reading speeds, serene typography, and intuitive search tools.",
+      "problem": "Unverified information across fragmented, slow portals with poor reading experiences and inadequate search capabilities makes accessing authentic Islamic references challenging.",
+      "solution": "A high-performance digital repository that organizes Islamic sciences into curated categories with rapid search indexing, full mobile optimization, and top-tier SEO standards.",
+      "goals": [
+        "Provide verified Islamic knowledge and educational references in accessible formats.",
+        "Deliver a calm, rapid, and distraction-free reading experience across devices.",
+        "Maximize search engine indexing (SEO) to reach global readers efficiently.",
+        "Establish an extensible content architecture ready for multi-media and expanded disciplines."
+      ],
+      "workflow": [
+        {
+          "step": "01",
+          "title": "Taxonomy & Source Organization",
+          "desc": "Structured core Islamic sciences (theology, jurisprudence, biography, ethics) into intuitive categories."
+        },
+        {
+          "step": "02",
+          "title": "Editorial Typography & Layout",
+          "desc": "Crafted readable Arabic typography and comfortable line heights tailored for extended reading sessions."
+        },
+        {
+          "step": "03",
+          "title": "SEO & Performance Optimization",
+          "desc": "Implemented schema markup, sitemaps, and Core Web Vitals optimizations for instant discovery."
+        },
+        {
+          "step": "04",
+          "title": "Production Deployment",
+          "desc": "Launched on the official domain maweiza.com with edge caching and SSL encryption."
+        }
+      ],
+      "features": [
+        {
+          "title": "Curated Knowledge Categories",
+          "desc": "Comprehensive coverage of jurisprudence, ethics, Quranic insights, and educational topics."
+        },
+        {
+          "title": "Rapid Content Search Engine",
+          "desc": "Instant indexing and query retrieval across hundreds of scholarly articles."
+        },
+        {
+          "title": "Optimal Editorial Experience",
+          "desc": "Thoughtful visual formatting with authentic Arabic font choices and uncluttered layouts."
+        },
+        {
+          "title": "Top-Tier Speed & Web Standards",
+          "desc": "Lightning-fast page delivery optimized for mobile networks and global search crawlers."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "Live Production Portal",
+          "content": "The platform is actively live and accessible to the public at https://www.maweiza.com/, serving readers with verified Islamic and educational literature."
+        }
+      ]
+    }
   }
 ]

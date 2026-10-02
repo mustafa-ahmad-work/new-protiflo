@@ -2,29 +2,30 @@
 
 import { motion } from "framer-motion";
 import { 
-  Globe, Smartphone, Layout, Palette, Database, 
-  Code2, ShieldAlert, Kanban, CloudLightning, ArrowLeft, ArrowRight 
+  Globe, Server, Layout, Database, Code2, ArrowLeft, ArrowRight 
 } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+interface ServiceItem {
+  title: string;
+  desc: string;
+  badge: string;
+}
+
 const serviceIcons = [
-  Globe,
-  Smartphone,
-  Layout,
-  Palette,
-  Database,
-  Code2,
-  ShieldAlert,
-  Kanban,
-  CloudLightning,
+  Globe,      // 1. Web Apps
+  Server,     // 2. Backend Dev
+  Layout,     // 3. Admin Dashboards
+  Database,   // 4. Databases
+  Code2,      // 5. Frontend Dev
 ];
 
 export default function Services() {
   const { t, isRTL } = useLanguage();
-  const rawItems = (t("services.items", { returnObjects: true }) as any[]) || [];
+  const rawItems = (t("services.items", { returnObjects: true }) as ServiceItem[]) || [];
 
   return (
-    <section id="services" className="py-24 bg-bg-main relative overflow-hidden">
+    <section id="services" className="py-24 bg-bg-main relative overflow-hidden border-t border-white/10">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
@@ -74,9 +75,7 @@ export default function Services() {
 
                 {/* Bottom Action */}
                 <a
-                  href="https://wa.me/201092434027"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
                   className="inline-flex items-center gap-2 text-xs font-bold text-primary group-hover:text-white transition-colors pt-4 border-t border-white/10 w-full justify-between"
                 >
                   <span>{t("services.requestService")}</span>

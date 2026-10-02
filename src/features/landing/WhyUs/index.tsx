@@ -21,6 +21,8 @@ export default function WhyUs() {
   const features = (t("whyUs.features", { returnObjects: true }) as any[]) || [];
   const checklist = (t("whyUs.checklist", { returnObjects: true }) as string[]) || [];
 
+  console.log(features);
+
   return (
     <section id="why-us" className="py-24 bg-bg-main border-t border-white/10 relative overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

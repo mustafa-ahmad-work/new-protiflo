@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, ArrowLeft, ArrowRight, FolderGit2 } from "lucide-react";
+import { ExternalLink, ArrowLeft, ArrowRight, FolderGit2, Lock } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import projectsData from "../../../data/projects.json";
@@ -9,27 +9,45 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+interface ProjectItem {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  image: string;
+  tags: string[];
+  github?: string;
+  live?: string;
+  isPrivate?: boolean;
+}
+
+interface TranslatedProjectItem {
+  id: number;
+  title?: string;
+  category?: string;
+  description?: string;
+}
+
 export default function Projects() {
-  const { t, isRTL } = useLanguage();
-  const [projects] = useState<any[]>(projectsData);
+  const { t, isRTL, language } = useLanguage();
+  const [projects] = useState<any[]>(projectsData as any[]);
 
-  const translatedItems = (t("projects.items", { returnObjects: true }) as any[]) || [];
-
-  const getTranslatedProject = (baseProject: any) => {
-    const found = translatedItems.find((item: any) => Number(item.id) === Number(baseProject.id));
-    if (found) {
+  const getTranslatedProject = (baseProject: any): any => {
+    const langKey = language === "en" ? "en" : "ar";
+    const localized = baseProject[langKey];
+    if (localized) {
       return {
         ...baseProject,
-        title: found.title || baseProject.title,
-        description: found.description || baseProject.description,
-        category: found.category || baseProject.category,
+        title: localized.title || baseProject.title,
+        description: localized.shortDescription || localized.description || baseProject.description,
+        category: localized.category || baseProject.category,
       };
     }
     return baseProject;
   };
 
   return (
-    <section id="projects" className="py-24 bg-bg-main relative overflow-hidden">
+    <section id="projects" className="py-24 bg-bg-main relative overflow-hidden border-t border-white/10">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
@@ -46,8 +64,8 @@ export default function Projects() {
         </div>
 
         {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.map((baseProject: any, i: number) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {projects.map((baseProject: ProjectItem, i: number) => {
             const project = getTranslatedProject(baseProject);
             return (
               <motion.div
@@ -61,36 +79,37 @@ export default function Projects() {
                 {/* Image Banner */}
                 <div className="relative overflow-hidden bg-bg-main">
                   <Image
-                    width={1227}
-                    height={932}
+                    width={800}
+                    height={450}
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-[#252A3B] via-transparent to-transparent opacity-60" />
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-bg-main/90 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold text-white">
-                    {project.category || t("projects.defaultCategory")}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-bg-main/90 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold text-white flex items-center gap-1.5">
+                    {project.isPrivate && <Lock size={10} className="text-amber-400" />}
+                    <span>{project.category || t("projects.defaultCategory")}</span>
                   </div>
                 </div>
 
                 {/* Content Details */}
-                <div className="p-8 flex flex-col grow justify-between space-y-6">
+                <div className="p-6 sm:p-7 flex flex-col grow justify-between space-y-6">
                   <div>
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors leading-snug">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-primary transition-colors leading-snug">
                         {project.title}
                       </h3>
                     </div>
 
-                    <p className="text-sm text-text-muted leading-relaxed mb-6 font-normal">
+                    <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-5 font-normal">
                       {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.tags?.map((tag: string) => (
                         <span
                           key={tag}
-                          className="px-3 py-1 rounded-full bg-bg-main border border-white/10 text-[10px] font-bold text-gray-200"
+                          className="px-2.5 py-1 rounded-full bg-bg-main border border-white/10 text-[10px] font-bold text-gray-200"
                         >
                           {tag}
                         </span>
@@ -99,39 +118,41 @@ export default function Projects() {
                   </div>
 
                   {/* Card Footer Actions */}
-                  <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+                  <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
                     <Link
                       href={`/projects/${project.id}`}
-                      className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold transition-all shadow-md shadow-primary/30"
+                      className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold transition-all shadow-md shadow-primary/30"
                     >
                       <span>{t("projects.details")}</span>
-                      {isRTL ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
+                      {isRTL ? <ArrowLeft size={15} /> : <ArrowRight size={15} />}
                     </Link>
 
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 sm:flex-initial p-3.5 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center"
-                          title={t("projects.sourceCode")}
-                        >
-                          <FaGithub size={18} />
-                        </a>
-                      )}
-                      {project.live && (
-                        <a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 sm:flex-initial p-3.5 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center gap-2 text-xs font-bold"
-                        >
-                          <ExternalLink size={16} />
-                          <span>{t("projects.preview")}</span>
-                        </a>
-                      )}
-                    </div>
+                    {!project.isPrivate && (
+                      <div className="flex items-center gap-2 w-full sm:w-auto">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 sm:flex-initial p-3 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center"
+                            title={t("projects.sourceCode")}
+                          >
+                            <FaGithub size={16} />
+                          </a>
+                        )}
+                        {project.live && project.live !== "#" && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 sm:flex-initial p-3 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center gap-1.5 text-xs font-bold"
+                          >
+                            <ExternalLink size={15} />
+                            <span>{t("projects.preview")}</span>
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>

@@ -7,11 +7,17 @@ import { notFound } from "next/navigation";
 export default async function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  let project = projectsData.find((p: any) => p.id.toString() === id || p.id === Number(id));
+  let projectIndex = projectsData.findIndex(
+    (p: any) => p.id.toString() === id || p.slug === id || p.id === Number(id)
+  );
 
-  if (!project) {
+  if (projectIndex === -1) {
     notFound();
   }
+
+  const project = projectsData[projectIndex];
+  const prevProject = projectIndex > 0 ? projectsData[projectIndex - 1] : null;
+  const nextProject = projectIndex < projectsData.length - 1 ? projectsData[projectIndex + 1] : null;
 
   return (
     <main className="min-h-screen bg-bg-main text-text-main transition-colors duration-300">
@@ -19,11 +25,15 @@ export default async function ProjectDetails({ params }: { params: Promise<{ id:
 
       {/* Background Ambient Glows */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-purple-600/5 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/5 blur-[120px] rounded-full" />
+        <div className="absolute top-[15%] right-[-10%] w-[55%] h-[55%] bg-primary/10 blur-[140px] rounded-full" />
+        <div className="absolute bottom-[10%] left-[-10%] w-[45%] h-[45%] bg-blue-600/10 blur-[140px] rounded-full" />
       </div>
 
-      <ProjectDetailsView baseProject={project} />
+      <ProjectDetailsView
+        baseProject={project}
+        prevProject={prevProject}
+        nextProject={nextProject}
+      />
 
       <Footer />
     </main>

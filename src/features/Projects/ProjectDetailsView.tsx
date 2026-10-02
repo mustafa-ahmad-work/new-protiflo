@@ -1,185 +1,546 @@
 "use client";
 
-import { useLanguage } from "@/components/providers/LanguageProvider";
-import { ExternalLink, ArrowLeft, ArrowRight, Target, Layout } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ExternalLink, ArrowLeft, ArrowRight, Target, Layout, CheckCircle2,
+  AlertCircle, Sparkles, Workflow, Layers, ShieldCheck, ChevronLeft,
+  ChevronRight, Maximize2, X, MessageCircle, Code2
+} from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 
-export default function ProjectDetailsView({ baseProject }: { baseProject: any }) {
+interface ProjectDetailsViewProps {
+  baseProject: any;
+  prevProject?: any;
+  nextProject?: any;
+}
+
+export default function ProjectDetailsView({
+  baseProject,
+  prevProject,
+  nextProject,
+}: ProjectDetailsViewProps) {
   const { t, isRTL, language } = useLanguage();
-  const isAr = language === "ar";
+  const isEn = language === "en";
+  const localized = isEn ? baseProject.en || baseProject : baseProject.ar || baseProject;
 
-  const translatedItems = (t("projects.items", { returnObjects: true }) as any[]) || [];
-  const found = translatedItems.find((item: any) => Number(item.id) === Number(baseProject.id));
+  const title = localized.title || baseProject.title;
+  const category = localized.category || baseProject.category;
+  const description = localized.fullDescription || localized.shortDescription || baseProject.description;
+  const problem = localized.problem || "";
+  const solution = localized.solution || "";
+  const goals: string[] = localized.goals || [];
+  const workflow: any[] = localized.workflow || [];
+  const features: any[] = localized.features || [];
+  const customSections: any[] = localized.customSections || [];
 
-  const project = {
-    ...baseProject,
-    title: found?.title || baseProject.title,
-    description: found?.description || baseProject.description,
-    category: found?.category || baseProject.category,
-  };
+  // Gallery images support (any number of images)
+  const imageList: string[] =
+    Array.isArray(baseProject.images) && baseProject.images.length > 0
+      ? baseProject.images
+      : [baseProject.image || "/images/projects/1.png"];
 
-  const challengeText = isAr
-    ? "بناء بنية برمجية فائقة الأداء تحافظ على تكامل المعمارية الهندسية وتضمن تجربة مستخدم سلسة واستجابة فورية عبر مختلف الأجهزة والمتصفحات."
-    : "Building a high-performance system that maintains architectural integrity while delivering a seamless user experience across all devices.";
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const solutionText = isAr
-    ? "تطبيق معمارية برمجية معيارية تجمع بين أحدث أطر العمل التفاعلية، وتصميم قواعد بيانات محسنة للتعامل مع آلاف الطلبات، ونظام تصميم UI/UX مدروس بعناية."
-    : "Implementation of a modular architecture using modern reactive frameworks, optimized database structures, and a polished UI/UX design system.";
+  const prevLocalized = prevProject ? (isEn ? prevProject.en || prevProject : prevProject.ar || prevProject) : null;
+  const nextLocalized = nextProject ? (isEn ? nextProject.en || nextProject : nextProject.ar || nextProject) : null;
 
   return (
-    <article className="relative pt-32 pb-32">
-      {/* Navigation & Header */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <Link
-          href="/#projects"
-          className="inline-flex items-center gap-2 text-text-muted hover:text-primary transition-all mb-12 group"
-        >
-          {isRTL ? (
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          ) : (
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          )}
-          <span className="text-xs font-black uppercase tracking-widest">{t("projectDetails.back")}</span>
-        </Link>
+    <article className="relative pt-28 sm:pt-36 pb-24 overflow-hidden">
+      {/* 1. Header & Breadcrumb */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 relative z-10">
+        <div className="flex items-center justify-between gap-4 mb-8">
+          <Link
+            href="/#projects"
+            className="inline-flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-white bg-bg-surface/80 hover:bg-bg-surface px-4 py-2 rounded-full border border-white/10 transition-all group"
+          >
+            {isRTL ? (
+              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform text-primary" />
+            ) : (
+              <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform text-primary" />
+            )}
+            <span>{isEn ? "Back to All Projects" : "العودة إلى كافة المشاريع"}</span>
+          </Link>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div className="space-y-8">
-            <div className="flex items-center gap-3">
-              <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20">
-                {project.category || t("projectDetails.caseStudy")}
-              </span>
-              <div className="w-1 h-1 rounded-full bg-white/20" />
-              <div className="text-[10px] text-text-muted font-bold uppercase tracking-widest">
-                {project.duration || "2024"}
-              </div>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-text-muted px-3 py-1 rounded-full bg-white/5 border border-white/10">
+              {baseProject.duration || "2024 — 2025"}
+            </span>
+          </div>
+        </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white">
-              {project.title}
-            </h1>
-
-            <p className="text-lg md:text-xl text-text-muted leading-relaxed max-w-xl">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-4 pt-4">
-              {project.live && project.live !== "#" && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-primary text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:bg-primary-hover transition-all shadow-xl shadow-primary/30 text-xs"
-                >
-                  <ExternalLink size={18} /> {t("projectDetails.launchProject")}
-                </a>
-              )}
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-bg-surface border border-white/15 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 hover:bg-white/10 transition-all text-xs"
-                >
-                  <FaGithub size={18} /> {t("projectDetails.sourceCode")}
-                </a>
-              )}
-            </div>
-
-            {/* Quick Info Grid */}
-            <div className="grid grid-cols-2 gap-8 pt-12 border-t border-white/10">
-              <div>
-                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-2">
-                  {t("projectDetails.myRole")}
-                </p>
-                <p className="text-sm font-bold text-white">
-                  {isAr ? "كبير مهندسي البرمجيات Full-Stack" : "Lead Full-Stack Engineer"}
-                </p>
-              </div>
-              <div>
-                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-2">
-                  {t("projectDetails.timeline")}
-                </p>
-                <p className="text-sm font-bold text-white">
-                  {isAr ? "نظام منجز ومُختبر بالكامل" : "Fully Delivered & Tested"}
-                </p>
-              </div>
-            </div>
+        {/* Hero Title & Description */}
+        <div className="max-w-4xl space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-xs font-black text-primary">
+            <Sparkles size={14} />
+            <span>{category}</span>
           </div>
 
-          <div className="relative group w-full">
-            <div className="absolute -inset-4 bg-linear-to-r from-primary/20 to-blue-600/20 rounded-[3rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-            <div className="relative rounded-[2.5rem] overflow-hidden border border-white/15 shadow-2xl bg-bg-surface">
-              <img src={project.image} alt={project.title} className="w-full h-auto object-contain block mx-auto" />
-            </div>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.2]">
+            {title}
+          </h1>
+
+          <p className="text-base sm:text-lg lg:text-xl text-text-muted leading-relaxed font-normal">
+            {description}
+          </p>
+
+          {/* Action Links & CTAs */}
+          <div className="flex flex-wrap items-center gap-3 pt-3">
+            {baseProject.live && baseProject.live !== "#" && (
+              <a
+                href={baseProject.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-7 py-3 text-xs font-bold flex items-center gap-2 shadow-lg shadow-primary/30"
+              >
+                <ExternalLink size={15} />
+                <span>{isEn ? "Live Project Preview" : "معاينة المشروع أونلاين"}</span>
+              </a>
+            )}
+
+            {baseProject.github && !baseProject.isPrivate && (
+              <a
+                href={baseProject.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-bg-surface hover:bg-bg-surface/80 text-white border border-white/15 px-6 py-3 rounded-full text-xs font-bold flex items-center gap-2 transition-all shadow-md"
+              >
+                <FaGithub size={16} />
+                <span>{isEn ? "Source Code" : "الكود المصدري"}</span>
+              </a>
+            )}
+
+            <a
+              href="https://wa.me/201120354592"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/5 hover:bg-white/10 text-gray-200 hover:text-white border border-white/10 px-6 py-3 rounded-full text-xs font-bold flex items-center gap-2 transition-all"
+            >
+              <MessageCircle size={15} className="text-[#25D366]" />
+              <span>{isEn ? "Discuss Similar Project" : "طلب مشروع مماثل"}</span>
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Deep Dive Section */}
-      <section className="py-24 bg-bg-surface/50 border-y border-white/10">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 lg:gap-20">
-          <div className="space-y-12">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20 mb-6">
-                <Target size={24} />
-              </div>
-              <h3 className="text-3xl font-black text-white">
-                {isAr ? "التحدي الهندسي" : "The Challenge"}
-              </h3>
-              <p className="text-base text-text-muted leading-relaxed">
-                {challengeText}
-              </p>
+      {/* 2. Interactive Image Gallery (Supports ANY number of images) */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+        <div className="bg-bg-surface/90 border border-white/10 rounded-3xl p-4 sm:p-6 shadow-2xl backdrop-blur-xl">
+          {/* Main Featured Image */}
+          <div className="relative w-full rounded-2xl overflow-hidden bg-bg-main border border-white/10 group shadow-inner">
+            <Image
+              src={imageList[activeImageIndex] || imageList[0]}
+              alt={`${title} - Preview ${activeImageIndex + 1}`}
+              width={800}
+              height={450}
+              className="object-cover h-full w-full transition-all duration-700 group-hover:scale-[1.02]"
+              priority
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-bg-main/70 via-transparent to-transparent opacity-40 pointer-events-none" />
+
+            {/* Quick Fullscreen Button */}
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              className="absolute top-4 right-4 p-2.5 rounded-xl bg-bg-main/80 hover:bg-bg-main text-white border border-white/20 shadow-lg backdrop-blur-md transition-all cursor-pointer group-hover:scale-105"
+              aria-label={isEn ? "Open full size image" : "عرض الصورة بالحجم الكامل"}
+              title={isEn ? "Expand" : "تكبير"}
+            >
+              <Maximize2 size={16} />
+            </button>
+
+            {/* Image Counter Badge */}
+            <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-full bg-bg-main/85 text-xs font-bold text-white border border-white/15 backdrop-blur-md">
+              {activeImageIndex + 1} / {imageList.length}
             </div>
 
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-400 border border-blue-500/20 mb-6">
-                <Layout size={24} />
-              </div>
-              <h3 className="text-3xl font-black text-white">
-                {isAr ? "الحل والتنفيذ" : "The Solution"}
-              </h3>
-              <p className="text-base text-text-muted leading-relaxed">
-                {solutionText}
-              </p>
-            </div>
+            {/* Navigation Arrows if more than 1 image */}
+            {imageList.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveImageIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1))
+                  }
+                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-bg-main/80 hover:bg-primary text-white border border-white/15 transition-all shadow-xl"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setActiveImageIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1))
+                  }
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-bg-main/80 hover:bg-primary text-white border border-white/15 transition-all shadow-xl"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </>
+            )}
           </div>
 
-          <div className="space-y-8">
-            <h3 className="text-xl font-black text-white uppercase tracking-widest">
-              {t("projectDetails.coreTech")}
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {project.tags?.map((tag: string) => (
-                <div
-                  key={tag}
-                  className="flex items-center gap-3 p-4 bg-bg-main rounded-2xl border border-white/10 group hover:border-primary/50 transition-all"
+          {/* Thumbnails Row (if multiple images) */}
+          {imageList.length > 1 && (
+            <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-3 overflow-x-auto pb-2 scrollbar-thin">
+              {imageList.map((img, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`relative w-24 sm:w-32 aspect-video rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${activeImageIndex === idx
+                    ? "border-primary scale-105 shadow-md shadow-primary/40"
+                    : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/30"
+                    }`}
                 >
-                  <div className="w-2 h-2 rounded-full bg-primary group-hover:scale-150 transition-transform" />
-                  <span className="text-xs font-bold text-gray-200 group-hover:text-white">{tag}</span>
+                  <Image
+                    src={img}
+                    alt={`Thumbnail ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* 3. Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-100 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(false)}
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all cursor-pointer"
+              aria-label="Close Lightbox"
+            >
+              <X size={20} />
+            </button>
+
+            <div
+              className="relative max-w-6xl max-h-[85vh] w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={imageList[activeImageIndex]}
+                alt="Enlarged project screenshot"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 4. Problem & Solution Section (Bento Grid) */}
+      {(problem || solution) && (
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {/* The Challenge / Problem */}
+            {problem && (
+              <div className="p-8 sm:p-10 rounded-3xl bg-bg-surface border border-red-500/20 shadow-xl flex flex-col justify-between group hover:border-red-500/40 transition-all">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-6 shadow-md">
+                    <AlertCircle size={24} />
+                  </div>
+                  <span className="text-[11px] font-black uppercase tracking-widest text-red-400 block mb-2">
+                    {isEn ? "The Engineering Challenge" : "التحدي والمشكلة"}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-4 leading-snug">
+                    {isEn ? "Root Problem & Pain Points" : "جوهر المشكلة قبل المشروع"}
+                  </h3>
+                  <p className="text-sm sm:text-base text-text-muted leading-relaxed font-normal">
+                    {problem}
+                  </p>
+                </div>
+                <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-xs text-red-300/80">
+                  <ShieldCheck size={16} className="text-red-400 shrink-0" />
+                  <span>{isEn ? "Solved with systematic architecture" : "تم التغلب عليها بهندسة برمجية مدروسة"}</span>
+                </div>
+              </div>
+            )}
+
+            {/* The Solution */}
+            {solution && (
+              <div className="p-8 sm:p-10 rounded-3xl bg-bg-surface border border-emerald-500/20 shadow-xl flex flex-col justify-between group hover:border-emerald-500/40 transition-all">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 shadow-md">
+                    <CheckCircle2 size={24} />
+                  </div>
+                  <span className="text-[11px] font-black uppercase tracking-widest text-emerald-400 block mb-2">
+                    {isEn ? "The Implemented Solution" : "الحل الهندسي المبتكر"}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-4 leading-snug">
+                    {isEn ? "Architectural & Functional Resolution" : "المنهجية والحل البرمجي"}
+                  </h3>
+                  <p className="text-sm sm:text-base text-text-muted leading-relaxed font-normal">
+                    {solution}
+                  </p>
+                </div>
+                <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-xs text-emerald-300/80">
+                  <Sparkles size={16} className="text-emerald-400 shrink-0" />
+                  <span>{isEn ? "Sustainable, scalable system delivery" : "حل مستدام وقابل للتطوير والنمو"}</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* 5. Project Goals & Objectives */}
+      {goals.length > 0 && (
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+          <div className="p-8 sm:p-12 rounded-3xl bg-bg-surface border border-white/10 shadow-xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                <Target size={20} />
+              </div>
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">
+                  {isEn ? "Project Objectives & Impact" : "أهداف المشروع والنتائج المحققة"}
+                </h3>
+                <p className="text-xs sm:text-sm text-text-muted">
+                  {isEn ? "Key functional and business targets" : "الغايات التشغيلية والهندسية التي تحققت"}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+              {goals.map((goal, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-bg-main/80 border border-white/10 flex items-start gap-4 hover:border-primary/40 transition-all group"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-primary/15 border border-primary/20 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform">
+                    <CheckCircle2 size={16} />
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-200 leading-relaxed font-normal pt-1">
+                    {goal}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Call to Action */}
-      <section className="pt-20 pb-10 px-6 text-center">
-        <div className="max-w-4xl mx-auto p-12 md:p-16 rounded-[3rem] bg-linear-to-b from-primary/10 to-transparent border border-white/10">
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6 text-white">
-            {t("projectDetails.readyToBuild")}
+      {/* 6. Step-by-Step Workflow & Execution Roadmap */}
+      {workflow.length > 0 && (
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4">
+              <Workflow size={14} />
+              <span>{isEn ? "Development Roadmap" : "مسار العمل والتنفيذ"}</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
+              {isEn ? "How the Project Was Built" : "المسار الهندسي خطوة بخطوة"}
+            </h2>
+            <p className="text-xs sm:text-sm text-text-muted mt-2">
+              {isEn
+                ? "A structured development lifecycle from concept to deployment"
+                : "منهجية مرحلية تضمن جودة الكود، أمان المنظومة، واستقرار الأداء"}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workflow.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-6 sm:p-7 rounded-3xl bg-bg-surface border border-white/10 hover:border-primary/50 transition-all flex flex-col justify-between group shadow-xl relative overflow-hidden"
+              >
+                <div className="absolute -top-3 -right-2 text-6xl font-black text-white/5 select-none pointer-events-none group-hover:text-primary/10 transition-colors">
+                  {item.step || `0${idx + 1}`}
+                </div>
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center text-primary mb-6 shadow-md group-hover:scale-105 transition-transform">
+                    <Layers size={22} />
+                  </div>
+                  <span className="text-[10px] font-black text-primary tracking-widest uppercase block mb-1.5">
+                    {item.step || `0${idx + 1}`}
+                  </span>
+                  <h4 className="text-lg font-black text-white mb-2.5">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-text-muted leading-relaxed font-normal">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 7. Key Features & Capabilities */}
+      {features.length > 0 && (
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+          <div className="p-8 sm:p-12 rounded-3xl bg-bg-surface border border-white/10 shadow-xl">
+            <div className="flex items-center gap-3 mb-10 pb-6 border-b border-white/10">
+              <div className="w-12 h-12 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center text-primary shadow-md">
+                <Layout size={24} />
+              </div>
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">
+                  {isEn ? "Core Features & Capabilities" : "أبرز المميزات والخصائص التفاعلية"}
+                </h3>
+                <p className="text-xs sm:text-sm text-text-muted">
+                  {isEn ? "Capabilities engineered to empower users" : "الوظائف والخصائص المدمجة لخدمة المستخدم"}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {features.map((feat, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-primary/40 transition-all flex flex-col justify-between group shadow-md"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                    <CheckCircle2 size={18} />
+                  </div>
+                  <h4 className="text-base font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                    {feat.title}
+                  </h4>
+                  <p className="text-xs text-text-muted leading-relaxed font-normal">
+                    {feat.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 8. Dynamic Custom Sections (Allows ANY custom sections from JSON!) */}
+      {customSections.length > 0 && (
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+          <div className="space-y-8">
+            {customSections.map((sec, idx) => (
+              <div
+                key={idx}
+                className="p-8 sm:p-10 rounded-3xl bg-linear-to-br from-bg-surface via-bg-surface to-bg-main border border-primary/25 shadow-xl relative overflow-hidden"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary">
+                    <Sparkles size={20} />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white">
+                    {sec.title}
+                  </h3>
+                </div>
+                <p className="text-sm sm:text-base text-gray-200 leading-relaxed font-normal max-w-4xl">
+                  {sec.content}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 9. Technologies Used */}
+      {baseProject.tags && baseProject.tags.length > 0 && (
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 sm:mb-24 relative z-10">
+          <div className="p-8 sm:p-10 rounded-3xl bg-bg-surface border border-white/10 shadow-xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                <Code2 size={20} />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-white">
+                {isEn ? "Core Technologies & Architecture" : "التقنيات والمكتبات المستخدمة"}
+              </h3>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
+              {baseProject.tags.map((tag: string) => (
+                <span
+                  key={tag}
+                  className="px-4 py-2 rounded-xl bg-bg-main border border-white/15 text-xs font-bold text-gray-200 hover:text-white hover:border-primary/50 transition-all shadow-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 10. Previous / Next Project Navigation & Call to Action */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {prevProject ? (
+            <Link
+              href={`/projects/${prevProject.id}`}
+              className="p-6 rounded-2xl bg-bg-surface border border-white/10 hover:border-primary/60 transition-all group flex items-center gap-4 shadow-lg"
+            >
+              <div className="w-11 h-11 rounded-xl bg-bg-main border border-white/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-105 transition-transform">
+                {isRTL ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}
+              </div>
+              <div className="overflow-hidden">
+                <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block">
+                  {isEn ? "Previous Project" : "المشروع السابق"}
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-primary transition-colors truncate">
+                  {prevLocalized?.title || prevProject.title}
+                </h4>
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+
+          {nextProject ? (
+            <Link
+              href={`/projects/${nextProject.id}`}
+              className="p-6 rounded-2xl bg-bg-surface border border-white/10 hover:border-primary/60 transition-all group flex items-center justify-between gap-4 shadow-lg text-end"
+            >
+              <div className="overflow-hidden grow">
+                <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block">
+                  {isEn ? "Next Project" : "المشروع التالي"}
+                </span>
+                <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-primary transition-colors truncate">
+                  {nextLocalized?.title || nextProject.title}
+                </h4>
+              </div>
+              <div className="w-11 h-11 rounded-xl bg-bg-main border border-white/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-105 transition-transform">
+                {isRTL ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
+        </div>
+
+        {/* Bottom CTA Card */}
+        <div className="rounded-3xl p-10 sm:p-14 bg-bg-card border border-primary/30 text-center shadow-2xl relative overflow-hidden">
+          <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">
+            {isEn ? "Have a similar vision or project to build?" : "هل لديك فكرة أو مشروع ترغب في تنفيذه؟"}
           </h2>
-          <p className="text-text-muted max-w-xl mx-auto mb-8 text-sm md:text-base">
-            {t("projectDetails.discussProject")}
+          <p className="text-sm sm:text-base text-text-muted max-w-xl mx-auto mb-8 font-normal leading-relaxed">
+            {isEn
+              ? "Let's turn your vision into a robust, high-performance web application or management system."
+              : "يسعدني مناقشة تفاصيل مشروعك وبناء تطبيق أو نظام إداري مخصص بأعلى المعايير الهندسية."}
           </p>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold px-8 py-4 rounded-full transition-all shadow-xl shadow-primary/30 text-xs"
+          <a
+            href="https://wa.me/201120354592"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-3 px-8 py-4 text-xs sm:text-sm font-bold shadow-xl shadow-primary/30"
           >
-            <span>{t("nav.contactUs")}</span>
-            {isRTL ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
-          </Link>
+            <MessageCircle size={18} />
+            <span>{isEn ? "Start Direct WhatsApp Conversation" : "تواصل معي مباشرة عبر الواتساب"}</span>
+          </a>
         </div>
       </section>
     </article>
