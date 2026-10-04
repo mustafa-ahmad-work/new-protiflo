@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
+import ScrollProgressBar from "@/components/layout/ScrollProgressBar";
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
         <CustomCursor />
         <SmoothScrollProvider>
           <LanguageProvider>
+            <ScrollProgressBar />
             <ThemeProvider>
               <LoadingScreen />
               <Suspense fallback={null}>

@@ -58,9 +58,9 @@ export default function Testimonials() {
               </div>
 
               <div className="pt-5 border-t border-white/10 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 font-black text-xs">
+                {/* <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 font-black text-xs">
                   <Sparkles size={16} />
-                </div>
+                </div> */}
                 <div className="overflow-hidden">
                   <h4 className="font-bold text-sm text-white group-hover:text-primary transition-colors truncate">
                     {projectTitle}

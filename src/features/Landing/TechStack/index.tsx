@@ -1,20 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperClass } from "swiper";
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
-
-// Swiper core & effect styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Server, Layout, Database, Wrench, GraduationCap,
-  Sparkles, CheckCircle2, ChevronLeft, ChevronRight,
-  HardDrive, Terminal, ShieldCheck, Code2, Layers, Cpu, Puzzle
+  Sparkles, CheckCircle2,
+  HardDrive, Terminal, ShieldCheck, Code2, Layers, Cpu, Puzzle,
+  Layers3
 } from "lucide-react";
 import {
   SiPhp, SiLaravel, SiReact, SiJavascript, SiHtml5,
@@ -44,6 +36,7 @@ interface TechCategory {
   title: string;
   subtitle: string;
   icon: React.ComponentType<{ size?: number; className?: string }>;
+  accentColor: string;
   insight: string;
   items: TechItem[];
 }
@@ -58,7 +51,7 @@ const learningIcons = [
 
 export default function TechStack() {
   const { t, isRTL } = useLanguage();
-  const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("all");
 
   const rawLearning = t("techSection.learningItems", { returnObjects: true });
   const learningItems: LearningItem[] = Array.isArray(rawLearning) ? (rawLearning as LearningItem[]) : [];
@@ -69,6 +62,7 @@ export default function TechStack() {
       title: t("techSection.cards.backend.title"),
       subtitle: t("techSection.cards.backend.subtitle"),
       icon: Server,
+      accentColor: "#5337FF",
       insight: t("techSection.cards.backend.insight"),
       items: [
         {
@@ -105,6 +99,7 @@ export default function TechStack() {
       title: t("techSection.cards.frontend.title"),
       subtitle: t("techSection.cards.frontend.subtitle"),
       icon: Layout,
+      accentColor: "#06B6D4",
       insight: t("techSection.cards.frontend.insight"),
       items: [
         {
@@ -142,6 +137,7 @@ export default function TechStack() {
       title: t("techSection.cards.database.title"),
       subtitle: t("techSection.cards.database.subtitle"),
       icon: Database,
+      accentColor: "#38BDF8",
       insight: t("techSection.cards.database.insight"),
       items: [
         {
@@ -179,6 +175,7 @@ export default function TechStack() {
       title: t("techSection.cards.tools.title"),
       subtitle: t("techSection.cards.tools.subtitle"),
       icon: Wrench,
+      accentColor: "#F59E0B",
       insight: t("techSection.cards.tools.insight"),
       items: [
         {
@@ -212,11 +209,33 @@ export default function TechStack() {
     },
   ];
 
-  return (<>
+  const filterTabs = [
+    { id: "all", label: isRTL ? "كافة التقنيات" : "All Technologies", icon: Layers3 },
+    { id: "backend", label: "Backend", icon: Server },
+    { id: "frontend", label: "Frontend", icon: Layout },
+    { id: "database", label: "Database", icon: Database },
+    { id: "tools", label: isRTL ? "الأدوات والبيئة" : "Tools & DevOps", icon: Wrench },
+  ];
+
+  const displayedCategories = activeTab === "all"
+    ? categories
+    : categories.filter((c) => c.id === activeTab);
+
+  return (
     <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
-      {/* Header Container */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      {/* Ambient background blur */}
+      <div
+        className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4">
               <Sparkles size={14} />
@@ -230,162 +249,143 @@ export default function TechStack() {
             </p>
           </div>
 
-          {/* 3D Carousel Navigation Controls */}
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={() => swiperInstance?.slidePrev()}
-              className="w-12 h-12 rounded-2xl bg-bg-surface border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group"
-              aria-label="Previous Slide"
-            >
-              {isRTL ? (
-                <ChevronRight size={22} className="group-hover:text-primary transition-colors" />
-              ) : (
-                <ChevronLeft size={22} className="group-hover:text-primary transition-colors" />
-              )}
-            </button>
-
-            <button
-              onClick={() => swiperInstance?.slideNext()}
-              className="w-12 h-12 rounded-2xl bg-bg-surface border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group"
-              aria-label="Next Slide"
-            >
-              {isRTL ? (
-                <ChevronLeft size={22} className="group-hover:text-primary transition-colors" />
-              ) : (
-                <ChevronRight size={22} className="group-hover:text-primary transition-colors" />
-              )}
-            </button>
+          {/* Interactive Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2">
+            {filterTabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`inline-flex items-center gap-1 px-2 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${isActive
+                    ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
+                    : "bg-bg-surface/80 border border-white/10 text-text-muted hover:text-white hover:border-white/20"
+                    }`}
+                >
+                  <Icon size={14} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
-      </div>
-    </Section>
-    {/* Unconstrained 3D Carousel (Not bound to container, Full Viewport Width, Full Height Cards) */}
-    <div className="w-full relative overflow-hidden mb-20">
-      <Swiper
-        dir={isRTL ? "rtl" : "ltr"}
-        key={isRTL ? "tech-3d-rtl" : "tech-3d-ltr"}
-        modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
-        effect="coverflow"
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={1.15}
-        breakpoints={{
-          640: {
-            slidesPerView: 1.6,
-            spaceBetween: 24,
-          },
-          1024: {
-            slidesPerView: 2.5,
-            spaceBetween: 32,
-          },
-          1440: {
-            slidesPerView: 3.2,
-            spaceBetween: 40,
-          },
-        }}
-        speed={650}
-        onSwiper={setSwiperInstance}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        coverflowEffect={{
-          rotate: 12,
-          stretch: 0,
-          depth: 160,
-          modifier: 1,
-          slideShadows: false,
-        }}
-        pagination={{
-          clickable: true,
-          bulletClass: "swiper-3d-bullet",
-          bulletActiveClass: "swiper-3d-bullet-active",
-        }}
-        className="w-full py-8 items-stretch!"
-      >
-        {categories.map((category) => {
-          const CategoryIcon = category.icon;
-          return (
-            <SwiperSlide key={category.id} className="flex">
-              <div className="w-full h-full rounded-3xl p-7 sm:p-9 bg-bg-surface border border-white/10 hover:border-primary/40 transition-all duration-300 flex flex-col justify-between shadow-2xl select-none">
-                <div>
-                  {/* Card Header - Clean, Crisp, Zero Badges */}
-                  <div className="flex items-center gap-4 pb-6 mb-6 border-b border-white/10">
-                    <div className="w-14 h-14 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center text-primary shadow-md shrink-0">
-                      <CategoryIcon size={26} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                        {category.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-text-muted mt-0.5 font-normal">
-                        {category.subtitle}
-                      </p>
-                    </div>
-                  </div>
 
-                  {/* Tech Items List - Spacious, Clean Typography, Zero Badges */}
-                  <div className="space-y-3.5">
-                    {category.items.map((tech) => {
-                      const TechIcon = tech.icon;
-                      return (
+        {/* Main Categories Bento Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+            className={`grid gap-8 mb-20 ${activeTab === "all"
+              ? "grid-cols-1 lg:grid-cols-2"
+              : "grid-cols-1 max-w-4xl mx-auto"
+              }`}
+          >
+            {displayedCategories.map((category) => {
+              const CategoryIcon = category.icon;
+              return (
+                <div
+                  key={category.id}
+                  className="rounded-3xl p-6 sm:p-8 bg-bg-surface border border-white/10 hover:border-primary/40 transition-all duration-300 flex flex-col justify-between shadow-2xl relative overflow-hidden group"
+                >
+                  {/* Subtle category accent gradient bar at top */}
+                  {/* <div
+                    className="absolute top-0 left-0 right-0 h-1 opacity-70 group-hover:opacity-100 transition-opacity"
+                    style={{ backgroundColor: category.accentColor }}
+                  /> */}
+
+                  <div>
+                    {/* Category Header */}
+                    <div className="flex items-center justify-between pb-5 mb-5 border-b border-white/10">
+                      <div className="flex items-center gap-3.5">
                         <div
-                          key={tech.name}
-                          className="flex items-start gap-4 p-4 rounded-2xl bg-bg-main border border-white/10 hover:border-white/20 transition-all"
+                          className="w-12 h-12 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform"
+                          style={{ color: category.accentColor }}
                         >
-                          <div className="w-11 h-11 rounded-xl bg-bg-surface border border-white/10 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                            {TechIcon ? (
-                              <TechIcon
-                                size={22}
-                                className={tech.iconColor ? "" : "text-primary"}
-                                {...(tech.iconColor ? { style: { color: tech.iconColor } } : {})}
-                              />
-                            ) : null}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-baseline justify-between gap-2 mb-1">
-                              <h4 className="text-sm sm:text-base font-bold text-white tracking-tight">
-                                {tech.name}
-                              </h4>
-                              <span className="text-[11px] text-text-muted shrink-0 font-normal">
-                                {tech.role}
-                              </span>
-                            </div>
-                            <p className="text-xs text-text-muted leading-relaxed font-normal">
-                              {tech.desc}
-                            </p>
-                          </div>
+                          <CategoryIcon size={24} />
                         </div>
-                      );
-                    })}
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                            {category.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-text-muted mt-0.5">
+                            {category.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-bg-main border border-white/10 text-text-muted">
+                        {category.items.length} {isRTL ? "تقنيات" : "Techs"}
+                      </span>
+                    </div>
+
+                    {/* Tech Items - 2x2 responsive grid inside category */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      {category.items.map((tech) => {
+                        const TechIcon = tech.icon;
+                        return (
+                          <div
+                            key={tech.name}
+                            className="p-4 rounded-2xl bg-bg-main/90 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between group/item hover:bg-bg-main"
+                          >
+                            <div>
+                              {/* Header: Icon + Name + Role */}
+                              <div className="flex items-start gap-3 mb-2.5">
+                                <div className="w-10 h-10 rounded-xl bg-bg-surface border border-white/10 flex items-center justify-center shrink-0 shadow-sm group-hover/item:scale-105 transition-transform">
+                                  {TechIcon ? (
+                                    <TechIcon
+                                      size={20}
+                                      className={tech.iconColor ? "" : "text-primary"}
+                                      {...(tech.iconColor ? { style: { color: tech.iconColor } } : {})}
+                                    />
+                                  ) : null}
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-sm font-bold text-white tracking-tight leading-snug">
+                                    {tech.name}
+                                  </h4>
+                                  <span className="text-[10px] text-primary/90 font-medium inline-block mt-0.5">
+                                    {tech.role}
+                                  </span>
+                                </div>
+                              </div>
+
+                              {/* Description */}
+                              <p className="text-xs text-text-muted leading-relaxed">
+                                {tech.desc}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Card Footer Architectural Insight */}
+                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2.5 text-xs text-text-muted bg-bg-main/40 -mx-6 -mb-6 p-4 sm:-mx-8 sm:-mb-8 sm:p-5">
+                    <CheckCircle2 size={16} className="text-primary shrink-0" />
+                    <span className="leading-relaxed font-medium text-gray-300">
+                      {category.insight}
+                    </span>
                   </div>
                 </div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
 
-                {/* Card Footer Insight */}
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-3 text-xs sm:text-sm text-text-muted">
-                  <CheckCircle2 size={18} className="text-primary shrink-0" />
-                  <span className="leading-relaxed">{category.insight}</span>
-                </div>
-              </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </div>
-    <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
-      {/* Continuous Engineering Deepening ("أتعلم حاليًا") - Clean, Consistent, Zero Glow */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Continuous Engineering Deepening ("أتعلم حاليًا") */}
         <Reveal delay={0.1}>
-          <div className="rounded-3xl p-8 sm:p-12 bg-bg-surface border border-white/10 shadow-xl">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-6 border-b border-white/10">
+          <div className="rounded-3xl p-6 sm:p-10 bg-bg-surface border border-white/10 shadow-xl relative overflow-hidden">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 pb-6 border-b border-white/10">
               <div>
-                <div className="inline-flex items-center gap-2 text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full mb-3 shadow-sm">
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-3.5 py-1.5 rounded-full mb-3 shadow-sm">
                   <GraduationCap size={16} />
                   <span>{t("techSection.learningBadge")}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                   {t("techSection.learningTitle")}
                 </h3>
               </div>
@@ -396,24 +396,24 @@ export default function TechStack() {
 
             {/* 5 Engineering Topics */}
             <StaggerContainer staggerDelay={0.08}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 {learningItems.map((item, i) => {
                   const meta = learningIcons[i % learningIcons.length];
                   const Icon = meta.icon;
                   return (
                     <StaggerItem key={i}>
-                      <div className="p-6 rounded-2xl bg-bg-main border border-white/10 hover:border-primary/40 transition-all duration-300 h-full flex flex-col justify-between group/learn shadow-md">
+                      <div className="p-5 rounded-2xl bg-bg-main border border-white/10 hover:border-primary/40 transition-all duration-300 h-full flex flex-col justify-between group/learn shadow-md">
                         <div>
-                          <div className="flex items-center justify-between mb-5">
-                            <div className="w-11 h-11 rounded-xl bg-bg-surface flex items-center justify-center text-primary border border-white/10 group-hover/learn:scale-110 transition-transform shadow-sm">
-                              <Icon size={20} />
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="w-10 h-10 rounded-xl bg-bg-surface flex items-center justify-center text-primary border border-white/10 group-hover/learn:scale-110 transition-transform shadow-sm">
+                              <Icon size={18} />
                             </div>
                             <span className="text-xs font-mono font-bold text-text-muted/40 group-hover/learn:text-primary transition-colors">
                               {meta.num}
                             </span>
                           </div>
 
-                          <h4 className="text-sm sm:text-base font-bold text-white mb-2.5 group-hover/learn:text-primary transition-colors">
+                          <h4 className="text-sm font-bold text-white mb-2 group-hover/learn:text-primary transition-colors">
                             {item.title}
                           </h4>
 
@@ -431,5 +431,5 @@ export default function TechStack() {
         </Reveal>
       </div>
     </Section>
-  </>);
+  );
 }

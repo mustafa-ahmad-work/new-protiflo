@@ -267,7 +267,7 @@ export default function Contact() {
                       <span>{isRTL ? "نوع المشروع / الخدمة المطلوبة *" : "Project Type / Service *"}</span>
                       <span className="text-[10px] text-primary">{isRTL ? "حدد نوع طلبك" : "Select one"}</span>
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                       {serviceOptions.map((opt) => {
                         const Icon = opt.icon;
                         const isSelected = formData.serviceType === opt.id;
@@ -276,13 +276,13 @@ export default function Contact() {
                             key={opt.id}
                             type="button"
                             onClick={() => setFormData({ ...formData, serviceType: opt.id })}
-                            className={`p-2.5 rounded-xl border text-start transition-all flex items-center gap-2 cursor-pointer ${isSelected
+                            className={`px-3.5 py-2.5 rounded-xl border text-start transition-all inline-flex items-center gap-2 cursor-pointer ${isSelected
                               ? "bg-primary/20 border-primary text-white shadow-sm shadow-primary/30"
                               : "bg-bg-surface/80 border-white/10 text-gray-300 hover:border-white/30"
                               }`}
                           >
-                            <Icon size={16} className={isSelected ? "text-primary" : "text-text-muted"} />
-                            <span className="text-xs font-semibold truncate">
+                            <Icon size={16} className={`shrink-0 ${isSelected ? "text-primary" : "text-text-muted"}`} />
+                            <span className="text-xs font-semibold whitespace-normal leading-snug">
                               {isRTL ? opt.labelAr : opt.labelEn}
                             </span>
                           </button>
@@ -305,7 +305,7 @@ export default function Contact() {
                             key={b.id}
                             type="button"
                             onClick={() => setFormData({ ...formData, budget: b.id })}
-                            className={`px-3 py-1.5 rounded-lg border text-xs transition-all cursor-pointer ${isSelected
+                            className={`px-3 py-2 rounded-xl border text-xs transition-all cursor-pointer whitespace-normal ${isSelected
                               ? "bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold"
                               : "bg-bg-surface border-white/10 text-text-muted hover:border-white/30"
                               }`}
@@ -331,7 +331,7 @@ export default function Contact() {
                             key={tm.id}
                             type="button"
                             onClick={() => setFormData({ ...formData, timeline: tm.id })}
-                            className={`px-3 py-1.5 rounded-lg border text-xs transition-all cursor-pointer ${isSelected
+                            className={`px-3 py-2 rounded-xl border text-xs transition-all cursor-pointer whitespace-normal ${isSelected
                               ? "bg-cyan-500/20 border-cyan-500 text-cyan-300 font-bold"
                               : "bg-bg-surface border-white/10 text-text-muted hover:border-white/30"
                               }`}
