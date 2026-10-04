@@ -6,6 +6,7 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import Section from "../../components/Section";
 import { Reveal, StaggerContainer, StaggerItem } from "../../../components/layout/Reveal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Badge } from "@/components/ui/Badge";
 
 export default function About() {
   const { t, isRTL } = useLanguage();
@@ -34,9 +35,9 @@ export default function About() {
 
         <div className="space-y-6">
           <Reveal delay={0.2}>
-            <span className="text-primary font-bold text-xs uppercase tracking-widest bg-bg-surface px-4 py-1.5 rounded-full border border-white/10 inline-block mb-3">
+            <Badge variant="primary">
               {t("about.badge")}
-            </span>
+            </Badge>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 leading-tight text-white">
               {t("about.title")}
             </h2>

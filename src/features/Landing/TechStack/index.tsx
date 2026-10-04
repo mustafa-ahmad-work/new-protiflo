@@ -12,8 +12,6 @@ import {
   SiPhp, SiLaravel, SiReact, SiJavascript, SiHtml5,
   SiTailwindcss, SiMysql, SiGit, SiGithub, SiLivewire, SiPython
 } from "react-icons/si";
-import FilamentIcon from "@/components/ui/FilamentIcon";
-import LaragonIcon from "@/components/ui/LaragonIcon";
 import Section from "../../components/Section";
 import { Reveal, StaggerContainer, StaggerItem } from "../../../components/layout/Reveal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -35,7 +33,7 @@ interface TechCategory {
   id: string;
   title: string;
   subtitle: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<{ size?: number; className?: string }> | null;
   accentColor: string;
   insight: string;
   items: TechItem[];
@@ -83,7 +81,7 @@ export default function TechStack() {
           name: "Filament PHP",
           role: isRTL ? "لوحات تحكم وإدارة عصرية" : "Modern Admin Panels",
           desc: t("techSection.cards.backend.filamentDesc"),
-          icon: FilamentIcon,
+          icon: null,
         },
         {
           name: "Livewire",
@@ -196,7 +194,7 @@ export default function TechStack() {
           name: "Laragon",
           role: isRTL ? "بيئة خادم محلية سريعة" : "Local Dev Environment",
           desc: t("techSection.cards.tools.laragonDesc"),
-          icon: LaragonIcon,
+          icon: null,
         },
         {
           name: "Python",
@@ -224,16 +222,16 @@ export default function TechStack() {
   return (
     <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
       {/* Ambient background blur */}
-      <div
-        className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"
+      {/* <div
+        className="absolute top-1/4 -left-20 w-125 h-125 bg-primary/10 rounded-full blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"
+        className="absolute bottom-1/4 -right-20 w-125 h-125 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"
         aria-hidden="true"
-      />
+      /> */}
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="max-w-2xl">
@@ -285,7 +283,7 @@ export default function TechStack() {
               }`}
           >
             {displayedCategories.map((category) => {
-              const CategoryIcon = category.icon;
+              const CategoryIcon = category?.icon;
               return (
                 <div
                   key={category.id}
@@ -301,12 +299,22 @@ export default function TechStack() {
                     {/* Category Header */}
                     <div className="flex items-center justify-between pb-5 mb-5 border-b border-white/10">
                       <div className="flex items-center gap-3.5">
-                        <div
-                          className="w-12 h-12 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform"
-                          style={{ color: category.accentColor }}
-                        >
-                          <CategoryIcon size={24} />
-                        </div>
+                        {
+                          CategoryIcon ? <div
+                            className="w-12 h-12 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform"
+                            style={{ color: category.accentColor }}
+                          >
+                            <CategoryIcon size={24} />
+                          </div> :
+                            <span
+                              className="text-lg font-black"
+                              style={{ color: category.accentColor }}
+                              aria-hidden="true"
+                            >
+                              {category.title === "Filament" ? "F" : "L"}
+                            </span>
+                        }
+
                         <div>
                           <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                             {category.title}
@@ -316,9 +324,9 @@ export default function TechStack() {
                           </p>
                         </div>
                       </div>
-                      <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-bg-main border border-white/10 text-text-muted">
+                      {/* <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-bg-main border border-white/10 text-text-muted">
                         {category.items.length} {isRTL ? "تقنيات" : "Techs"}
-                      </span>
+                      </span> */}
                     </div>
 
                     {/* Tech Items - 2x2 responsive grid inside category */}

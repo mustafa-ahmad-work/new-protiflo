@@ -7,13 +7,17 @@ import { useTranslation } from "react-i18next";
 export type Language = "ar" | "en";
 export type Direction = "rtl" | "ltr";
 
+export type TranslateFn = {
+  <T = string>(key: string, options?: Record<string, unknown>): T;
+};
+
 interface LanguageContextType {
   language: Language;
   direction: Direction;
   isRTL: boolean;
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
-  t: (key: string, options?: Record<string, any>) => any;
+  t: ReturnType<typeof useTranslation>["t"];
   mounted: boolean;
 }
 
@@ -45,9 +49,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    setLanguageState(initialLang);
     applyLanguage(initialLang);
-    setMounted(true);
+
+    const timer = setTimeout(() => {
+      setLanguageState(initialLang);
+      setMounted(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const setLanguage = (lang: Language) => {

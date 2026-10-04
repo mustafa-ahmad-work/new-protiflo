@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/header/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import Hero from "./Hero";
 import TechMarquee from "./TechMarquee/TechMarquee";
 import About from "./About";
@@ -8,7 +8,7 @@ import Process from "./Process";
 import TechStack from "./TechStack";
 import BeyondCode from "./BeyondCode";
 import Contact from "./Contact";
-import Footer from "@/components/layout/footer/Footer";
+import Footer from "@/components/layout/Footer";
 import Testimonials from "./Testimonials";
 
 export default function Landing() {

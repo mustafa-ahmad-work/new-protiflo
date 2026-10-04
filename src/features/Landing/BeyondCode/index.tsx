@@ -9,6 +9,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 interface PillarItem {
   title: string;
   desc: string;
+  badge?: string;
 }
 
 const pillarIcons = [
@@ -57,7 +58,7 @@ export default function BeyondCode() {
 
       {/* Header */}
       <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4 sm:mb-5">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/10 mb-4 sm:mb-5">
           <Sparkles size={14} />
           <span>{t("beyondCode.badge")}</span>
         </div>
@@ -110,7 +111,7 @@ export default function BeyondCode() {
         <div className="lg:col-span-7 flex flex-col justify-between gap-5">
           <StaggerContainer staggerDelay={0.1}>
             <div className="flex flex-col gap-4 h-full justify-between">
-              {pillars.map((pillar: any, i) => {
+              {pillars.map((pillar: PillarItem, i: number) => {
                 const meta = pillarIcons[i % pillarIcons.length];
                 const Icon = meta.icon;
                 const badgeText = pillar.badge || meta.badge;

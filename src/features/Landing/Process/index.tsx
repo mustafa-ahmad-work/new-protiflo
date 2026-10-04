@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Compass, Code2, ShieldCheck, RefreshCw, Workflow, ArrowUpRight } from "lucide-react";
+import { Search, Compass, Code2, ShieldCheck, RefreshCw, Workflow } from "lucide-react";
 import Section from "../../components/Section";
 import { Reveal } from "../../../components/layout/Reveal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -78,7 +78,7 @@ export default function Process() {
     <Section id="process" className="border-t border-white/10 py-24 bg-bg-main">
       {/* Section Header */}
       <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4 sm:mb-5">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/10 mb-4 sm:mb-5">
           <Workflow size={14} />
           <span>{t("process.badge")}</span>
         </div>

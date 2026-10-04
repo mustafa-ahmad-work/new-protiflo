@@ -229,7 +229,7 @@ export default function Services() {
                 className="h-auto! flex"
               >
                 {/* 100% Equal Height Card */}
-                <div className={`w-full h-full min-h-125 rounded-3xl p-6 sm:p-8 lg:p-9 flex flex-col justify-between group ${meta.borderColor} transition-all duration-300 relative overflow-hidden bg-[#111827]/95 border shadow-2xl backdrop-blur-xl`}>
+                <div className={`w-full h-full min-h-125 rounded-3xl p-6 sm:p-8 lg:p-9 flex flex-col justify-between group border-gray-800 transition-all duration-300 relative overflow-hidden bg-[#111827]/95 border shadow-2xl backdrop-blur-xl`}>
 
                   <div className="flex-1 flex flex-col">
                     {/* Top Header Row */}

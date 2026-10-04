@@ -120,6 +120,16 @@ export default function Contact() {
       }
 
       setSubmissionStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        serviceType: "website",
+        budget: "flexible",
+        timeline: "month",
+        subject: "",
+        message: "",
+      });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "حدث خطأ غير متوقع";
       setErrorMessage(msg);
@@ -139,7 +149,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-bg-main relative overflow-hidden border-t border-white/10">
+    <section id="contact" className="py-24 bg-bg-main relative overflow-hidden border-t border-border-subtle">
       {/* Background Lighting */}
       <div
         className="absolute bottom-0 right-1/4 w-[600px] h-[350px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"
@@ -220,7 +230,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-black text-white mb-2">
-                      {isRTL ? "تم إرسال طلبك بنجاح! 🚀" : "Request Sent Successfully! 🚀"}
+                      {isRTL ? "تم إرسال طلبك بنجاح!" : "Request Sent Successfully!"}
                     </h3>
                     <p className="text-sm text-text-muted max-w-md mx-auto leading-relaxed">
                       {isRTL
@@ -426,7 +436,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <>
                         <Loader2 size={18} className="animate-spin" />
-                        <span>{isRTL ? "جاري إرسال الطلب عبر Resend..." : "Sending via Resend..."}</span>
+                        <span>{isRTL ? "جاري إرسال الطلب " : "Sending"}</span>
                       </>
                     ) : (
                       <>

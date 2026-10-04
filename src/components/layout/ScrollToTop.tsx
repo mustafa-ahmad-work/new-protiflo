@@ -35,7 +35,7 @@ export default function ScrollToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-999 w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-xl shadow-purple-600/20 hover:bg-primary-hover cursor-pointer transition-all border border-purple-500/30"
+          className="fixed bottom-6 right-6 z-999 w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/20 hover:bg-primary-hover cursor-pointer transition-all border border-primary/30"
         >
           <ArrowUp size={20} />
         </motion.button>

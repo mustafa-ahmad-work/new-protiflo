@@ -11,12 +11,18 @@ export default function NavigationProgress() {
 
   useEffect(() => {
     // When path or search changes, trigger a quick "loading" bar
-    setLoading(true);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 400); // Short enough to feel snappy but visible enough to confirm action
+    const startTimer = setTimeout(() => {
+      setLoading(true);
+    }, 0);
 
-    return () => clearTimeout(timeout);
+    const endTimer = setTimeout(() => {
+      setLoading(false);
+    }, 400);
+
+    return () => {
+      clearTimeout(startTimer);
+      clearTimeout(endTimer);
+    };
   }, [pathname, searchParams]);
 
   return (

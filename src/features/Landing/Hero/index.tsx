@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Download, ArrowLeft, ArrowRight, Terminal, GitBranch } from "lucide-react";
+import { Download, ArrowLeft, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Hero() {
@@ -17,37 +16,15 @@ export default function Hero() {
           className="absolute inset-0 opacity-[0.12] bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-size-[3.5rem_3.5rem] mask-[radial-gradient(ellipse_70%_60%_at_50%_40%,#000_60%,transparent_100%)]"
         />
 
-        {/* Ambient Glows */}
+        {/* Ambient Glows
         <div
           className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-primary/15 rounded-full blur-[140px]"
-        />
-        <div
+        /> */}
+        {/* <div
           className="absolute bottom-10 left-10 w-100 h-100 bg-blue-600/10 rounded-full blur-[120px]"
-        />
+        /> */}
 
         {/* Tech Circuit SVG Boards */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="circuit-line" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.1" />
-            </linearGradient>
-          </defs>
-          {/* Circuit tracks */}
-          <path d="M50 150 H 220 L 280 210 H 450" fill="none" stroke="url(#circuit-line)" strokeWidth="1.5" strokeDasharray="4 4" />
-          <circle cx="50" cy="150" r="3" fill="#3b82f6" />
-          <circle cx="450" cy="210" r="3" fill="#06b6d4" />
-
-          <path d="M 90% 120 H 75% L 70% 170 H 55%" fill="none" stroke="url(#circuit-line)" strokeWidth="1.5" />
-          <circle cx="90%" cy="120" r="3" fill="#3b82f6" />
-          <circle cx="55%" cy="170" r="3" fill="#3b82f6" />
-
-          <path d="M 15% 80% V 65% L 25% 55% H 40%" fill="none" stroke="url(#circuit-line)" strokeWidth="1.5" strokeDasharray="3 3" />
-          <circle cx="40%" cy="55%" r="3" fill="#06b6d4" />
-        </svg>
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-14 relative z-10">
@@ -55,19 +32,19 @@ export default function Hero() {
         {/* Left Column: Info & Bio */}
         <div className="w-full lg:w-[52%] flex flex-col justify-center text-center lg:text-start z-20">
 
-          <p className="text-slate-300 text-base sm:text-lg lg:text-xl font-normal mb-2 tracking-wide">
+          <p className="text-text-muted text-base sm:text-lg lg:text-xl font-normal mb-2 tracking-wide">
             {t("hero.greeting")}
           </p>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-2 sm:mb-3">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-text-main mb-2 sm:mb-3">
             {t("hero.nameFirst")} <span className="text-primary">{t("hero.nameLast")}</span>
           </h2>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4.5xl font-extrabold text-white tracking-tight leading-tight mb-4 sm:mb-5 max-w-2xl mx-auto lg:mx-0">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4.5xl font-extrabold text-text-main tracking-tight leading-tight mb-4 sm:mb-5 max-w-2xl mx-auto lg:mx-0">
             {t("hero.role")}
           </h1>
 
-          <p className="text-slate-400 text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
+          <p className="text-text-muted text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
             {t("hero.bio")}
           </p>
 
@@ -83,7 +60,7 @@ export default function Hero() {
 
             <a
               href="#about"
-              className="group inline-flex items-center gap-2 text-white hover:text-primary text-sm sm:text-base font-medium py-3 px-4 rounded-xl hover:bg-white/5 transition-all duration-200"
+              className="group inline-flex items-center gap-2 text-text-main hover:text-primary text-sm sm:text-base font-medium py-3 px-4 rounded-xl hover:bg-bg-surface/50 transition-all duration-200"
             >
               <span>{t("hero.moreAboutMe")}</span>
               {isRTL ? (
@@ -111,14 +88,14 @@ export default function Hero() {
             />
 
             {/* Light Rays Effect */}
-            <Image
+            {/* <Image
               width={420}
               height={420}
               src="/images/effect.png"
               alt=""
               className="absolute left-1/2 top-[80%] -translate-x-1/2 -translate-y-1/2 w-[130%] max-w-none z-10 mix-blend-screen animate-float-slow pointer-events-none select-none"
               aria-hidden="true"
-            />
+            /> */}
 
             {/* Person Image - Completely Clear and Unobstructed */}
             <div className="relative z-20 w-full flex justify-center">
@@ -126,9 +103,9 @@ export default function Hero() {
                 width={420}
                 height={420}
                 id="hero-person-img"
-                src="/images/profile.png"
+                src="/images/mustafa.png"
                 alt="Mustafa Ahmad"
-                className="person-mask w-full h-auto object-contain block select-none pointer-events-none transition-transform duration-300 ease-out"
+                className="w-full h-auto max-h-200 object-contain block select-none pointer-events-none transition-transform duration-300 ease-out"
                 priority
               />
             </div>

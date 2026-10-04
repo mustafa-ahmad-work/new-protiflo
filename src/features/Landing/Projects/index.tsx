@@ -9,8 +9,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+interface LocalizedProjectData {
+  title?: string;
+  category?: string;
+  shortDescription?: string;
+  description?: string;
+  fullDescription?: string;
+}
+
 interface ProjectItem {
   id: number;
+  slug?: string;
   title: string;
   category: string;
   description: string;
@@ -19,20 +28,16 @@ interface ProjectItem {
   github?: string;
   live?: string;
   isPrivate?: boolean;
-}
-
-interface TranslatedProjectItem {
-  id: number;
-  title?: string;
-  category?: string;
-  description?: string;
+  duration?: string;
+  ar?: LocalizedProjectData;
+  en?: LocalizedProjectData;
 }
 
 export default function Projects() {
   const { t, isRTL, language } = useLanguage();
-  const [projects] = useState<any[]>(projectsData as any[]);
+  const [projects] = useState<ProjectItem[]>(projectsData as unknown as ProjectItem[]);
 
-  const getTranslatedProject = (baseProject: any): any => {
+  const getTranslatedProject = (baseProject: ProjectItem): ProjectItem => {
     const langKey = language === "en" ? "en" : "ar";
     const localized = baseProject[langKey];
     if (localized) {
@@ -47,15 +52,15 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-bg-main relative overflow-hidden border-t border-white/10">
+    <section id="projects" className="py-24 bg-bg-main relative overflow-hidden border-t border-border-subtle">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4 sm:mb-5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/10 mb-4 sm:mb-5">
             <FolderGit2 size={14} />
             <span>{t("projects.badge")}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-snug mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-text-main leading-snug mb-3 sm:mb-4">
             {t("projects.title")}
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl font-normal leading-relaxed">

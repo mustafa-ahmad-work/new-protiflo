@@ -22,28 +22,51 @@
 }
 
 @theme {
-  --color-primary: #5337FF;
-  --color-primary-hover: #4226E6;
-  --color-bg-main: #161A26;
-  --color-bg-surface: #252A3B;
-  --color-bg-card: #252A3B;
-  --color-text-main: #FFFFFF;
-  --color-text-muted: #A6A9B8;
-  --color-border-main: rgba(255, 255, 255, 0.2);
-  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-bg-main: var(--bg-main);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-card: var(--bg-card);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-border-main: var(--border-main);
+  --color-border-subtle: var(--border-subtle);
 }
 
 :root {
-  /* Central Design Tokens - Modify here to update the entire application */
-  --primary: #5337FF;
-  --primary-hover: #4226E6;
-  --bg-main: #161A26;
-  --bg-surface: #252A3B;
-  --bg-card: #252A3B;
+  /* Central Design Tokens - Light Theme */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-main: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --border-main: rgba(15, 23, 42, 0.12);
+  --border-subtle: rgba(15, 23, 42, 0.08);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-card: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(15, 23, 42, 0.08);
+}
+
+.dark {
+  /* Central Design Tokens - Dark Theme */
+  --primary: #5337ff;
+  --primary-hover: #4226e6;
+  --bg-main: #161a26;
+  --bg-surface: #252a3b;
+  --bg-card: #252a3b;
   --border-main: rgba(255, 255, 255, 0.2);
   --border-subtle: rgba(255, 255, 255, 0.1);
-  --text-main: #FFFFFF;
-  --text-muted: #A6A9B8;
+  --text-main: #ffffff;
+  --text-muted: #a6a9b8;
+  --scrollbar-track: #050b14;
+  --scrollbar-thumb: #1e293b;
+  --glass-bg: rgba(37, 42, 59, 0.85);
+  --glass-card: rgba(37, 42, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 body,
@@ -56,6 +79,16 @@ body {
   background-color: var(--bg-main);
   color: var(--text-main);
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-main);
 }
 
 /* Custom Scrollbar */
@@ -64,11 +97,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050b14;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 
@@ -199,6 +232,7 @@ body {
   from {
     transform: translateX(0%);
   }
+
   to {
     transform: translateX(-100%);
   }
@@ -258,10 +292,10 @@ body {
 }
 
 .glass-card {
-  background: rgba(9, 19, 34, 0.65);
+  background: var(--glass-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
 }
 
 @keyframes pulseGlow {
@@ -311,33 +345,14 @@ body {
 }
 
 /* -------------------------------------------------------------
-   Native Precision Custom Cursor (Zero Lag, OS Cursor Replaced)
+   Custom Cursor System (Hide OS Cursor on Fine Pointer Devices)
 ------------------------------------------------------------- */
-@media (pointer: fine) {
+/* @media (pointer: fine) {
   html.custom-cursor-active,
   html.custom-cursor-active body,
-  html.custom-cursor-active * {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%235337FF' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round' d='M3 2l8 19 3.5-7.5L22 10 3 2z'/%3E%3C/svg%3E") 3 2, auto !important;
+  html.custom-cursor-active *,
+  html.custom-cursor-active *::before,
+  html.custom-cursor-active *::after {
+    cursor: none !important;
   }
-
-  html.custom-cursor-active a,
-  html.custom-cursor-active button,
-  html.custom-cursor-active input[type="submit"],
-  html.custom-cursor-active input[type="button"],
-  html.custom-cursor-active select,
-  html.custom-cursor-active [role="button"],
-  html.custom-cursor-active .cursor-pointer,
-  html.custom-cursor-active .swiper-button-next,
-  html.custom-cursor-active .swiper-button-prev,
-  html.custom-cursor-active .swiper-pagination-bullet {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cpath fill='%236B46FF' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round' d='M3 2l8 19 3.5-7.5L22 10 3 2z'/%3E%3Ccircle cx='18' cy='18' r='3.5' fill='%235337FF' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E") 3 2, pointer !important;
-  }
-
-  html.custom-cursor-active input[type="text"],
-  html.custom-cursor-active input[type="email"],
-  html.custom-cursor-active input[type="tel"],
-  html.custom-cursor-active input[type="number"],
-  html.custom-cursor-active textarea {
-    cursor: text !important;
-  }
-}
+} */

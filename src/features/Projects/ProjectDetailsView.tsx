@@ -12,10 +12,57 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+export interface ProjectWorkflowItem {
+  step?: number | string;
+  title: string;
+  desc: string;
+}
+
+export interface ProjectFeatureItem {
+  title: string;
+  desc: string;
+}
+
+export interface ProjectCustomSectionItem {
+  title: string;
+  content: string;
+}
+
+export interface ProjectLocalizedContent {
+  title?: string;
+  category?: string;
+  shortDescription?: string;
+  fullDescription?: string;
+  problem?: string;
+  solution?: string;
+  goals?: string[];
+  workflow?: ProjectWorkflowItem[];
+  features?: ProjectFeatureItem[];
+  customSections?: ProjectCustomSectionItem[];
+  [key: string]: unknown;
+}
+
+export interface FullProjectItem {
+  id: number | string;
+  slug?: string;
+  title: string;
+  category: string;
+  description: string;
+  image?: string;
+  images?: string[];
+  tags: string[];
+  github?: string;
+  live?: string;
+  isPrivate?: boolean;
+  duration?: string;
+  ar?: ProjectLocalizedContent;
+  en?: ProjectLocalizedContent;
+}
+
 interface ProjectDetailsViewProps {
-  baseProject: any;
-  prevProject?: any;
-  nextProject?: any;
+  baseProject: FullProjectItem;
+  prevProject?: FullProjectItem;
+  nextProject?: FullProjectItem;
 }
 
 export default function ProjectDetailsView({
@@ -23,19 +70,19 @@ export default function ProjectDetailsView({
   prevProject,
   nextProject,
 }: ProjectDetailsViewProps) {
-  const { t, isRTL, language } = useLanguage();
+  const { isRTL, language } = useLanguage();
   const isEn = language === "en";
-  const localized = isEn ? baseProject.en || baseProject : baseProject.ar || baseProject;
+  const localized = (isEn ? baseProject.en || baseProject : baseProject.ar || baseProject) as ProjectLocalizedContent;
 
-  const title = localized.title || baseProject.title;
-  const category = localized.category || baseProject.category;
-  const description = localized.fullDescription || localized.shortDescription || baseProject.description;
-  const problem = localized.problem || "";
-  const solution = localized.solution || "";
-  const goals: string[] = localized.goals || [];
-  const workflow: any[] = localized.workflow || [];
-  const features: any[] = localized.features || [];
-  const customSections: any[] = localized.customSections || [];
+  const title = (localized.title || baseProject.title) as string;
+  const category = (localized.category || baseProject.category) as string;
+  const description = (localized.fullDescription || localized.shortDescription || baseProject.description) as string;
+  const problem = (localized.problem || "") as string;
+  const solution = (localized.solution || "") as string;
+  const goals: string[] = Array.isArray(localized.goals) ? localized.goals : [];
+  const workflow: ProjectWorkflowItem[] = Array.isArray(localized.workflow) ? localized.workflow : [];
+  const features: ProjectFeatureItem[] = Array.isArray(localized.features) ? localized.features : [];
+  const customSections: ProjectCustomSectionItem[] = Array.isArray(localized.customSections) ? localized.customSections : [];
 
   // Gallery images support (any number of images)
   const imageList: string[] =

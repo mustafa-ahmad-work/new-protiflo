@@ -5,10 +5,9 @@ import {
   SiMysql, SiTailwindcss, SiGit, SiGithub,
   SiPython, SiLivewire
 } from "react-icons/si";
-import { Sparkles } from "lucide-react";
-import FilamentIcon from "@/components/ui/FilamentIcon";
-import LaragonIcon from "@/components/ui/LaragonIcon";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Badge } from "@/components/ui/Badge";
+import { IconType } from "react-icons/lib";
 
 const techStack = [
   { name: "Laravel", category: "Backend Framework", color: "#FF2D20", glow: "rgba(255, 45, 32, 0.2)", icon: SiLaravel },
@@ -17,12 +16,12 @@ const techStack = [
   { name: "JavaScript", category: "Modern Web", color: "#F7DF1E", glow: "rgba(247, 223, 30, 0.2)", icon: SiJavascript },
   { name: "MySQL", category: "Relational DB", color: "#4479A1", glow: "rgba(68, 121, 161, 0.2)", icon: SiMysql },
   { name: "Tailwind CSS", category: "Modern Styling", color: "#06B6D4", glow: "rgba(6, 182, 212, 0.2)", icon: SiTailwindcss },
-  { name: "Filament", category: "Admin Panels", color: "#FFA63D", glow: "rgba(255, 166, 61, 0.2)", icon: FilamentIcon },
+  { name: "Filament", category: "Admin Panels", color: "#FFA63D", glow: "rgba(255, 166, 61, 0.2)", icon: null },
   { name: "Livewire", category: "Full-Stack Laravel", color: "#FB70A9", glow: "rgba(251, 112, 169, 0.2)", icon: SiLivewire },
   { name: "Python", category: "Scripting & Backend", color: "#3776AB", glow: "rgba(55, 118, 171, 0.2)", icon: SiPython },
   { name: "Git", category: "Version Control", color: "#F05032", glow: "rgba(240, 80, 50, 0.2)", icon: SiGit },
   { name: "GitHub", category: "Repositories", color: "#FFFFFF", glow: "rgba(255, 255, 255, 0.15)", icon: SiGithub },
-  { name: "Laragon", category: "Development Env", color: "#0E86D4", glow: "rgba(14, 134, 212, 0.2)", icon: LaragonIcon },
+  { name: "Laragon", category: "Development Env", color: "#0E86D4", glow: "rgba(14, 134, 212, 0.2)", icon: null },
 ];
 
 export default function TechMarquee() {
@@ -32,11 +31,10 @@ export default function TechMarquee() {
     <section className="py-20 border-y border-white/10 to-bg-main z-20 relative overflow-hidden">
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary shadow-sm mb-4">
-          <Sparkles size={14} />
-          <span>{t("marquee.badge")}</span>
-        </div>
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+        <Badge variant="primary">
+          {t("marquee.badge")}
+        </Badge>
+        <h2 className="text-xl mt-3 sm:text-2xl md:text-3xl font-black text-white tracking-tight">
           {t("marquee.title")}
         </h2>
       </div>
@@ -48,7 +46,8 @@ export default function TechMarquee() {
 
         <div className="flex shrink-0 animate-marquee items-center gap-5 pr-5">
           {techStack.map((item, index) => {
-            const IconComponent = item.icon;
+            const IconComponent = item?.icon;
+            const isIcon = item.icon == null ? false : true;
             return (
               <div
                 key={index}
@@ -64,12 +63,23 @@ export default function TechMarquee() {
                     backgroundColor: "rgba(22, 26, 38, 0.9)",
                   }}
                 >
-                  <IconComponent
-                    size={22}
-                    style={{ color: item.color }}
-                    className="transition-all duration-300 group-hover/card:drop-shadow-[0_0_8px_currentColor]"
-                  />
+                  {IconComponent ? (
+                    <IconComponent
+                      size={22}
+                      style={{ color: item.color }}
+                      className="transition-all duration-300 group-hover/card:drop-shadow-[0_0_8px_currentColor]"
+                    />
+                  ) : (
+                    <span
+                      className="text-lg font-black"
+                      style={{ color: item.color }}
+                      aria-hidden="true"
+                    >
+                      {item.name === "Filament" ? "F" : "L"}
+                    </span>
+                  )}
                 </div>
+
 
                 {/* Tech Details */}
                 <div className="text-start">
@@ -87,7 +97,8 @@ export default function TechMarquee() {
 
         <div aria-hidden="true" className="flex shrink-0 animate-marquee items-center gap-5 pr-5">
           {techStack.map((item, index) => {
-            const IconComponent = item.icon;
+            const IconComponent: IconType | null = item?.icon;
+            const isIcon = item.icon == null ? false : true;
             return (
               <div
                 key={`dup-${index}`}
@@ -96,19 +107,29 @@ export default function TechMarquee() {
                   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                {/* Tech Icon Container */}
                 <div
                   className="w-10 h-10 rounded-xl bg-bg-main/80 border border-white/10 flex items-center justify-center shrink-0 shadow-inner group-hover/card:scale-110 transition-transform duration-300"
                   style={{
                     backgroundColor: "rgba(22, 26, 38, 0.9)",
                   }}
                 >
-                  <IconComponent
-                    size={22}
-                    style={{ color: item.color }}
-                    className="transition-all duration-300 group-hover/card:drop-shadow-[0_0_8px_currentColor]"
-                  />
+                  {IconComponent ? (
+                    <IconComponent
+                      size={22}
+                      style={{ color: item.color }}
+                      className="transition-all duration-300 group-hover/card:drop-shadow-[0_0_8px_currentColor]"
+                    />
+                  ) : (
+                    <span
+                      className="text-lg font-black"
+                      style={{ color: item.color }}
+                      aria-hidden="true"
+                    >
+                      {item.name === "Filament" ? "F" : "L"}
+                    </span>
+                  )}
                 </div>
+                {/* Tech Icon Container */}
 
                 {/* Tech Details */}
                 <div className="text-start">

@@ -1,23 +1,67 @@
+import type { Metadata } from "next";
 import projectsData from "@/data/projects.json";
-import Navbar from "@/components/layout/header/Navbar";
-import Footer from "@/components/layout/footer/Footer";
-import ProjectDetailsView from "@/features/Projects/ProjectDetailsView";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import ProjectDetailsView, { FullProjectItem } from "@/features/Projects/ProjectDetailsView";
 import { notFound } from "next/navigation";
 
-export default async function ProjectDetails({ params }: { params: Promise<{ id: string }> }) {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const project = projectsData.find(
+    (p) => p.id.toString() === id || p.slug === id || p.id === Number(id)
+  );
+
+  if (!project) {
+    return {
+      title: "المشروع غير موجود | Project Not Found",
+    };
+  }
+
+  const projectTitle = project.ar?.title || project.title;
+  const projectDesc = project.ar?.shortDescription || project.description;
+
+  return {
+    title: `${projectTitle} | مصطفى أحمد`,
+    description: projectDesc,
+    openGraph: {
+      title: `${projectTitle} | Mustafa Ahmad`,
+      description: projectDesc,
+      images: [
+        {
+          url: project.image || "/images/mustafa.png",
+          width: 1200,
+          height: 630,
+          alt: projectTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${projectTitle} | Mustafa Ahmad`,
+      description: projectDesc,
+      images: [project.image || "/images/mustafa.png"],
+    },
+  };
+}
+
+export default async function ProjectDetails({ params }: PageProps) {
   const { id } = await params;
 
-  let projectIndex = projectsData.findIndex(
-    (p: any) => p.id.toString() === id || p.slug === id || p.id === Number(id)
+  const projectIndex = projectsData.findIndex(
+    (p) => p.id.toString() === id || p.slug === id || p.id === Number(id)
   );
 
   if (projectIndex === -1) {
     notFound();
   }
 
-  const project = projectsData[projectIndex];
-  const prevProject = projectIndex > 0 ? projectsData[projectIndex - 1] : null;
-  const nextProject = projectIndex < projectsData.length - 1 ? projectsData[projectIndex + 1] : null;
+  const project = projectsData[projectIndex] as unknown as FullProjectItem;
+  const prevProject = projectIndex > 0 ? (projectsData[projectIndex - 1] as unknown as FullProjectItem) : undefined;
+  const nextProject = projectIndex < projectsData.length - 1 ? (projectsData[projectIndex + 1] as unknown as FullProjectItem) : undefined;
 
   return (
     <main className="min-h-screen bg-bg-main text-text-main transition-colors duration-300">
