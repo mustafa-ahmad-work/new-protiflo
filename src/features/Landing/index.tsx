@@ -22,7 +22,6 @@ export default function Landing() {
         <Projects />
         <Process />
         <TechStack />
-        {/* <Experience /> */}
         <Testimonials />
         <BeyondCode />
         <Contact />
