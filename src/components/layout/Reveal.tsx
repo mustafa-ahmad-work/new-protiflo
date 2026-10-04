@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -47,9 +46,10 @@ export const StaggerContainer = ({ children, staggerDelay = 0.1 }: { children: R
     );
 };
 
-export const StaggerItem = ({ children }: { children: React.ReactNode }) => {
+export const StaggerItem = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
     return (
         <motion.div
+            className={className}
             variants={{
                 hidden: { opacity: 0, y: 20, filter: "blur(5px)" },
                 visible: { opacity: 1, y: 0, filter: "blur(0px)" }

@@ -186,6 +186,10 @@
         "laravelDesc": "MVC architecture, robust routing, authentication, and building reliable RESTful APIs.",
         "phpRole": "Core Language",
         "phpDesc": "Modern clean OOP development, business logic processing, and system interaction.",
+        "filamentRole": "Modern Admin Panels",
+        "filamentDesc": "Engineering high-performance back-office systems and dynamic data tables using Filament PHP.",
+        "livewireRole": "Dynamic Full-Stack",
+        "livewireDesc": "Crafting reactive, SPA-like interfaces directly in Laravel with real-time state synchronization.",
         "insight": "Focusing on input validation, clean controller hierarchy, and separation of concerns."
       },
       "frontend": {

@@ -5,7 +5,9 @@ import {
   SiMysql, SiTailwindcss, SiGit, SiGithub,
   SiPython, SiLivewire
 } from "react-icons/si";
-import { Sparkles, Layers, Server } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import FilamentIcon from "@/components/ui/FilamentIcon";
+import LaragonIcon from "@/components/ui/LaragonIcon";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 const techStack = [
@@ -15,12 +17,12 @@ const techStack = [
   { name: "JavaScript", category: "Modern Web", color: "#F7DF1E", glow: "rgba(247, 223, 30, 0.2)", icon: SiJavascript },
   { name: "MySQL", category: "Relational DB", color: "#4479A1", glow: "rgba(68, 121, 161, 0.2)", icon: SiMysql },
   { name: "Tailwind CSS", category: "Modern Styling", color: "#06B6D4", glow: "rgba(6, 182, 212, 0.2)", icon: SiTailwindcss },
-  { name: "Filament", category: "Admin Panels", color: "#FFA63D", glow: "rgba(255, 166, 61, 0.2)", icon: Layers },
+  { name: "Filament", category: "Admin Panels", color: "#FFA63D", glow: "rgba(255, 166, 61, 0.2)", icon: FilamentIcon },
   { name: "Livewire", category: "Full-Stack Laravel", color: "#FB70A9", glow: "rgba(251, 112, 169, 0.2)", icon: SiLivewire },
   { name: "Python", category: "Scripting & Backend", color: "#3776AB", glow: "rgba(55, 118, 171, 0.2)", icon: SiPython },
   { name: "Git", category: "Version Control", color: "#F05032", glow: "rgba(240, 80, 50, 0.2)", icon: SiGit },
   { name: "GitHub", category: "Repositories", color: "#FFFFFF", glow: "rgba(255, 255, 255, 0.15)", icon: SiGithub },
-  { name: "Laragon", category: "Development Env", color: "#0E86D4", glow: "rgba(14, 134, 212, 0.2)", icon: Server },
+  { name: "Laragon", category: "Development Env", color: "#0E86D4", glow: "rgba(14, 134, 212, 0.2)", icon: LaragonIcon },
 ];
 
 export default function TechMarquee() {

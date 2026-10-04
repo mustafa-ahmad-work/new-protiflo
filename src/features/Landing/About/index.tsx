@@ -23,7 +23,7 @@ export default function About() {
                 alt="Mustafa Ahmad"
                 width={773}
                 height={920}
-                className="w-193.25 h-150 object-center group-hover:grayscale-0 transition duration-1000 group-hover:scale-110"
+                className="w-193.25 h-150 object-cover group-hover:grayscale-0 transition duration-1000 group-hover:scale-110"
               />
             </div>
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 blur-2xl rounded-full -z-10 hidden md:block" />

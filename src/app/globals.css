@@ -285,3 +285,27 @@ body {
     transform: translate(-50%, -50%) translateY(-14px) rotate(1deg);
   }
 }
+
+/* Swiper 3D Pagination & Slide Polish */
+.swiper-3d-bullet {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.swiper-3d-bullet-active {
+  width: 28px;
+  background: var(--primary, #5337ff);
+  box-shadow: 0 0 16px rgba(83, 55, 255, 0.7);
+}
+
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 24px !important;
+  text-align: center;
+}

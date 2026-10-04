@@ -1,17 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperClass } from "swiper";
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
+
+// Swiper core & effect styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 import {
   Server, Layout, Database, Wrench, GraduationCap,
-  Code2, Layers, Cpu, CheckCircle2, ShieldCheck,
-  Puzzle, Sparkles, Terminal, HardDrive
+  Sparkles, CheckCircle2, ChevronLeft, ChevronRight,
+  HardDrive, Terminal, ShieldCheck, Code2, Layers, Cpu, Puzzle
 } from "lucide-react";
 import {
-  SiPhp, SiLaravel, SiReact, SiJavascript, SiHtml5, SiCss,
-  SiTailwindcss, SiMysql, SiGit, SiGithub
+  SiPhp, SiLaravel, SiReact, SiJavascript, SiHtml5,
+  SiTailwindcss, SiMysql, SiGit, SiGithub, SiLivewire, SiPython
 } from "react-icons/si";
+import FilamentIcon from "@/components/ui/FilamentIcon";
+import LaragonIcon from "@/components/ui/LaragonIcon";
 import Section from "../../components/Section";
-import { StaggerContainer, StaggerItem, Reveal } from "../../../components/layout/Reveal";
+import { Reveal, StaggerContainer, StaggerItem } from "../../../components/layout/Reveal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 interface LearningItem {
@@ -19,404 +31,405 @@ interface LearningItem {
   desc: string;
 }
 
+interface TechItem {
+  name: string;
+  role: string;
+  desc: string;
+  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }> | null;
+  iconColor?: string;
+}
+
+interface TechCategory {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  insight: string;
+  items: TechItem[];
+}
+
 const learningIcons = [
-  { icon: Code2, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", hover: "hover:border-blue-500/40" },
-  { icon: Layers, color: "text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20", hover: "hover:border-purple-500/40" },
-  { icon: Cpu, color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", hover: "hover:border-emerald-500/40" },
-  { icon: ShieldCheck, color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", hover: "hover:border-amber-500/40" },
-  { icon: Puzzle, color: "text-pink-400", bg: "bg-pink-500/10", border: "border-pink-500/20", hover: "hover:border-pink-500/40" },
+  { icon: Code2, num: "01" },
+  { icon: Layers, num: "02" },
+  { icon: Cpu, num: "03" },
+  { icon: ShieldCheck, num: "04" },
+  { icon: Puzzle, num: "05" },
 ];
 
 export default function TechStack() {
-  const { t } = useLanguage();
+  const { t, isRTL } = useLanguage();
+  const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(null);
+
   const rawLearning = t("techSection.learningItems", { returnObjects: true });
   const learningItems: LearningItem[] = Array.isArray(rawLearning) ? (rawLearning as LearningItem[]) : [];
 
-  return (
-    <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative overflow-hidden">
-      {/* Section Header */}
-      <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4 sm:mb-5">
-          <Sparkles size={14} />
-          <span>{t("techSection.badge")}</span>
-        </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-snug mb-3 sm:mb-4">
-          {t("techSection.title")}
-        </h2>
-        <p className="text-sm sm:text-base md:text-lg text-text-muted max-w-2xl font-normal leading-relaxed">
-          {t("techSection.subtitle")}
-        </p>
-      </div>
+  const categories: TechCategory[] = [
+    {
+      id: "backend",
+      title: t("techSection.cards.backend.title"),
+      subtitle: t("techSection.cards.backend.subtitle"),
+      icon: Server,
+      insight: t("techSection.cards.backend.insight"),
+      items: [
+        {
+          name: "Laravel",
+          role: t("techSection.cards.backend.laravelRole"),
+          desc: t("techSection.cards.backend.laravelDesc"),
+          icon: SiLaravel,
+          iconColor: "#FF2D20",
+        },
+        {
+          name: "PHP 8+",
+          role: t("techSection.cards.backend.phpRole"),
+          desc: t("techSection.cards.backend.phpDesc"),
+          icon: SiPhp,
+          iconColor: "#777BB4",
+        },
+        {
+          name: "Filament PHP",
+          role: isRTL ? "لوحات تحكم وإدارة عصرية" : "Modern Admin Panels",
+          desc: t("techSection.cards.backend.filamentDesc"),
+          icon: FilamentIcon,
+        },
+        {
+          name: "Livewire",
+          role: isRTL ? "واجهات تفاعلية حية" : "Real-time Reactivity",
+          desc: t("techSection.cards.backend.livewireDesc"),
+          icon: SiLivewire,
+          iconColor: "#FB70A9",
+        },
+      ],
+    },
+    {
+      id: "frontend",
+      title: t("techSection.cards.frontend.title"),
+      subtitle: t("techSection.cards.frontend.subtitle"),
+      icon: Layout,
+      insight: t("techSection.cards.frontend.insight"),
+      items: [
+        {
+          name: "React",
+          role: isRTL ? "مكتبة واجهات تفاعلية" : "UI Library",
+          desc: t("techSection.cards.frontend.reactDesc"),
+          icon: SiReact,
+          iconColor: "#61DAFB",
+        },
+        {
+          name: "JavaScript (ES6+)",
+          role: isRTL ? "منطق وبرمجة حديثة" : "Modern Scripting",
+          desc: t("techSection.cards.frontend.jsDesc"),
+          icon: SiJavascript,
+          iconColor: "#F7DF1E",
+        },
+        {
+          name: "Tailwind CSS",
+          role: isRTL ? "تنسيق متجاوب وسريع" : "Utility-First Styling",
+          desc: t("techSection.cards.frontend.tailwindDesc"),
+          icon: SiTailwindcss,
+          iconColor: "#06B6D4",
+        },
+        {
+          name: "HTML5 & CSS3",
+          role: isRTL ? "بنية دلالية وتخطيطات متقدمة" : "Semantic Standards & Grid",
+          desc: t("techSection.cards.frontend.cssDesc"),
+          icon: SiHtml5,
+          iconColor: "#E34F26",
+        },
+      ],
+    },
+    {
+      id: "database",
+      title: t("techSection.cards.database.title"),
+      subtitle: t("techSection.cards.database.subtitle"),
+      icon: Database,
+      insight: t("techSection.cards.database.insight"),
+      items: [
+        {
+          name: "MySQL RDBMS",
+          role: t("techSection.cards.database.mysqlRole"),
+          desc: t("techSection.cards.database.mysqlDesc"),
+          icon: SiMysql,
+          iconColor: "#4479A1",
+        },
+        {
+          name: isRTL ? "تصميم المخططات والعلاقات" : "Relational Schema & ERD",
+          role: "1:1, 1:N, M:N Architecture",
+          desc: isRTL ? "هيكلة الجداول والمفاتيح الأساسية والأجنبية لضمان سلامة التخزين والربط المنطقي." : "Designing normalized schemas, primary/foreign keys, and relational constraints.",
+          icon: HardDrive,
+          iconColor: "#38BDF8",
+        },
+        {
+          name: isRTL ? "الاستعلامات والفهارس" : "Indexing & Query Optimization",
+          role: "High Performance",
+          desc: isRTL ? "كتابة استعلامات سريعة واستخدام الـ Indexes لتسريع استرجاع البيانات وتقليل العبء." : "Optimizing queries and leveraging indexes for minimal execution time and server load.",
+          icon: Terminal,
+          iconColor: "#38BDF8",
+        },
+        {
+          name: isRTL ? "سلامة البيانات ومعاملات ACID" : "Data Integrity & Transactions",
+          role: "Atomic Reliability",
+          desc: isRTL ? "الاعتماد على Database Transactions لضمان إتمام العمليات المترابطة بالكامل أو التراجع بأمان." : "Using DB transactions to ensure complex multi-step operations commit reliably or roll back safely.",
+          icon: ShieldCheck,
+          iconColor: "#38BDF8",
+        },
+      ],
+    },
+    {
+      id: "tools",
+      title: t("techSection.cards.tools.title"),
+      subtitle: t("techSection.cards.tools.subtitle"),
+      icon: Wrench,
+      insight: t("techSection.cards.tools.insight"),
+      items: [
+        {
+          name: "Git",
+          role: isRTL ? "تتبع التعديلات والفروع" : "Version Control",
+          desc: t("techSection.cards.tools.gitDesc"),
+          icon: SiGit,
+          iconColor: "#F05032",
+        },
+        {
+          name: "GitHub",
+          role: isRTL ? "حفظ المستودعات والتعاون" : "Code Collaboration",
+          desc: t("techSection.cards.tools.githubDesc"),
+          icon: SiGithub,
+          iconColor: "#FFFFFF",
+        },
+        {
+          name: "Laragon",
+          role: isRTL ? "بيئة خادم محلية سريعة" : "Local Dev Environment",
+          desc: t("techSection.cards.tools.laragonDesc"),
+          icon: LaragonIcon,
+        },
+        {
+          name: "Python",
+          role: isRTL ? "أتمتة وسكربتات برمجية" : "Automation & Scripts",
+          desc: isRTL ? "بناء سكربتات للأتمتة ومعالجة البيانات والمهام الخلفية المساندة." : "Building utility scripts for automated tasks, data parsing, and backend workflows.",
+          icon: SiPython,
+          iconColor: "#3776AB",
+        },
+      ],
+    },
+  ];
 
-      {/* Symmetrical 2x2 Bento Architecture */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-
-        {/* 1. Backend Architecture Card */}
-        <Reveal delay={0.05}>
-          <div className="h-full rounded-3xl p-7 sm:p-9 bg-bg-surface border border-white/10 hover:border-red-500/30 transition-all duration-300 relative overflow-hidden group shadow-xl flex flex-col justify-between">
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6 pb-5 border-b border-white/10">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-13 h-13 rounded-2xl bg-bg-main border border-red-500/20 flex items-center justify-center text-red-400 shadow-md">
-                    <Server size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">{t("techSection.cards.backend.title")}</h3>
-                    <p className="text-xs text-text-muted">{t("techSection.cards.backend.subtitle")}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technologies Items */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {/* Laravel */}
-                <div className="p-4.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-red-500/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
-                      <SiLaravel size={22} className="text-[#FF2D20]" />
-                    </div>
-                    <div>
-                      <span className="text-base font-bold text-white group-hover/item:text-red-400 transition-colors block">
-                        Laravel
-                      </span>
-                      <span className="text-[10px] text-text-muted">{t("techSection.cards.backend.laravelRole")}</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.backend.laravelDesc")}
-                  </p>
-                </div>
-
-                {/* PHP */}
-                <div className="p-4.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-indigo-400/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
-                      <SiPhp size={22} className="text-[#777BB4]" />
-                    </div>
-                    <div>
-                      <span className="text-base font-bold text-white group-hover/item:text-indigo-400 transition-colors block">
-                        PHP
-                      </span>
-                      <span className="text-[10px] text-text-muted">{t("techSection.cards.backend.phpRole")}</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.backend.phpDesc")}
-                  </p>
-                </div>
-              </div>
+  return (<>
+    <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
+      {/* Header Container */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/30 mb-4">
+              <Sparkles size={14} />
+              <span>{t("techSection.badge")}</span>
             </div>
-
-            {/* Bottom Insight Pill */}
-            <div className="relative z-10 px-4 py-3 rounded-xl bg-bg-main/40 border border-dashed border-white/10 flex items-center gap-2.5 text-xs text-text-muted">
-              <CheckCircle2 size={16} className="text-red-400 shrink-0" />
-              <span>{t("techSection.cards.backend.insight")}</span>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* 2. Frontend & User Interface Card */}
-        <Reveal delay={0.1}>
-          <div className="h-full rounded-3xl p-7 sm:p-9 bg-bg-surface border border-white/10 hover:border-cyan-500/30 transition-all duration-300 relative overflow-hidden group shadow-xl flex flex-col justify-between">
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6 pb-5 border-b border-white/10">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-13 h-13 rounded-2xl bg-bg-main border border-cyan-500/20 flex items-center justify-center text-cyan-400 shadow-md">
-                    <Layout size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">{t("techSection.cards.frontend.title")}</h3>
-                    <p className="text-xs text-text-muted">{t("techSection.cards.frontend.subtitle")}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technologies Items Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 mb-6">
-                {/* React */}
-                <div className="p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-cyan-400/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center shrink-0">
-                      <SiReact size={18} className="text-[#61DAFB]" />
-                    </div>
-                    <span className="text-sm font-bold text-white group-hover/item:text-cyan-400 transition-colors">
-                      React
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.frontend.reactDesc")}
-                  </p>
-                </div>
-
-                {/* JavaScript */}
-                <div className="p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-yellow-400/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center shrink-0">
-                      <SiJavascript size={18} className="text-[#F7DF1E]" />
-                    </div>
-                    <span className="text-sm font-bold text-white group-hover/item:text-yellow-400 transition-colors">
-                      JavaScript
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.frontend.jsDesc")}
-                  </p>
-                </div>
-
-                {/* Tailwind CSS */}
-                <div className="p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-sky-400/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center shrink-0">
-                      <SiTailwindcss size={18} className="text-[#06B6D4]" />
-                    </div>
-                    <span className="text-sm font-bold text-white group-hover/item:text-sky-400 transition-colors">
-                      Tailwind
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.frontend.tailwindDesc")}
-                  </p>
-                </div>
-
-                {/* HTML5 */}
-                <div className="p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-orange-400/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0">
-                      <SiHtml5 size={18} className="text-[#E34F26]" />
-                    </div>
-                    <span className="text-sm font-bold text-white group-hover/item:text-orange-400 transition-colors">
-                      HTML5
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.frontend.htmlDesc")}
-                  </p>
-                </div>
-
-                {/* CSS3 */}
-                <div className="p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-blue-400/40 transition-all group/item hover:-translate-y-1 shadow-md sm:col-span-2">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
-                      <SiCss size={18} className="text-[#1572B6]" />
-                    </div>
-                    <span className="text-sm font-bold text-white group-hover/item:text-blue-400 transition-colors">
-                      {t("techSection.cards.frontend.cssTitle")}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.frontend.cssDesc")}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Insight Pill */}
-            <div className="relative z-10 px-4 py-3 rounded-xl bg-bg-main/40 border border-dashed border-white/10 flex items-center gap-2.5 text-xs text-text-muted">
-              <CheckCircle2 size={16} className="text-cyan-400 shrink-0" />
-              <span>{t("techSection.cards.frontend.insight")}</span>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* 3. Database Architecture Card */}
-        <Reveal delay={0.15}>
-          <div className="h-full rounded-3xl p-7 sm:p-9 bg-bg-surface border border-white/10 hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden group shadow-xl flex flex-col justify-between">
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6 pb-5 border-b border-white/10">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-13 h-13 rounded-2xl bg-bg-main border border-blue-500/20 flex items-center justify-center text-blue-400 shadow-md">
-                    <Database size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">{t("techSection.cards.database.title")}</h3>
-                    <p className="text-xs text-text-muted">{t("techSection.cards.database.subtitle")}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technologies Items */}
-              <div className="space-y-4 mb-6">
-                <div className="p-4.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-blue-400/40 transition-all group/item hover:-translate-y-1 shadow-md">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                        <SiMysql size={24} className="text-[#4479A1]" />
-                      </div>
-                      <div>
-                        <span className="text-base font-bold text-white group-hover/item:text-blue-400 transition-colors block">
-                          MySQL
-                        </span>
-                        <span className="text-[10px] text-text-muted">{t("techSection.cards.database.mysqlRole")}</span>
-                      </div>
-                    </div>
-                    <span className="text-[10px] font-bold text-text-muted px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
-                      RDBMS
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-text-muted leading-relaxed font-normal mb-4">
-                    {t("techSection.cards.database.mysqlDesc")}
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3 border-t border-white/5">
-                    <div className="flex items-center gap-2 text-xs text-gray-300">
-                      <HardDrive size={14} className="text-blue-400" />
-                      <span>{t("techSection.cards.database.schema")}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-300">
-                      <Terminal size={14} className="text-blue-400" />
-                      <span>{t("techSection.cards.database.queries")}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-300">
-                      <ShieldCheck size={14} className="text-blue-400" />
-                      <span>{t("techSection.cards.database.integrity")}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Insight Pill */}
-            <div className="relative z-10 px-4 py-3 rounded-xl bg-bg-main/40 border border-dashed border-white/10 flex items-center gap-2.5 text-xs text-text-muted">
-              <CheckCircle2 size={16} className="text-blue-400 shrink-0" />
-              <span>{t("techSection.cards.database.insight")}</span>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* 4. Tools & Developer Workflow Card */}
-        <Reveal delay={0.2}>
-          <div className="h-full rounded-3xl p-7 sm:p-9 bg-bg-surface border border-white/10 hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden group shadow-xl flex flex-col justify-between">
-
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6 pb-5 border-b border-white/10">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-13 h-13 rounded-2xl bg-bg-main border border-amber-500/20 flex items-center justify-center text-amber-400 shadow-md">
-                    <Wrench size={24} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white">{t("techSection.cards.tools.title")}</h3>
-                    <p className="text-xs text-text-muted">{t("techSection.cards.tools.subtitle")}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technologies Items */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-6">
-                {/* Git */}
-                <div className="p-4 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-orange-500/40 transition-all group/item hover:-translate-y-1 text-center flex flex-col items-center justify-center shadow-md">
-                  <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-2.5">
-                    <SiGit size={22} className="text-[#F05032]" />
-                  </div>
-                  <span className="text-sm font-bold text-white group-hover/item:text-orange-400 transition-colors mb-1">
-                    Git
-                  </span>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.tools.gitDesc")}
-                  </p>
-                </div>
-
-                {/* GitHub */}
-                <div className="p-4 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-white/40 transition-all group/item hover:-translate-y-1 text-center flex flex-col items-center justify-center shadow-md">
-                  <div className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-2.5">
-                    <SiGithub size={22} className="text-white" />
-                  </div>
-                  <span className="text-sm font-bold text-white group-hover/item:text-primary transition-colors mb-1">
-                    GitHub
-                  </span>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.tools.githubDesc")}
-                  </p>
-                </div>
-
-                {/* Laragon */}
-                <div className="p-4 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-blue-400/40 transition-all group/item hover:-translate-y-1 text-center flex flex-col items-center justify-center shadow-md">
-                  <div className="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-2.5">
-                    <Server size={22} className="text-[#0E86D4]" />
-                  </div>
-                  <span className="text-sm font-bold text-white group-hover/item:text-blue-400 transition-colors mb-1">
-                    Laragon
-                  </span>
-                  <p className="text-[11px] text-text-muted leading-relaxed font-normal">
-                    {t("techSection.cards.tools.laragonDesc")}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Insight Pill */}
-            <div className="relative z-10 px-4 py-3 rounded-xl bg-bg-main/40 border border-dashed border-white/10 flex items-center gap-2.5 text-xs text-text-muted">
-              <CheckCircle2 size={16} className="text-amber-400 shrink-0" />
-              <span>{t("techSection.cards.tools.insight")}</span>
-            </div>
-          </div>
-        </Reveal>
-
-      </div>
-
-      {/* Section 2: Continuous Engineering Deepening ("أتعلم حاليًا") */}
-      <Reveal delay={0.1}>
-        <div className="relative rounded-3xl p-8 sm:p-12 bg-bg-card border-white/15 overflow-hidden shadow-2xl">
-          {/* Ambient Corner Glow */}
-
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 pb-8 border-b border-white/10">
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full mb-3 shadow-sm">
-                <GraduationCap size={16} />
-                <span>{t("techSection.learningBadge")}</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
-                {t("techSection.learningTitle")}
-              </h3>
-            </div>
-            <p className="text-xs sm:text-sm text-text-muted max-w-xl leading-relaxed">
-              {t("techSection.learningSubtitle")}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3">
+              {t("techSection.title")}
+            </h2>
+            <p className="text-sm sm:text-base text-text-muted font-normal leading-relaxed">
+              {t("techSection.subtitle")}
             </p>
           </div>
 
-          {/* 5 Engineering Topics */}
-          <StaggerContainer staggerDelay={0.08}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 relative z-10">
-              {learningItems.map((item, i) => {
-                const meta = learningIcons[i % learningIcons.length];
-                const Icon = meta.icon;
-                return (
-                  <StaggerItem key={i}>
-                    <motion.div
-                      whileHover={{ y: -6 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className={`p-6 rounded-2xl bg-bg-main/80 border border-white/10 ${meta.hover} transition-all duration-300 h-full flex flex-col justify-between group/learn shadow-lg`}
-                    >
-                      <div>
-                        <div className="flex items-center justify-between mb-5">
-                          <div className={`w-11 h-11 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color} border ${meta.border} group-hover/learn:scale-110 transition-transform shadow-md`}>
-                            <Icon size={20} />
-                          </div>
-                          <span className="text-xs font-black text-text-muted/40 group-hover/learn:text-primary transition-colors">
-                            0{i + 1}
-                          </span>
-                        </div>
+          {/* 3D Carousel Navigation Controls */}
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => swiperInstance?.slidePrev()}
+              className="w-12 h-12 rounded-2xl bg-bg-surface border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group"
+              aria-label="Previous Slide"
+            >
+              {isRTL ? (
+                <ChevronRight size={22} className="group-hover:text-primary transition-colors" />
+              ) : (
+                <ChevronLeft size={22} className="group-hover:text-primary transition-colors" />
+              )}
+            </button>
 
-                        <h4 className="text-sm sm:text-base font-black text-white mb-2.5 group-hover/learn:text-primary transition-colors">
-                          {item.title}
-                        </h4>
-
-                        <p className="text-xs text-text-muted leading-relaxed font-normal">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </StaggerItem>
-                );
-              })}
-            </div>
-          </StaggerContainer>
+            <button
+              onClick={() => swiperInstance?.slideNext()}
+              className="w-12 h-12 rounded-2xl bg-bg-surface border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group"
+              aria-label="Next Slide"
+            >
+              {isRTL ? (
+                <ChevronLeft size={22} className="group-hover:text-primary transition-colors" />
+              ) : (
+                <ChevronRight size={22} className="group-hover:text-primary transition-colors" />
+              )}
+            </button>
+          </div>
         </div>
-      </Reveal>
+      </div>
     </Section>
-  );
-}
+    {/* Unconstrained 3D Carousel (Not bound to container, Full Viewport Width, Full Height Cards) */}
+    <div className="w-full relative overflow-hidden mb-20">
+      <Swiper
+        dir={isRTL ? "rtl" : "ltr"}
+        key={isRTL ? "tech-3d-rtl" : "tech-3d-ltr"}
+        modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+        effect="coverflow"
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={1.15}
+        breakpoints={{
+          640: {
+            slidesPerView: 1.6,
+            spaceBetween: 24,
+          },
+          1024: {
+            slidesPerView: 2.5,
+            spaceBetween: 32,
+          },
+          1440: {
+            slidesPerView: 3.2,
+            spaceBetween: 40,
+          },
+        }}
+        speed={650}
+        onSwiper={setSwiperInstance}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        coverflowEffect={{
+          rotate: 12,
+          stretch: 0,
+          depth: 160,
+          modifier: 1,
+          slideShadows: false,
+        }}
+        pagination={{
+          clickable: true,
+          bulletClass: "swiper-3d-bullet",
+          bulletActiveClass: "swiper-3d-bullet-active",
+        }}
+        className="w-full py-8 items-stretch!"
+      >
+        {categories.map((category) => {
+          const CategoryIcon = category.icon;
+          return (
+            <SwiperSlide key={category.id} className="flex">
+              <div className="w-full h-full rounded-3xl p-7 sm:p-9 bg-bg-surface border border-white/10 hover:border-primary/40 transition-all duration-300 flex flex-col justify-between shadow-2xl select-none">
+                <div>
+                  {/* Card Header - Clean, Crisp, Zero Badges */}
+                  <div className="flex items-center gap-4 pb-6 mb-6 border-b border-white/10">
+                    <div className="w-14 h-14 rounded-2xl bg-bg-main border border-white/10 flex items-center justify-center text-primary shadow-md shrink-0">
+                      <CategoryIcon size={26} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                        {category.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-text-muted mt-0.5 font-normal">
+                        {category.subtitle}
+                      </p>
+                    </div>
+                  </div>
 
+                  {/* Tech Items List - Spacious, Clean Typography, Zero Badges */}
+                  <div className="space-y-3.5">
+                    {category.items.map((tech) => {
+                      const TechIcon = tech.icon;
+                      return (
+                        <div
+                          key={tech.name}
+                          className="flex items-start gap-4 p-4 rounded-2xl bg-bg-main border border-white/10 hover:border-white/20 transition-all"
+                        >
+                          <div className="w-11 h-11 rounded-xl bg-bg-surface border border-white/10 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                            {TechIcon ? (
+                              <TechIcon
+                                size={22}
+                                className={tech.iconColor ? "" : "text-primary"}
+                                {...(tech.iconColor ? { style: { color: tech.iconColor } } : {})}
+                              />
+                            ) : null}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-baseline justify-between gap-2 mb-1">
+                              <h4 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                                {tech.name}
+                              </h4>
+                              <span className="text-[11px] text-text-muted shrink-0 font-normal">
+                                {tech.role}
+                              </span>
+                            </div>
+                            <p className="text-xs text-text-muted leading-relaxed font-normal">
+                              {tech.desc}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Card Footer Insight */}
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-3 text-xs sm:text-sm text-text-muted">
+                  <CheckCircle2 size={18} className="text-primary shrink-0" />
+                  <span className="leading-relaxed">{category.insight}</span>
+                </div>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+    <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
+      {/* Continuous Engineering Deepening ("أتعلم حاليًا") - Clean, Consistent, Zero Glow */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal delay={0.1}>
+          <div className="rounded-3xl p-8 sm:p-12 bg-bg-surface border border-white/10 shadow-xl">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pb-6 border-b border-white/10">
+              <div>
+                <div className="inline-flex items-center gap-2 text-xs font-bold text-primary bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full mb-3 shadow-sm">
+                  <GraduationCap size={16} />
+                  <span>{t("techSection.learningBadge")}</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+                  {t("techSection.learningTitle")}
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-text-muted max-w-xl leading-relaxed">
+                {t("techSection.learningSubtitle")}
+              </p>
+            </div>
+
+            {/* 5 Engineering Topics */}
+            <StaggerContainer staggerDelay={0.08}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                {learningItems.map((item, i) => {
+                  const meta = learningIcons[i % learningIcons.length];
+                  const Icon = meta.icon;
+                  return (
+                    <StaggerItem key={i}>
+                      <div className="p-6 rounded-2xl bg-bg-main border border-white/10 hover:border-primary/40 transition-all duration-300 h-full flex flex-col justify-between group/learn shadow-md">
+                        <div>
+                          <div className="flex items-center justify-between mb-5">
+                            <div className="w-11 h-11 rounded-xl bg-bg-surface flex items-center justify-center text-primary border border-white/10 group-hover/learn:scale-110 transition-transform shadow-sm">
+                              <Icon size={20} />
+                            </div>
+                            <span className="text-xs font-mono font-bold text-text-muted/40 group-hover/learn:text-primary transition-colors">
+                              {meta.num}
+                            </span>
+                          </div>
+
+                          <h4 className="text-sm sm:text-base font-bold text-white mb-2.5 group-hover/learn:text-primary transition-colors">
+                            {item.title}
+                          </h4>
+
+                          <p className="text-xs text-text-muted leading-relaxed font-normal">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </StaggerItem>
+                  );
+                })}
+              </div>
+            </StaggerContainer>
+          </div>
+        </Reveal>
+      </div>
+    </Section>
+  </>);
+}

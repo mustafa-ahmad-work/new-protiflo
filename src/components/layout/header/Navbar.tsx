@@ -19,7 +19,6 @@ export default function Navbar() {
     { name: t("nav.projects"), href: "/#projects" },
     { name: t("nav.process"), href: "/#process" },
     { name: t("nav.tech"), href: "/#tech" },
-    { name: t("nav.experience"), href: "/#experience" },
     { name: t("nav.contact"), href: "/#contact" },
   ];
 

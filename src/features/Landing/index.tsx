@@ -6,7 +6,6 @@ import Services from "./Services";
 import Projects from "./Projects";
 import Process from "./Process";
 import TechStack from "./TechStack";
-import Experience from "./Experience";
 import BeyondCode from "./BeyondCode";
 import Contact from "./Contact";
 import Footer from "@/components/layout/footer/Footer";

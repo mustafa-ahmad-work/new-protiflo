@@ -29,6 +29,8 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
+import CustomCursor from "@/components/ui/CustomCursor";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
 export default function RootLayout({
   children,
@@ -36,17 +38,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`scroll-smooth ${expoArabic.variable}`} data-scroll-behavior="smooth">
+    <html lang="ar" dir="rtl" className={`${expoArabic.variable}`}>
       <body className="antialiased bg-bg-main text-text-main selection:bg-primary/30 selection:text-white">
-        <LanguageProvider>
-          <ThemeProvider>
-            <LoadingScreen />
-            <Suspense fallback={null}>
-              <NavigationProgress />
-            </Suspense>
-            {children}
-          </ThemeProvider>
-        </LanguageProvider>
+        <CustomCursor />
+        <SmoothScrollProvider>
+          <LanguageProvider>
+            <ThemeProvider>
+              <LoadingScreen />
+              <Suspense fallback={null}>
+                <NavigationProgress />
+              </Suspense>
+              {children}
+            </ThemeProvider>
+          </LanguageProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
