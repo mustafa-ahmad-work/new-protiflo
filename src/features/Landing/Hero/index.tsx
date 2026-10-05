@@ -36,12 +36,13 @@ export default function Hero() {
             {t("hero.greeting")}
           </p>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-text-main mb-2 sm:mb-3">
-            {t("hero.nameFirst")} <span className="text-primary">{t("hero.nameLast")}</span>
-          </h2>
-
-          <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4.5xl font-extrabold text-text-main tracking-tight leading-tight mb-4 sm:mb-5 max-w-2xl mx-auto lg:mx-0">
-            {t("hero.role")}
+          <h1 className="tracking-tight mb-4 sm:mb-5">
+            <span className="block text-3xl sm:text-4xl lg:text-5xl font-black text-text-main mb-2 sm:mb-3">
+              {t("hero.nameFirst")} <span className="text-primary">{t("hero.nameLast")}</span>
+            </span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl xl:text-4.5xl font-extrabold text-text-main leading-tight max-w-2xl mx-auto lg:mx-0">
+              {t("hero.role")}
+            </span>
           </h1>
 
           <p className="text-text-muted text-sm sm:text-base lg:text-lg font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 mb-8">
@@ -52,7 +53,8 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8 lg:mb-0">
             <a
               href="#contact"
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold px-7 py-3.5 rounded-xl shadow-blue-glow border border-white/15 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              aria-label={t("hero.downloadCV")}
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold px-7 py-3.5 rounded-xl shadow-blue-glow border border-white/15 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span>{t("hero.downloadCV")}</span>
               <Download size={16} className="transition-transform duration-200 group-hover:translate-y-0.5" />
@@ -60,7 +62,8 @@ export default function Hero() {
 
             <a
               href="#about"
-              className="group inline-flex items-center gap-2 text-text-main hover:text-primary text-sm sm:text-base font-medium py-3 px-4 rounded-xl hover:bg-bg-surface/50 transition-all duration-200"
+              aria-label={t("hero.moreAboutMe")}
+              className="group inline-flex items-center gap-2 text-text-main hover:text-primary text-sm sm:text-base font-medium py-3 px-4 rounded-xl hover:bg-bg-surface/50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span>{t("hero.moreAboutMe")}</span>
               {isRTL ? (
@@ -103,8 +106,9 @@ export default function Hero() {
                 width={420}
                 height={420}
                 id="hero-person-img"
-                src="/images/mustafa.png"
-                alt="Mustafa Ahmad"
+                src="/images/mustafa.webp"
+                alt={isRTL ? "مصطفى أحمد - مهندس برمجيات ومطور Full-Stack" : "Mustafa Ahmad - Full-Stack Software Engineer"}
+                sizes="(max-width: 640px) 280px, (max-width: 1024px) 380px, 420px"
                 className="w-full h-auto max-h-200 object-contain block select-none pointer-events-none transition-transform duration-300 ease-out"
                 priority
               />

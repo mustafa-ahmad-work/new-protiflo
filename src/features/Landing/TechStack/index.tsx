@@ -11,7 +11,7 @@ import {
 import {
   SiPhp, SiLaravel, SiReact, SiJavascript, SiHtml5,
   SiTailwindcss, SiMysql, SiGit, SiGithub, SiLivewire, SiPython
-} from "react-icons/si";
+} from "@/components/ui/Icons";
 import Section from "../../components/Section";
 import { Reveal, StaggerContainer, StaggerItem } from "../../../components/layout/Reveal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -248,18 +248,26 @@ export default function TechStack() {
           </div>
 
           {/* Interactive Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div
+            className="flex flex-wrap items-center gap-2"
+            role="tablist"
+            aria-label={isRTL ? "تصنيفات التقنيات" : "Technology categories"}
+          >
             {filterTabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
+                  id={`tech-tab-${tab.id}`}
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`inline-flex items-center gap-1 px-2 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${isActive
-                    ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
-                    : "bg-bg-surface/80 border border-white/10 text-text-muted hover:text-white hover:border-white/20"
-                    }`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                    isActive
+                      ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
+                      : "bg-bg-surface/80 border border-white/10 text-text-muted hover:text-white hover:border-white/20"
+                  }`}
                 >
                   <Icon size={14} />
                   <span>{tab.label}</span>

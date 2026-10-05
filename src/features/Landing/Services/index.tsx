@@ -147,8 +147,8 @@ export default function Services() {
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => swiperInstance?.slidePrev()}
-              className="w-12 h-12 rounded-2xl bg-bg-surface/90 border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group backdrop-blur-md"
-              aria-label="Previous Service"
+              className="w-12 h-12 rounded-2xl bg-bg-surface/90 border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label={isRTL ? "عرض الخدمة السابقة" : "Previous Service"}
             >
               {isRTL ? (
                 <ChevronRight size={22} className="group-hover:text-primary transition-colors" />
@@ -163,8 +163,8 @@ export default function Services() {
 
             <button
               onClick={() => swiperInstance?.slideNext()}
-              className="w-12 h-12 rounded-2xl bg-bg-surface/90 border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group backdrop-blur-md"
-              aria-label="Next Service"
+              className="w-12 h-12 rounded-2xl bg-bg-surface/90 border border-white/15 hover:border-primary text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer group backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label={isRTL ? "عرض الخدمة التالية" : "Next Service"}
             >
               {isRTL ? (
                 <ChevronLeft size={22} className="group-hover:text-primary transition-colors" />
@@ -293,7 +293,8 @@ export default function Services() {
                   <div className="pt-3 border-t border-white/10">
                     <a
                       href="#contact"
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-primary group-hover:text-white transition-colors w-full justify-between py-1"
+                      aria-label={`${t("services.requestService")}: ${service.title}`}
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-primary group-hover:text-white transition-colors w-full justify-between py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
                     >
                       <span>{t("services.requestService")}</span>
                       {isRTL ? (

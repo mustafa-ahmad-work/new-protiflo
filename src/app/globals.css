@@ -2,24 +2,7 @@
 
 
 
-/* -------------------------------------------------------------
-   Expo Arabic Font Definitions
-------------------------------------------------------------- */
-@font-face {
-  font-family: 'Expo Arabic';
-  src: url('/fonts/ExpoArabic-Book.woff2') format('woff2');
-  font-weight: 300 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Expo Arabic';
-  src: url('/fonts/ExpoArabic-Bold.woff2') format('woff2');
-  font-weight: 600 700 800 900;
-  font-style: normal;
-  font-display: swap;
-}
+/* Expo Arabic is loaded via next/font/local in src/app/layout.tsx for optimal preload and zero duplication */
 
 @theme {
   --color-primary: var(--primary);
@@ -69,10 +52,13 @@
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 
-body,
 html,
-* {
-  font-family: var(--font-expo), 'Expo Arabic', system-ui, -apple-system, sans-serif !important;
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-expo), 'Expo Arabic', system-ui, -apple-system, sans-serif;
 }
 
 body {

@@ -11,6 +11,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
+      alternates: {
+        languages: {
+          ar: `${baseUrl}`,
+          en: `${baseUrl}?lang=en`,
+        },
+      },
     },
   ];
 
@@ -19,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/projects/${project.slug || project.id}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: 0.8,
+    priority: 0.85,
   }));
 
   return [...staticRoutes, ...projectRoutes];

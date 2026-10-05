@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import LoadingScreen from "@/components/layout/LoadingScreen";
 import NavigationProgress from "@/components/layout/NavigationProgress";
 import { Suspense } from "react";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
-import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import ScrollProgressBar from "@/components/layout/ScrollProgressBar";
 import { SkipToContent } from "@/components/ui/SkipToContent";
@@ -29,6 +27,16 @@ const expoArabic = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mustafa-ahmad.com";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#161a26" },
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -166,12 +174,10 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-bg-main text-text-main selection:bg-primary/30 selection:text-white">
         <SkipToContent />
-        <CustomCursor />
         <SmoothScrollProvider>
           <LanguageProvider>
             <ScrollProgressBar />
             <ThemeProvider>
-              <LoadingScreen />
               <Suspense fallback={null}>
                 <NavigationProgress />
               </Suspense>

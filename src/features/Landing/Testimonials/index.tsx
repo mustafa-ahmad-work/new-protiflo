@@ -77,9 +77,9 @@ export default function Testimonials() {
                   </div> */}
                   <div className="overflow-hidden">
                     {clientName && (
-                      <h4 className="font-bold text-sm text-text-main group-hover:text-primary transition-colors truncate">
+                      <h3 className="font-bold text-sm text-text-main group-hover:text-primary transition-colors truncate">
                         {clientName}
-                      </h4>
+                      </h3>
                     )}
                     <p className="text-xs text-primary font-semibold truncate">
                       {projectTitle}

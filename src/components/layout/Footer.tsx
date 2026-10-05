@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaWhatsapp } from "@/components/ui/Icons";
 import { Mail, ArrowUpRight, MapPin, Terminal } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";

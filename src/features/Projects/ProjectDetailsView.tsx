@@ -7,7 +7,7 @@ import {
   AlertCircle, Sparkles, Workflow, Layers, ShieldCheck, ChevronLeft,
   ChevronRight, Maximize2, X, MessageCircle, Code2
 } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub } from "@/components/ui/Icons";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -213,8 +213,8 @@ export default function ProjectDetailsView({
                   onClick={() =>
                     setActiveImageIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1))
                   }
-                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-bg-main/80 hover:bg-primary text-white border border-white/15 transition-all shadow-xl"
-                  aria-label="Previous image"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-bg-main/80 hover:bg-primary text-white border border-white/15 transition-all shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  aria-label={isEn ? "Previous image" : "الصورة السابقة"}
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -223,8 +223,8 @@ export default function ProjectDetailsView({
                   onClick={() =>
                     setActiveImageIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1))
                   }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-bg-main/80 hover:bg-primary text-white border border-white/15 transition-all shadow-xl"
-                  aria-label="Next image"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full bg-bg-main/80 hover:bg-primary text-white border border-white/15 transition-all shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  aria-label={isEn ? "Next image" : "الصورة التالية"}
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -240,7 +240,9 @@ export default function ProjectDetailsView({
                   key={idx}
                   type="button"
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative w-24 sm:w-32 aspect-video rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${activeImageIndex === idx
+                  aria-label={isEn ? `View image ${idx + 1}` : `عرض الصورة ${idx + 1}`}
+                  aria-pressed={activeImageIndex === idx}
+                  className={`relative w-24 sm:w-32 aspect-video rounded-xl overflow-hidden border-2 shrink-0 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${activeImageIndex === idx
                     ? "border-primary scale-105 shadow-md shadow-primary/40"
                     : "border-white/10 opacity-60 hover:opacity-100 hover:border-white/30"
                     }`}
@@ -249,6 +251,7 @@ export default function ProjectDetailsView({
                     src={img}
                     alt={`Thumbnail ${idx + 1}`}
                     fill
+                    sizes="(max-width: 640px) 96px, 128px"
                     className="object-cover"
                   />
                 </button>

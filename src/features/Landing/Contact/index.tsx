@@ -6,7 +6,7 @@ import {
   AlertCircle, Loader2, Sparkles, Globe, Server,
   Layout, Code2, Wrench, Lightbulb, Clock, DollarSign
 } from "lucide-react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "@/components/ui/Icons";
 import { useState } from "react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -190,7 +190,8 @@ export default function Contact() {
                       href={item.href}
                       target={item.href.startsWith("mailto:") ? "_self" : "_blank"}
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-primary/50 transition-colors group shadow-sm"
+                      aria-label={`${item.label}: ${item.value}`}
+                      className="flex items-center gap-3 p-3.5 rounded-2xl bg-bg-main/80 border border-white/10 hover:border-primary/50 transition-colors group shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
                       <div className="w-10 h-10 rounded-xl bg-bg-surface flex items-center justify-center text-primary shrink-0 border border-white/10 group-hover:scale-105 transition-transform shadow-xs">
                         <Icon size={18} />
@@ -209,7 +210,8 @@ export default function Contact() {
                 href="https://wa.me/201120354592"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold px-7 py-3.5 rounded-2xl transition-all shadow-xl shadow-[#25D366]/20 text-xs sm:text-sm hover:scale-[1.02] active:scale-95"
+                aria-label={t("contact.whatsappDirect")}
+                className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#25D366]/90 text-white font-bold px-7 py-3.5 rounded-2xl transition-all shadow-xl shadow-[#25D366]/20 text-xs sm:text-sm hover:scale-[1.02] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <MessageCircle size={18} />
                 <span>{t("contact.whatsappDirect")}</span>
@@ -273,11 +275,15 @@ export default function Contact() {
 
                   {/* 1. Request Type Selector */}
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-200 flex items-center justify-between">
+                    <label id="service-type-label" className="text-xs font-bold text-gray-200 flex items-center justify-between">
                       <span>{isRTL ? "نوع المشروع / الخدمة المطلوبة *" : "Project Type / Service *"}</span>
                       <span className="text-[10px] text-primary">{isRTL ? "حدد نوع طلبك" : "Select one"}</span>
                     </label>
-                    <div className="flex flex-wrap gap-2.5">
+                    <div
+                      role="radiogroup"
+                      aria-labelledby="service-type-label"
+                      className="flex flex-wrap gap-2.5"
+                    >
                       {serviceOptions.map((opt) => {
                         const Icon = opt.icon;
                         const isSelected = formData.serviceType === opt.id;
@@ -285,8 +291,10 @@ export default function Contact() {
                           <button
                             key={opt.id}
                             type="button"
+                            role="radio"
+                            aria-checked={isSelected}
                             onClick={() => setFormData({ ...formData, serviceType: opt.id })}
-                            className={`px-3.5 py-2.5 rounded-xl border text-start transition-all inline-flex items-center gap-2 cursor-pointer ${isSelected
+                            className={`px-3.5 py-2.5 rounded-xl border text-start transition-all inline-flex items-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isSelected
                               ? "bg-primary/20 border-primary text-white shadow-sm shadow-primary/30"
                               : "bg-bg-surface/80 border-white/10 text-gray-300 hover:border-white/30"
                               }`}
@@ -303,19 +311,25 @@ export default function Contact() {
 
                   {/* 2. Budget Range Selector */}
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                    <label id="budget-label" className="text-xs font-bold text-gray-200 flex items-center gap-1.5">
                       <DollarSign size={14} className="text-emerald-400" />
                       <span>{isRTL ? "الميزانية التقديرية" : "Estimated Budget"}</span>
                     </label>
-                    <div className="flex flex-wrap gap-2">
+                    <div
+                      role="radiogroup"
+                      aria-labelledby="budget-label"
+                      className="flex flex-wrap gap-2"
+                    >
                       {budgetOptions.map((b) => {
                         const isSelected = formData.budget === b.id;
                         return (
                           <button
                             key={b.id}
                             type="button"
+                            role="radio"
+                            aria-checked={isSelected}
                             onClick={() => setFormData({ ...formData, budget: b.id })}
-                            className={`px-3 py-2 rounded-xl border text-xs transition-all cursor-pointer whitespace-normal ${isSelected
+                            className={`px-3 py-2 rounded-xl border text-xs transition-all cursor-pointer whitespace-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isSelected
                               ? "bg-emerald-500/20 border-emerald-500 text-emerald-300 font-bold"
                               : "bg-bg-surface border-white/10 text-text-muted hover:border-white/30"
                               }`}
@@ -329,19 +343,25 @@ export default function Contact() {
 
                   {/* 3. Timeline Selector */}
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                    <label id="timeline-label" className="text-xs font-bold text-gray-200 flex items-center gap-1.5">
                       <Clock size={14} className="text-cyan-400" />
                       <span>{isRTL ? "الإطار الزمني المتوقع" : "Project Timeline"}</span>
                     </label>
-                    <div className="flex flex-wrap gap-2">
+                    <div
+                      role="radiogroup"
+                      aria-labelledby="timeline-label"
+                      className="flex flex-wrap gap-2"
+                    >
                       {timelineOptions.map((tm) => {
                         const isSelected = formData.timeline === tm.id;
                         return (
                           <button
                             key={tm.id}
                             type="button"
+                            role="radio"
+                            aria-checked={isSelected}
                             onClick={() => setFormData({ ...formData, timeline: tm.id })}
-                            className={`px-3 py-2 rounded-xl border text-xs transition-all cursor-pointer whitespace-normal ${isSelected
+                            className={`px-3 py-2 rounded-xl border text-xs transition-all cursor-pointer whitespace-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isSelected
                               ? "bg-cyan-500/20 border-cyan-500 text-cyan-300 font-bold"
                               : "bg-bg-surface border-white/10 text-text-muted hover:border-white/30"
                               }`}
@@ -356,72 +376,89 @@ export default function Contact() {
                   {/* 4. Basic Inputs: Name, Email, Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-gray-200">{t("contact.fullName")} *</label>
+                      <label htmlFor="contact-name" className="text-xs font-bold text-gray-200">
+                        {t("contact.fullName")} *
+                      </label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder={t("contact.fullNamePlaceholder")}
-                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm"
+                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-gray-200">{t("contact.email")} *</label>
+                      <label htmlFor="contact-email" className="text-xs font-bold text-gray-200">
+                        {t("contact.email")} *
+                      </label>
                       <input
+                        id="contact-email"
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder={t("contact.emailPlaceholder")}
-                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm"
+                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-gray-200">
+                      <label htmlFor="contact-phone" className="text-xs font-bold text-gray-200">
                         {isRTL ? "رقم الهاتف / واتساب" : "WhatsApp / Phone"}
                       </label>
                       <input
+                        id="contact-phone"
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+20 123 456 789"
-                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm"
+                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-gray-200">{t("contact.subject")}</label>
+                      <label htmlFor="contact-subject" className="text-xs font-bold text-gray-200">
+                        {t("contact.subject")}
+                      </label>
                       <input
+                        id="contact-subject"
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         placeholder={t("contact.subjectPlaceholder")}
-                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm"
+                        className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
 
                   {/* 5. Message */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-gray-200">{t("contact.message")} *</label>
+                    <label htmlFor="contact-message" className="text-xs font-bold text-gray-200">
+                      {t("contact.message")} *
+                    </label>
                     <textarea
+                      id="contact-message"
                       rows={4}
                       required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder={isRTL ? "اشرح فكرة مشروعك، المتطلبات الرئيسية، أو أي تفاصيل ترغب بمناقشتها..." : "Describe your project ideas, key requirements, or questions..."}
-                      className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm resize-none"
+                      className="w-full bg-bg-surface border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white text-xs sm:text-sm resize-none focus-visible:ring-2 focus-visible:ring-primary"
                     />
                   </div>
 
                   {/* Error Alert */}
                   {errorMessage && (
-                    <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center gap-2 text-xs text-red-400">
+                    <div
+                      role="alert"
+                      aria-live="assertive"
+                      className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center gap-2 text-xs text-red-400"
+                    >
                       <AlertCircle size={16} className="shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
@@ -447,7 +484,7 @@ export default function Contact() {
                   </button>
 
                   <p className="text-[11px] text-center text-text-muted">
-                    {isRTL ? "سرية كاملة لبياناتك ومشروعك • رد مباشر خلال 24 ساعة" : "🔒 100% confidential • Direct response within 24 hours"}
+                    {isRTL ? "سرية كاملة لبياناتك ومشروعك • رد مباشر خلال 24 ساعة" : "100% confidential • Direct response within 24 hours"}
                   </p>
                 </form>
               )}

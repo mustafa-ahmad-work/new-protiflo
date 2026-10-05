@@ -31,8 +31,8 @@ export default function LanguageSwitcher({
       <button
         type="button"
         onClick={toggleLanguage}
-        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-bg-surface/80 hover:bg-bg-surface border border-white/20 text-xs font-bold text-white transition-all duration-200 shadow-md cursor-pointer shrink-0 ${className}`}
-        aria-label="Toggle language"
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-bg-surface/80 hover:bg-bg-surface border border-white/20 text-xs font-bold text-white transition-all duration-200 shadow-md cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${className}`}
+        aria-label={language === "ar" ? "التبديل إلى اللغة الإنجليزية" : "Switch to Arabic language"}
         title={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}
       >
         <Globe size={13} className="text-primary shrink-0" />
@@ -48,8 +48,8 @@ export default function LanguageSwitcher({
       <button
         type="button"
         onClick={toggleLanguage}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-bold text-gray-200 hover:text-white transition-all duration-300 shadow-sm cursor-pointer shrink-0 ${className}`}
-        aria-label="Toggle language"
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-bold text-gray-200 hover:text-white transition-all duration-300 shadow-sm cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${className}`}
+        aria-label={language === "ar" ? "التبديل إلى اللغة الإنجليزية" : "Switch to Arabic language"}
         title={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}
       >
         <Globe size={14} className="text-primary shrink-0" />

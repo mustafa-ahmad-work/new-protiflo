@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowLeft, ArrowRight, FolderGit2, Lock } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub } from "@/components/ui/Icons";
 import { useState } from "react";
 import projectsData from "../../../data/projects.json";
 import Link from "next/link";
@@ -82,12 +82,13 @@ export default function Projects() {
                 className="glass-card group overflow-hidden flex flex-col h-full border border-white/10 hover:border-primary/60 transition-all duration-500 rounded-3xl bg-bg-surface"
               >
                 {/* Image Banner */}
-                <div className="relative overflow-hidden bg-bg-main">
+                <div className="relative overflow-hidden bg-bg-main aspect-[16/9]">
                   <Image
                     width={800}
                     height={450}
                     src={project.image}
                     alt={project.title}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-[#252A3B] via-transparent to-transparent opacity-60" />
@@ -126,7 +127,8 @@ export default function Projects() {
                   <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
                     <Link
                       href={`/projects/${project.id}`}
-                      className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold transition-all shadow-md shadow-primary/30"
+                      aria-label={`${t("projects.details")}: ${project.title}`}
+                      className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold transition-all shadow-md shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     >
                       <span>{t("projects.details")}</span>
                       {isRTL ? <ArrowLeft size={15} /> : <ArrowRight size={15} />}
@@ -139,7 +141,8 @@ export default function Projects() {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 sm:flex-initial p-3 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center"
+                            aria-label={`${t("projects.sourceCode")}: ${project.title}`}
+                            className="flex-1 sm:flex-initial p-3 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                             title={t("projects.sourceCode")}
                           >
                             <FaGithub size={16} />
@@ -150,7 +153,8 @@ export default function Projects() {
                             href={project.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 sm:flex-initial p-3 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center gap-1.5 text-xs font-bold"
+                            aria-label={`${t("projects.preview")}: ${project.title}`}
+                            className="flex-1 sm:flex-initial p-3 rounded-full bg-bg-main border border-white/10 text-gray-200 hover:text-white hover:border-primary/60 transition-all flex items-center justify-center gap-1.5 text-xs font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                           >
                             <ExternalLink size={15} />
                             <span>{t("projects.preview")}</span>

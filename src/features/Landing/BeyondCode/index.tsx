@@ -130,9 +130,9 @@ export default function BeyondCode() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between gap-3 mb-2">
-                            <h4 className="text-base sm:text-lg font-black text-white group-hover:text-primary transition-colors">
+                            <h3 className="text-base sm:text-lg font-black text-white group-hover:text-primary transition-colors">
                               {pillar.title}
-                            </h4>
+                            </h3>
                             <span className="text-[10px] font-bold text-text-muted px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10">
                               {badgeText}
                             </span>

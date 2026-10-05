@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -8,19 +8,21 @@ export default function NavigationProgress() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const isInitial = useRef(true);
 
   useEffect(() => {
-    // When path or search changes, trigger a quick "loading" bar
-    const startTimer = setTimeout(() => {
-      setLoading(true);
-    }, 0);
+    if (isInitial.current) {
+      isInitial.current = false;
+      return;
+    }
 
+    // When path or search changes, trigger a quick "loading" bar
+    setLoading(true);
     const endTimer = setTimeout(() => {
       setLoading(false);
     }, 400);
 
     return () => {
-      clearTimeout(startTimer);
       clearTimeout(endTimer);
     };
   }, [pathname, searchParams]);

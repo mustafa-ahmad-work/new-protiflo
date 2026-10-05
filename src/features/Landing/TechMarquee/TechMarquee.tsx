@@ -4,10 +4,9 @@ import {
   SiLaravel, SiPhp, SiReact, SiJavascript,
   SiMysql, SiTailwindcss, SiGit, SiGithub,
   SiPython, SiLivewire
-} from "react-icons/si";
+} from "@/components/ui/Icons";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { Badge } from "@/components/ui/Badge";
-import { IconType } from "react-icons/lib";
 
 const techStack = [
   { name: "Laravel", category: "Backend Framework", color: "#FF2D20", glow: "rgba(255, 45, 32, 0.2)", icon: SiLaravel },
@@ -44,10 +43,9 @@ export default function TechMarquee() {
         <div className="absolute left-0 inset-y-0 w-24 sm:w-40 bg-linear-to-r from-bg-main to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 inset-y-0 w-24 sm:w-40 bg-linear-to-l from-bg-main to-transparent z-10 pointer-events-none" />
 
-        <div className="flex shrink-0 animate-marquee items-center gap-5 pr-5">
+        <div className="flex shrink-0 animate-marquee motion-reduce:animate-none items-center gap-5 pr-5">
           {techStack.map((item, index) => {
             const IconComponent = item?.icon;
-            const isIcon = item.icon == null ? false : true;
             return (
               <div
                 key={index}
@@ -95,10 +93,9 @@ export default function TechMarquee() {
           })}
         </div>
 
-        <div aria-hidden="true" className="flex shrink-0 animate-marquee items-center gap-5 pr-5">
+        <div aria-hidden="true" className="flex shrink-0 animate-marquee motion-reduce:animate-none items-center gap-5 pr-5">
           {techStack.map((item, index) => {
-            const IconComponent: IconType | null = item?.icon;
-            const isIcon = item.icon == null ? false : true;
+            const IconComponent = item?.icon;
             return (
               <div
                 key={`dup-${index}`}

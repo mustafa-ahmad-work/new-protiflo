@@ -6,7 +6,6 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
-import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   const { t } = useLanguage();
@@ -31,18 +30,32 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileOpen]);
+
   return (
     <header className="fixed top-3 sm:top-4 inset-x-0 z-50 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pointer-events-none">
       <nav
         aria-label="التنقل الرئيسي / Main Navigation"
-        className={`pointer-events-auto flex items-center justify-between gap-2 rounded-[20px] border border-border-main bg-bg-surface/70 backdrop-blur-xl px-3.5 sm:px-6 py-2.5 sm:py-3 shadow-xl transition-all duration-300 ${scrolled ? "shadow-2xl border-primary/30" : ""
-          }`}
+        className={`pointer-events-auto flex items-center justify-between gap-2 rounded-[20px] border border-border-main bg-bg-surface/70 backdrop-blur-xl px-3.5 sm:px-6 py-2.5 sm:py-3 shadow-xl transition-all duration-300 ${
+          scrolled ? "shadow-2xl border-primary/30" : ""
+        }`}
       >
-        {/* Brand Name */}
-        <Link href="/#hero" className="group shrink min-w-0 mr-1 sm:mr-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg">
-          <h1 className="text-sm xs:text-base sm:text-xl font-black tracking-tight text-text-main group-hover:text-primary transition-colors truncate max-w-[140px] xs:max-w-[190px] sm:max-w-none">
+        {/* Brand Name - Semantic span instead of h1 */}
+        <Link
+          href="/#hero"
+          className="group shrink min-w-0 mr-1 sm:mr-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+        >
+          <span className="text-sm xs:text-base sm:text-xl font-black tracking-tight text-text-main group-hover:text-primary transition-colors truncate max-w-[140px] xs:max-w-[190px] sm:max-w-none block">
             {t("nav.brand")}
-          </h1>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
