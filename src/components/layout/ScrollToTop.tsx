@@ -10,15 +10,19 @@ export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    const update = () => {
+      setIsVisible(window.scrollY > 500);
+      ticking = false;
+    };
     const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
@@ -33,12 +37,12 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.5 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.5 }}
+          exit={{ opacity: 0, scale: 0.8 }}
           onClick={scrollToTop}
           aria-label={isRTL ? "الرجوع لأعلى الصفحة" : "Scroll to top"}
-          className="fixed bottom-6 right-6 z-999 w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/20 hover:bg-primary-hover cursor-pointer transition-all border border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="fixed bottom-6 right-6 z-999 w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/20 hover:bg-primary-hover cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95 border border-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <ArrowUp size={20} />
         </motion.button>

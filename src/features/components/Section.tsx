@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 interface SectionProps {
-  id: string;
+  id?: string;
   children: React.ReactNode;
   className?: string;
   containerClassName?: string;

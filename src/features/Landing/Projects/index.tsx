@@ -52,7 +52,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-bg-main relative overflow-hidden border-t border-border-subtle">
+    <section className="py-24 bg-bg-main relative overflow-hidden border-t border-border-subtle">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
@@ -90,6 +90,7 @@ export default function Projects() {
                     alt={project.title}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-[#252A3B] via-transparent to-transparent opacity-60" />
                   <div className="absolute top-4 right-4 px-3 py-1 bg-bg-main/90 backdrop-blur-md rounded-full border border-white/10 text-[10px] font-bold text-white flex items-center gap-1.5">

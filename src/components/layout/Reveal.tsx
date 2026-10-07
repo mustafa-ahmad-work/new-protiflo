@@ -12,13 +12,13 @@ export const Reveal = ({ children, width = "fit-content", delay = 0 }: RevealPro
   return (
     <div style={{ position: "relative", width, overflow: "visible" }}>
       <motion.div
-        initial={{ opacity: 0, y: 75, filter: "blur(10px)", scale: 0.95 }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ 
-            duration: 0.8, 
-            delay: delay,
-            ease: [0.16, 1, 0.3, 1] 
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{
+          duration: 0.6,
+          delay: delay,
+          ease: [0.16, 1, 0.3, 1],
         }}
       >
         {children}
@@ -27,36 +27,48 @@ export const Reveal = ({ children, width = "fit-content", delay = 0 }: RevealPro
   );
 };
 
-export const StaggerContainer = ({ children, staggerDelay = 0.1 }: { children: React.ReactNode, staggerDelay?: number }) => {
-    return (
-        <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-                visible: {
-                    transition: {
-                        staggerChildren: staggerDelay
-                    }
-                }
-            }}
-        >
-            {children}
-        </motion.div>
-    );
+export const StaggerContainer = ({
+  children,
+  staggerDelay = 0.08,
+}: {
+  children: React.ReactNode;
+  staggerDelay?: number;
+}) => {
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={{
+        visible: {
+          transition: {
+            staggerChildren: staggerDelay,
+          },
+        },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
 };
 
-export const StaggerItem = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
-    return (
-        <motion.div
-            className={className}
-            variants={{
-                hidden: { opacity: 0, y: 20, filter: "blur(5px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)" }
-            }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-            {children}
-        </motion.div>
-    );
+export const StaggerItem = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 0, y: 15 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
+  );
 };

@@ -18,18 +18,11 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
+      autoRaf: true,
+      autoToggle: true,
     });
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

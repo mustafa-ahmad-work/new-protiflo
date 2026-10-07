@@ -14,7 +14,7 @@ export default function About() {
   const details = (t("about.details", { returnObjects: true }) as { label: string; value: string }[]) || [];
 
   return (
-    <Section id="about" className="bg-bg-main py-24 md:py-32 border-t border-white/10">
+    <Section className="bg-bg-main py-24 md:py-32 border-t border-white/10">
       <div className="grid lg:grid-cols-2 gap-20 lg:gap-32 items-center">
         <Reveal>
           <div className="relative group">
@@ -26,6 +26,7 @@ export default function About() {
                 height={920}
                 sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 440px"
                 className="w-full h-auto max-h-[550px] object-cover group-hover:grayscale-0 transition duration-1000 group-hover:scale-105"
+                loading="lazy"
               />
             </div>
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 blur-2xl rounded-full -z-10 hidden md:block" />

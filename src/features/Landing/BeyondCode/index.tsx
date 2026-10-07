@@ -45,7 +45,7 @@ export default function BeyondCode() {
   const pillars: PillarItem[] = Array.isArray(rawPillars) ? (rawPillars as PillarItem[]) : [];
 
   return (
-    <Section id="beyond-code" className="py-24 bg-bg-main border-t border-white/10 relative overflow-hidden">
+    <Section className="py-24 bg-bg-main border-t border-white/10 relative overflow-hidden">
       {/* Background Ambience Glow */}
       {/* <div
         className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/10 blur-[130px] rounded-full pointer-events-none -z-0"

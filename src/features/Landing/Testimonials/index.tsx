@@ -17,7 +17,7 @@ export default function Testimonials() {
   const testimonials = testimonialsData as unknown as TestimonialItem[];
 
   return (
-    <Section id="testimonials" className="border-t border-border-subtle bg-bg-main relative">
+    <Section className="border-t border-border-subtle bg-bg-main relative">
       <SectionHeader
         subtitle={t("testimonials.badge")}
         title={t("testimonials.title")}

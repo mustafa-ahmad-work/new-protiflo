@@ -27,35 +27,35 @@ export default function Landing() {
         <TechMarquee />
       </ScrollSection>
 
-      <ScrollSection minHeight="650px">
+      <ScrollSection id="about" minHeight="650px">
         <About />
       </ScrollSection>
 
-      <ScrollSection minHeight="700px">
+      <ScrollSection id="services" minHeight="700px">
         <Services />
       </ScrollSection>
 
-      <ScrollSection minHeight="800px">
+      <ScrollSection id="projects" minHeight="800px">
         <Projects />
       </ScrollSection>
 
-      <ScrollSection minHeight="700px">
+      <ScrollSection id="process" minHeight="700px">
         <Process />
       </ScrollSection>
 
-      <ScrollSection minHeight="750px">
+      <ScrollSection id="tech" minHeight="750px">
         <TechStack />
       </ScrollSection>
 
-      <ScrollSection minHeight="500px">
+      <ScrollSection id="testimonials" minHeight="500px">
         <Testimonials />
       </ScrollSection>
 
-      <ScrollSection minHeight="550px">
+      <ScrollSection id="beyond-code" minHeight="550px">
         <BeyondCode />
       </ScrollSection>
 
-      <ScrollSection minHeight="750px">
+      <ScrollSection id="contact" minHeight="750px">
         <Contact />
       </ScrollSection>
 

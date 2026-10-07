@@ -23,11 +23,23 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+    const update = () => {
       setScrolled(window.scrollY > 40);
+      ticking = false;
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+    const rId = window.requestAnimationFrame(update);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(rId);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {

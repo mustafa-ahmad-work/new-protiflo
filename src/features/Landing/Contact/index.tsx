@@ -149,7 +149,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-bg-main relative overflow-hidden border-t border-border-subtle">
+    <section className="py-24 bg-bg-main relative overflow-hidden border-t border-border-subtle">
       {/* Background Lighting */}
       <div
         className="absolute bottom-0 right-1/4 w-[600px] h-[350px] bg-primary/10 rounded-full blur-[140px] pointer-events-none"

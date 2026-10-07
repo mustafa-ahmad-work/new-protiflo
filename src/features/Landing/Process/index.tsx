@@ -75,7 +75,7 @@ export default function Process() {
   const steps: ProcessStep[] = Array.isArray(rawSteps) ? (rawSteps as ProcessStep[]) : [];
 
   return (
-    <Section id="process" className="border-t border-white/10 py-24 bg-bg-main">
+    <Section className="border-t border-white/10 py-24 bg-bg-main">
       {/* Section Header */}
       <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-primary border border-white/20 text-xs font-bold text-white shadow-lg shadow-primary/10 mb-4 sm:mb-5">

@@ -220,7 +220,7 @@ export default function TechStack() {
     : categories.filter((c) => c.id === activeTab);
 
   return (
-    <Section id="tech" className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
+    <Section className="py-24 bg-bg-main border-t border-white/10 relative w-full overflow-hidden">
       {/* Ambient background blur */}
       {/* <div
         className="absolute top-1/4 -left-20 w-125 h-125 bg-primary/10 rounded-full blur-[140px] pointer-events-none"
