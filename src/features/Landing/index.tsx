@@ -1,9 +1,8 @@
-"use client";
-
 import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "./Hero";
 import ScrollSection from "@/components/layout/ScrollSection";
+
 
 // Dynamically split below-the-fold sections into separate chunks with full SSR for SEO
 const TechMarquee = dynamic(() => import("./TechMarquee/TechMarquee"));

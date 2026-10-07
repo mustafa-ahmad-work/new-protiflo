@@ -55,7 +55,7 @@ export default function Hero() {
               download
               href="/Mustafa_Ahmad_Full-Stack Web Developer _resume.pdf"
               aria-label={t("hero.downloadCV")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold px-7 py-3.5 rounded-xl shadow-blue-glow border border-white/15 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold px-7 py-3.5 rounded-xl shadow-blue-glow border border-white/15 transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span>{t("hero.downloadCV")}</span>
               <Download size={16} className="transition-transform duration-200 group-hover:translate-y-0.5" />
@@ -64,7 +64,7 @@ export default function Hero() {
             <a
               href="#about"
               aria-label={t("hero.moreAboutMe")}
-              className="group inline-flex items-center gap-2 text-text-main hover:text-primary text-sm sm:text-base font-medium py-3 px-4 rounded-xl hover:bg-bg-surface/50 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="group inline-flex items-center gap-2 text-text-main hover:text-primary text-sm sm:text-base font-medium py-3 px-4 rounded-xl hover:bg-bg-surface/50 transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span>{t("hero.moreAboutMe")}</span>
               {isRTL ? (

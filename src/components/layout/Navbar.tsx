@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
@@ -24,22 +23,17 @@ export default function Navbar() {
 
   useEffect(() => {
     let ticking = false;
-    const update = () => {
-      setScrolled(window.scrollY > 40);
-      ticking = false;
-    };
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(update);
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 40);
+          ticking = false;
+        });
         ticking = true;
       }
     };
-    const rId = window.requestAnimationFrame(update);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.cancelAnimationFrame(rId);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -56,16 +50,16 @@ export default function Navbar() {
     <header className="fixed top-3 sm:top-4 inset-x-0 z-50 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pointer-events-none">
       <nav
         aria-label="التنقل الرئيسي / Main Navigation"
-        className={`pointer-events-auto flex items-center justify-between gap-2 rounded-[20px] border border-border-main bg-bg-surface/70 backdrop-blur-xl px-3.5 sm:px-6 py-2.5 sm:py-3 shadow-xl transition-all duration-300 ${
+        className={`pointer-events-auto flex items-center justify-between gap-2 rounded-[20px] border border-border-main bg-bg-surface/70 backdrop-blur-xl px-3.5 sm:px-6 py-2.5 sm:py-3 shadow-xl transition-[box-shadow,border-color] duration-300 ${
           scrolled ? "shadow-2xl border-primary/30" : ""
         }`}
       >
-        {/* Brand Name - Semantic span instead of h1 */}
+        {/* Brand Name */}
         <Link
           href="/#hero"
           className="group shrink min-w-0 mr-1 sm:mr-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
         >
-          <span className="text-sm xs:text-base sm:text-xl font-black tracking-tight text-text-main group-hover:text-primary transition-colors truncate max-w-[140px] xs:max-w-[190px] sm:max-w-none block">
+          <span className="text-sm xs:text-base sm:text-xl font-black tracking-tight text-text-main group-hover:opacity-80 transition-opacity truncate max-w-[140px] xs:max-w-[190px] sm:max-w-none block">
             {t("nav.brand")}
           </span>
         </Link>
@@ -76,7 +70,7 @@ export default function Navbar() {
             <li key={item.name}>
               <Link
                 href={item.href}
-                className="px-3.5 py-1.5 rounded-full text-xs font-bold text-text-muted hover:text-text-main hover:bg-primary/10 transition-all block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="px-3.5 py-1.5 rounded-full text-xs font-bold text-text-muted hover:text-text-main hover:bg-primary/10 transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 {item.name}
               </Link>
@@ -86,9 +80,6 @@ export default function Navbar() {
 
         {/* Actions: Theme Toggle, Language Switcher, CTA & Mobile Toggle */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-          {/* Theme Toggle Button */}
-          {/* <ThemeToggle /> */}
-
           {/* Mobile Compact Language Switcher */}
           <LanguageSwitcher id="header-mobile" variant="compact" className="sm:hidden" />
 
@@ -118,53 +109,48 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            id="mobile-drawer"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="pointer-events-auto mt-2 rounded-[20px] border border-border-main bg-bg-surface/95 backdrop-blur-2xl p-5 sm:p-6 shadow-2xl lg:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto"
-          >
-            {/* Theme & Language Switcher in Mobile Drawer */}
-            <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
-              <span className="text-xs font-bold text-text-muted">
-                {t("nav.home") === "الرئيسية" ? "المظهر واللغة" : "Theme & Language"}
-              </span>
-              <div className="flex items-center gap-2">
-                {/* <ThemeToggle /> */}
-                <LanguageSwitcher id="drawer-menu" />
-              </div>
+      {mobileOpen && (
+        <div
+          id="mobile-drawer"
+          className="pointer-events-auto mt-2 rounded-[20px] border border-border-main bg-bg-surface/95 backdrop-blur-2xl p-5 sm:p-6 shadow-2xl lg:hidden flex flex-col gap-4 max-h-[85vh] overflow-y-auto animate-[fadeInDown_0.2s_ease-out]"
+        >
+          {/* Theme & Language Switcher in Mobile Drawer */}
+          <div className="flex items-center justify-between pb-3 border-b border-border-subtle">
+            <span className="text-xs font-bold text-text-muted">
+              {t("nav.home") === "الرئيسية" ? "المظهر واللغة" : "Theme & Language"}
+            </span>
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher id="drawer-menu" />
             </div>
+          </div>
 
-            <ul className="space-y-1.5">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-2.5 rounded-xl bg-bg-main/50 border border-border-subtle text-sm font-bold text-text-main hover:bg-primary hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <ul className="space-y-1.5">
+            {navItems.map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block px-4 py-2.5 rounded-xl bg-bg-main/50 border border-border-subtle text-sm font-bold text-text-main hover:bg-primary hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-            <a
-              href="https://wa.me/201120354592"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileOpen(false)}
-              className="w-full flex items-center justify-center gap-2 btn-primary py-3 text-sm mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <MessageCircle size={18} />
-              <span>{t("nav.contactWhatsApp")}</span>
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <a
+            href="https://wa.me/201120354592"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileOpen(false)}
+            className="w-full flex items-center justify-center gap-2 btn-primary py-3 text-sm mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            <MessageCircle size={18} />
+            <span>{t("nav.contactWhatsApp")}</span>
+          </a>
+        </div>
+      )}
     </header>
   );
 }
+

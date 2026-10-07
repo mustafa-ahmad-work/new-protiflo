@@ -1,55 +1,69 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
   width?: "fit-content" | "100%";
   delay?: number;
+  className?: string;
 }
 
-export const Reveal = ({ children, width = "fit-content", delay = 0 }: RevealProps) => {
+export const Reveal = ({ children, width = "fit-content", delay = 0, className = "" }: RevealProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -40px 0px", threshold: 0.05 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div style={{ position: "relative", width, overflow: "visible" }}>
-      <motion.div
-        initial={{ opacity: 0, y: 35 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{
-          duration: 0.6,
-          delay: delay,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-      >
-        {children}
-      </motion.div>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        position: "relative",
+        width,
+        overflow: "visible",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+        willChange: isVisible ? "auto" : "opacity, transform",
+      }}
+    >
+      {children}
     </div>
   );
 };
 
 export const StaggerContainer = ({
   children,
-  staggerDelay = 0.08,
+  className = "",
 }: {
   children: React.ReactNode;
   staggerDelay?: number;
+  className?: string;
 }) => {
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      variants={{
-        visible: {
-          transition: {
-            staggerChildren: staggerDelay,
-          },
-        },
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 };
 
 export const StaggerItem = ({
@@ -59,16 +73,6 @@ export const StaggerItem = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: { opacity: 0, y: 15 },
-        visible: { opacity: 1, y: 0 },
-      }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 };
+

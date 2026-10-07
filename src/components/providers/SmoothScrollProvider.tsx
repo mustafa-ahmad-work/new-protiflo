@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Lenis from "lenis";
-import "lenis/dist/lenis.css";
 
 export default function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -11,21 +9,29 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
       return;
     }
 
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      autoRaf: true,
-      autoToggle: true,
+    let lenisInstance: import("lenis").default | null = null;
+    let destroyed = false;
+
+    import("lenis").then(({ default: Lenis }) => {
+      if (destroyed) return;
+      lenisInstance = new Lenis({
+        duration: 1.1,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        autoRaf: true,
+        autoToggle: true,
+      });
     });
 
     return () => {
-      lenis.destroy();
+      destroyed = true;
+      lenisInstance?.destroy();
     };
   }, []);
 
   return <>{children}</>;
 }
+

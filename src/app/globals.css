@@ -232,6 +232,34 @@ h6 {
   animation-play-state: paused;
 }
 
+@keyframes navProgress {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  80% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
 /* Ambient Radial Blur Glows */
 .ambient-glow-purple {
   position: absolute;
