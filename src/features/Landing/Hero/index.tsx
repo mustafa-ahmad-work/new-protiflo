@@ -52,7 +52,8 @@ export default function Hero() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8 lg:mb-0">
             <a
-              href="#contact"
+              download
+              href="/Mustafa_Ahmad_Full-Stack Web Developer _resume.pdf"
               aria-label={t("hero.downloadCV")}
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary-hover text-white text-sm sm:text-base font-semibold px-7 py-3.5 rounded-xl shadow-blue-glow border border-white/15 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
